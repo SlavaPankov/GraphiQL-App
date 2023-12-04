@@ -11,6 +11,7 @@ function App() {
         placeholder="Placeholder..."
         className="name"
       />
+      <button type="button">Submit</button>
     </>
   );
 }
