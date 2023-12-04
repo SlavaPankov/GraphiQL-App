@@ -18,12 +18,4 @@ export default defineConfig({
       include: ['src/components/**/*.tsx', 'src/pages/**/*.tsx'],
     },
   },
-  resolve: {
-    alias: [
-      {
-        find: '@',
-        replacement: resolve(__dirname, './src'),
-      },
-    ],
-  },
 });
