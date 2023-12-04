@@ -1,0 +1,11 @@
+{
+  "name": "graphiql-app",
+  "version": "1.0.0",
+  "description": "Final task on React.js course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Chill&Fun",
+  "license": "ISC"
+}
