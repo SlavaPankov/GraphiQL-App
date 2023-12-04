@@ -1,10 +1,11 @@
 import { Link } from 'react-router-dom';
+import { Heading } from '@components/Heading';
 
 export function MainPage() {
   return (
-    <>
-      <h1>Main page</h1>
+    <div className="container">
+      <Heading />
       <Link to="/about">About</Link>
-    </>
+    </div>
   );
 }

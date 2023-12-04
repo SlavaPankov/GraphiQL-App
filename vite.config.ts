@@ -18,4 +18,18 @@ export default defineConfig({
       include: ['src/components/**/*.tsx', 'src/pages/**/*.tsx'],
     },
   },
+  resolve: {
+    alias: {
+      '@components': '/src/components',
+      '@styles': '/src/styles',
+      '@utils': '/src/utils',
+    },
+  },
+  css: {
+    preprocessorOptions: {
+      scss: {
+        additionalData: [`@import "./src/assets/styles/main.scss";`],
+      },
+    },
+  },
 });
