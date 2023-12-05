@@ -6,7 +6,7 @@ export function MainPage() {
   return (
     <div className="container">
       <Heading />
-      <Link to={ERoutes.about}>About</Link>
+      <Link to={ERoutes.signup}>About</Link>
     </div>
   );
 }
