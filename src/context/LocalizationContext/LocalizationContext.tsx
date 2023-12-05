@@ -1,15 +1,18 @@
-import { createContext, ReactNode, useMemo, useState } from 'react';
+import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
+import { useGetLocaleQuery } from '../../store/localeApi/localeApi';
 
 type Locale = 'ru' | 'en';
 
 export interface ILocalizationContextData {
   locale: Locale;
   setLocale: (data: Locale) => void;
+  translate: (key: string) => string;
 }
 
 const localizationContextDefaultValue: ILocalizationContextData = {
   locale: 'ru',
   setLocale: () => {},
+  translate: () => '',
 };
 
 export const localizationContext = createContext<ILocalizationContextData>(
@@ -17,16 +20,31 @@ export const localizationContext = createContext<ILocalizationContextData>(
 );
 
 export function UseLocalizationContext({ children }: { children: ReactNode }) {
-  const [locale, setLocale] = useState<Locale>('ru');
+  const [locale, setLocale] = useState<Locale>(
+    (localStorage.getItem('lang') as Locale) || 'ru'
+  );
+  const { data, isLoading } = useGetLocaleQuery(locale);
+
+  const translate = (key: string) => {
+    if (!data) {
+      return key;
+    }
+
+    return data[key];
+  };
 
   const localizationProviderValue = useMemo(
-    () => ({ locale, setLocale }),
-    [locale, setLocale]
+    () => ({ locale, setLocale, translate }),
+    [locale, setLocale, translate]
   );
+
+  useEffect(() => {
+    localStorage.setItem('lang', locale);
+  }, [locale]);
 
   return (
     <localizationContext.Provider value={localizationProviderValue}>
-      {children}
+      {!isLoading && children}
     </localizationContext.Provider>
   );
 }
