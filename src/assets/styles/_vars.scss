@@ -4,4 +4,16 @@ $content-width: 1280px;
 $container-offset: 15px;
 $container-width: calc($content-width + $container-offset * 2);
 
-$primary: blue;
+$white: #fff;
+$black: #333;
+$black-20: #1d1b20;
+$primary: #6750a4;
+$primary_shade: #7965af;
+$primary_light: #f2eaf8;
+$grey-E4: #e2dce4;
+$grey-9A: #97939a;
+$grey-86: #817c86;
+$grey-7E: #79747e;
+$grey-4F: #49454f;
+$box-shadow: 0px 1px 3px 1px rgba(0, 0, 0, 0.15), 0px 1px 2px 0px rgba(0, 0, 0, 0.30);
+$error: #b3261e;

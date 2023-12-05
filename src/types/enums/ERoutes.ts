@@ -1,4 +1,4 @@
-export enum ERoutes {
+export const enum ERoutes {
   'home' = '/',
   'about' = 'about',
 }

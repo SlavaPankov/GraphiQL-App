@@ -1,0 +1,33 @@
+@mixin btn-primary {
+  padding: 10px 24px;
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+  color: $white;
+  background-color: $primary;
+  border-radius: 100px;
+  transition: background-color .3s ease-in-out, box-shadow .3s ease-in-out;
+  letter-spacing: 0.1px;
+
+  &:not(:disabled):hover {
+    box-shadow: $box-shadow;
+    background-color: $primary-shade;
+  }
+
+  &:not(:disabled):focus {
+    outline: none;
+    background-color: $primary_shade;
+    box-shadow: none;
+  }
+
+  &:not(:disabled):active {
+    background-color: $primary_shade;
+    box-shadow: none;
+  }
+
+  &:disabled {
+    color: $grey-9A;
+    background-color: $grey-E4;
+    cursor: not-allowed;
+  }
+}

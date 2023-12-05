@@ -4,9 +4,12 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { MainPage } from './pages/MainPage';
 import { AboutPage } from './pages/AboutPage';
 import { ERoutes } from './types/enums/ERoutes';
+import { UseLocalizationContext } from './context/LocalizationContext';
+import store from './store/store';
 
 const routes = createRoutesFromElements(
   <Route>
@@ -18,7 +21,11 @@ const routes = createRoutesFromElements(
 const router = createBrowserRouter(routes);
 
 export function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <UseLocalizationContext>
+        <RouterProvider router={router} />
+      </UseLocalizationContext>
+    </Provider>
+  );
 }
-
-export default App;

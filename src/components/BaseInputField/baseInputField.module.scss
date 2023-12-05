@@ -1,0 +1,59 @@
+.label {
+  position: relative;
+  display: block;
+  padding-top: 8px;
+  max-width: fit-content;
+}
+
+.input {
+  padding: 16px;
+  border-radius: 4px;
+  border: 1px solid $grey-7E;
+  transition: border-color .3s ease-in-out;
+  letter-spacing: 0.5px;
+
+  &::placeholder {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    color: $grey-4F;
+  }
+
+  &:hover {
+    border-color: $black-20;
+  }
+
+  &:focus {
+    outline: none;
+    border-color: $primary;
+  }
+}
+
+.text {
+  position: absolute;
+  left: 12px;
+  top: 0;
+  display: block;
+  padding: 0 4px;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: $grey-4F;
+  background-color: $white;
+}
+
+.error {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + 4px);
+  transform: translateY(-35%);
+  width: 100%;
+  font-size: 12px;
+  line-height: 16px;
+  font-weight: 400;
+  color: $error;
+}
+
+.inputError {
+  border-color: $error;
+}
