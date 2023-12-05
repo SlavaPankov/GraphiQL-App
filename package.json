@@ -35,6 +35,8 @@
     "redux": "^5.0.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "18.4.3",
+    "@commitlint/config-conventional": "18.4.3",
     "@testing-library/jest-dom": "^6.1.5",
     "@testing-library/react": "^14.1.2",
     "@types/react": "^18.2.37",
@@ -65,9 +67,12 @@
     "vitest": "^0.34.6"
   },
   "lint-staged": {
-    "src/**/*.{ts,tsx,js,jsx}": [
-      "prettier --write ./src --config ./.prettierrc",
-      "eslint"
+    "*": "prettier -luw",
+    "*.{ts,tsx}": "eslint --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0 --fix"
+  },
+  "commitlint": {
+    "extends": [
+      "@commitlint/config-conventional"
     ]
   },
   "msw": {
