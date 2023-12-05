@@ -29,11 +29,9 @@
       "@components/*": ["src/components/*"],
       "@styles/*": ["src/styles/*"],
       "@utils/*": ["src/utils/*"]
-    }
+    },
+    "types": ["vite/client"]
   },
-  "include": [
-    "vite.config.ts",
-    ".eslintrc.cjs",
-    "src","src"],
+  "include": ["vite.config.ts", ".eslintrc.cjs", "src"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
