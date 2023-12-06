@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useEffect, useMemo, useState } from 'react';
 import { useGetLocaleQuery } from '../../store/localeApi/localeApi';
-
-type Locale = 'ru' | 'en';
+import { Locale } from 'src/types/types/Locale';
+import { isLocale } from '@utils/typeguards/is-locale';
 
 export interface ILocalizationContextData {
   locale: Locale;
@@ -20,11 +20,11 @@ export const localizationContext = createContext<ILocalizationContextData>(
 );
 
 export function UseLocalizationContext({ children }: { children: ReactNode }) {
+  const initialLocale = localStorage.getItem('lang');
   const [locale, setLocale] = useState<Locale>(
-    (localStorage.getItem('lang') as Locale) || 'ru'
+    isLocale(initialLocale) ? initialLocale : 'ru'
   );
   const { data, isLoading } = useGetLocaleQuery(locale);
-
   const translate = (key: string) => {
     if (!data) {
       return key;
