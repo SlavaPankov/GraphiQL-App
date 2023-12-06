@@ -1,1 +1,1 @@
-export * from './LocalizationContext';
+export * from './LocalizationContextProvider';

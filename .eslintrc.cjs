@@ -4,26 +4,27 @@ module.exports = {
     "es2021": true
   },
   "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
     "airbnb",
     "airbnb-typescript",
     "airbnb/hooks",
-    "plugin:react/recommended",
-    "plugin:@typescript-eslint/recommended",
-    "plugin:prettier/recommended"
+    "plugin:react/jsx-runtime",
+    "plugin:@typescript-eslint/strict-type-checked",
+    "plugin:@typescript-eslint/stylistic-type-checked",
+    "prettier",
   ],
   "parser": "@typescript-eslint/parser",
   "ignorePatterns": [".eslintrc.cjs", "vite.config.ts"],
   "parserOptions": {
     "ecmaVersion": "latest",
     "sourceType": "module",
-    "project": './tsconfig.json'
+    "project": "./tsconfig.json"
   },
-  "plugins": [
-    "react",
-    "@typescript-eslint",
-    "prettier"
-  ],
+  "plugins": ["react-refresh"],
   "rules": {
+    "react-refresh/only-export-components": ["warn", { "allowConstantExport": true }],
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "off",
     "comma-dangle": ["error", "only-multiline"],
@@ -37,8 +38,12 @@ module.exports = {
     "@typescript-eslint/no-var-requires": "off",
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
-    "react/prefer-stateless-function": 0,
-    "import/prefer-default-export": 0,
-    "class-methods-use-this": 0,
+    "react/prefer-stateless-function": "off",
+    "import/prefer-default-export": "off",
+    "class-methods-use-this": "off",
+    "react/function-component-definition": [
+      "error",
+      { "namedComponents": "function-declaration", "unnamedComponents": "arrow-function" },
+    ]
   }
 }
