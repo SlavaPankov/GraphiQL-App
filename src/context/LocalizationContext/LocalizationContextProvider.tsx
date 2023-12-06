@@ -11,7 +11,7 @@ export function UseLocalizationContext({ children }: { children: ReactNode }) {
   const { data, isLoading } = useGetLocaleQuery(locale);
 
   const translate = (key: string) => {
-    if (!data) {
+    if (!data?.[key]) {
       return key;
     }
     return data[key];
