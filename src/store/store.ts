@@ -1,9 +1,13 @@
-import { combineReducers, configureStore } from '@reduxjs/toolkit';
-
-const reducer = combineReducers({});
+import { configureStore } from '@reduxjs/toolkit';
+import { localeApi } from './localeApi/localeApi';
 
 const store = configureStore({
-  reducer,
+  reducer: {
+    [localeApi.reducerPath]: localeApi.reducer,
+  },
+
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware().concat(localeApi.middleware),
 });
 
 export default store;
