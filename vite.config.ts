@@ -22,6 +22,10 @@ export default defineConfig({
       '@components': '/src/components',
       '@styles': '/src/styles',
       '@utils': '/src/utils',
+      '@context': '/src/context',
+      '@type': '/src/types',
+      '@store': '/src/store',
+      '@assets': '/src/assets',
     },
   },
   css: {

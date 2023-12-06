@@ -1,10 +1,10 @@
 import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import classNames from 'classnames';
+import { localizationContext } from '@context/LocalizationContext';
+import { ERoutes } from '@type/enums/ERoutes';
+import Logo from '@assets/images/logo.png';
 import styles from './notFound.module.scss';
-import { localizationContext } from '../../context/LocalizationContext';
-import { ERoutes } from '../../types/enums/ERoutes';
-import Logo from '../../assets/images/logo.png';
 
 export function NotFound() {
   const { translate } = useContext(localizationContext);

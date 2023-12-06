@@ -1,5 +1,11 @@
 {
   "Hello": "Hello",
   "Not found": "Page not found",
-  "To main": "Go to homepage"
+  "To main": "Go to homepage",
+  "Signup": "Sign up",
+  "Name": "Name",
+  "Email": "Email",
+  "Password": "Password",
+  "Confirm password": "Confirm password",
+  "Registration": "Register"
 }

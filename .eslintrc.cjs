@@ -16,11 +16,11 @@ module.exports = {
     'prettier',
   ],
   parser: '@typescript-eslint/parser',
-  ignorePatterns: ['.eslintrc.cjs', 'vite.config.ts'],
+  ignorePatterns: ['.eslintrc.cjs'],
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
   },
   plugins: ['react-refresh'],
   rules: {
@@ -44,6 +44,15 @@ module.exports = {
     'react/prefer-stateless-function': 'off',
     'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '*.{config,setup}.{ts,js}',
+          '**/*.{spec,test}.{tsx,ts,jsx,js}',
+        ],
+      },
+    ],
     'react/function-component-definition': [
       'error',
       {

@@ -1,7 +1,7 @@
 import { ReactNode, useMemo, useState } from 'react';
 import { isLocale } from '@utils/typeguards/is-locale';
+import { useGetLocaleQuery } from '@store/localeApi/localeApi';
 import { Locale, localizationContext } from './LocalizationContext';
-import { useGetLocaleQuery } from '../../store/localeApi/localeApi';
 
 export function UseLocalizationContext({ children }: { children: ReactNode }) {
   const initialLocale = localStorage.getItem('lang');
