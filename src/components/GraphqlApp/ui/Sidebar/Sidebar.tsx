@@ -1,5 +1,7 @@
+import { SidePanelMode } from '@components/GraphqlApp/enums/SidePanelMode';
 import { MouseEventHandler, useContext } from 'react';
-import styles from './sidebar.module.scss';
+import { localizationContext } from '../../../../context/LocalizationContext';
+import { GQLAppButton } from '../GQLAppButton';
 import {
   DocsSVGIcon,
   HistorySVGIcon,
@@ -7,10 +9,10 @@ import {
   ReloadSVGIcon,
   SettingsSVGIcon,
 } from '../GQLAppButton/icons';
-import { localizationContext } from '../../../../context/LocalizationContext';
-import { GQLAppButton } from '../GQLAppButton';
+import styles from './sidebar.module.scss';
 
 interface ISidebarProps {
+  sidePanelMode: SidePanelMode;
   handleDocsClick: MouseEventHandler<HTMLButtonElement>;
   handleHistoryClick: MouseEventHandler<HTMLButtonElement>;
   handleReloadClick: MouseEventHandler<HTMLButtonElement>;
@@ -19,6 +21,7 @@ interface ISidebarProps {
 }
 
 export function Sidebar({
+  sidePanelMode,
   handleDocsClick,
   handleHistoryClick,
   handleReloadClick,
@@ -31,14 +34,16 @@ export function Sidebar({
     <aside className={styles.sideBar}>
       <div className={styles.buttonSection}>
         <GQLAppButton
-          icon={<DocsSVGIcon />}
+          icon={<DocsSVGIcon isActive={sidePanelMode === SidePanelMode.DOCS} />}
           title={translate('Documentation Explorer')}
           onClick={handleDocsClick}
+          isActive={sidePanelMode === SidePanelMode.DOCS}
         />
         <GQLAppButton
           icon={<HistorySVGIcon />}
           title={translate('History')}
           onClick={handleHistoryClick}
+          isActive={sidePanelMode === SidePanelMode.HISTORY}
         />
       </div>
       <div className={styles.buttonSection}>
