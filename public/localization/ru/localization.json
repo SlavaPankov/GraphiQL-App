@@ -5,5 +5,7 @@
   "History": "История",
   "Re-fetch GraphQL schema": "Обновить GraphQL-схему",
   "Short keys": "Горячие клавиши",
-  "Settings dialog": "Настройки"
+  "Settings dialog": "Настройки",
+  "GraphQL Playground": "GraphQL Игровая площадка",
+  "GraphQL Editors": "GraphQL Редакторы"
 }
