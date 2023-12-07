@@ -68,7 +68,7 @@
   },
   "lint-staged": {
     "*": "prettier -luw",
-    "*.{ts,tsx}": "eslint --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0 --fix"
+    "*.{ts,tsx}": "tsc && eslint --ext .ts,.tsx --report-unused-disable-directives --max-warnings 0 --fix"
   },
   "commitlint": {
     "extends": [
