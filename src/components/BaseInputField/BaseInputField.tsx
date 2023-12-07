@@ -39,6 +39,7 @@ export function BaseInputField({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
+        autoComplete={type === 'password' ? 'new-password' : 'off'}
       />
       {error && <span className={styles.error}>{error}</span>}
     </label>

@@ -44,10 +44,8 @@
 }
 
 .error {
-  position: absolute;
-  top: 50%;
-  left: calc(100% + 4px);
-  transform: translateY(-35%);
+  display: block;
+  padding-left: 16px;
   width: 100%;
   font-size: 12px;
   line-height: 16px;

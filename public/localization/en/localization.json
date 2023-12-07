@@ -7,5 +7,12 @@
   "Email": "Email",
   "Password": "Password",
   "Confirm password": "Confirm password",
-  "Registration": "Register"
+  "Registration": "Register",
+  "Field required": "Field is required field",
+  "Password match": "Password must match",
+  "Email format": "Invalid format",
+  "Name capitalize": "Name should be capitalized",
+  "Password format": "Password must contain 1 uppercase, 1 lowercase, 1 number and 1 special symbol",
+  "Password length": "Password length min 8",
+  "Invalid format": "Invalid format"
 }
