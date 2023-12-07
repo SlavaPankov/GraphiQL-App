@@ -1,119 +1,106 @@
+/* eslint-disable @typescript-eslint/no-floating-promises */
 import { BaseInputField } from '@components/BaseInputField';
 import { EFormFieldsName } from '@type/enums/EFormFieldsName';
 import { BaseButton } from '@components/BaseButton';
-import { ChangeEvent, FormEvent, useContext, useRef, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
-import { object, ObjectSchema, string, ref } from 'yup';
 import { IFormData } from '@type/interfaces/IFormData';
-import { validationForm } from '@utils/validationForm.ts';
+import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import { yupResolver } from '@hookform/resolvers/yup';
+import { useCreateSignupSchema } from '@hooks/useCreateSignupSchema';
+import { useNavigate } from 'react-router-dom';
 import styles from './singupForm.module.scss';
 
 export function SignupForm() {
   const { translate, setLocale } = useContext(localizationContext);
-  const [formValues, setFormValues] = useState<Record<string, string>>({});
-  const [errors, setErrors] = useState<Record<string, string>>({});
-  const refForm = useRef<HTMLFormElement>(null);
+  const { schema } = useCreateSignupSchema();
+  const navigate = useNavigate();
 
-  const schema: ObjectSchema<IFormData> = object({
-    name: string()
-      .required(translate('Field required'))
-      .test({
-        test(value, ctx) {
-          if (!value) {
-            return ctx.createError({ message: translate('Field required') });
-          }
-
-          if ([...value][0] !== [...value][0].toUpperCase()) {
-            return ctx.createError({ message: translate('Name capitalize') });
-          }
-
-          return true;
-        },
-      }),
-    email: string()
-      .email(translate('Invalid format'))
-      .required(translate('Field required')),
-    password: string()
-      .min(8, translate('Password length'))
-      .matches(
-        /^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z])(?=.*[!@#$%^&*()_+{}\\[\]:;<>,.?~-]).{8,}$/,
-        { message: translate('Password format') }
-      )
-      .required(translate('Field required')),
-    confirmPassword: string()
-      .oneOf([ref('password')], translate('Password match'))
-      .required(translate('Field required')),
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+    trigger,
+  } = useForm<IFormData>({
+    resolver: yupResolver(schema),
+    mode: 'onChange',
+    defaultValues: {
+      name: '',
+      email: '',
+      password: '',
+      confirmPassword: '',
+    },
   });
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setFormValues((prevState) => ({
-      ...prevState,
-      [event.target.name]: event.target.value,
-    }));
-    setErrors((prevState) => ({
-      ...prevState,
-      [event.target.name]: '',
-    }));
-  };
+  useEffect(() => {
+    trigger();
+  }, [schema]);
 
-  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-
-    const formData = Object.fromEntries(
-      new FormData(event.target as HTMLFormElement)
-    ) as Record<string, string>;
-
-    const { isValid, errors: validationErrors } = await validationForm(
-      formData,
-      schema
-    );
-
-    if (!isValid) {
-      setErrors(validationErrors);
-      return;
-    }
-
-    // eslint-disable-next-line no-console
-    console.log('submit');
+  const onSubmit: SubmitHandler<IFormData> = () => {
+    navigate('/');
   };
 
   return (
-    <form ref={refForm} className={styles.form} onSubmit={handleSubmit}>
-      <BaseInputField
-        label={translate('Name')}
-        onChange={handleChange}
+    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+      <Controller
+        control={control}
         name={EFormFieldsName.name}
-        id={EFormFieldsName.name}
-        type="text"
-        value={formValues[EFormFieldsName.name] || ''}
-        error={errors[EFormFieldsName.name]}
+        render={({ field }) => (
+          <BaseInputField
+            type="text"
+            label={translate('Name')}
+            name={field.name}
+            id={EFormFieldsName.name}
+            value={field.value}
+            onChange={field.onChange}
+            error={errors.name?.message}
+          />
+        )}
       />
-      <BaseInputField
-        label={translate('Email')}
-        onChange={handleChange}
+      <Controller
+        control={control}
         name={EFormFieldsName.email}
-        id={EFormFieldsName.email}
-        type="text"
-        value={formValues[EFormFieldsName.email] || ''}
-        error={errors[EFormFieldsName.email]}
+        render={({ field }) => (
+          <BaseInputField
+            type="text"
+            label={translate('Email')}
+            name={field.name}
+            id={EFormFieldsName.email}
+            value={field.value}
+            onChange={field.onChange}
+            error={errors.email?.message}
+          />
+        )}
       />
-      <BaseInputField
-        label={translate('Password')}
-        onChange={handleChange}
+      <Controller
+        control={control}
         name={EFormFieldsName.password}
-        id={EFormFieldsName.password}
-        type="password"
-        value={formValues[EFormFieldsName.password] || ''}
-        error={errors[EFormFieldsName.password]}
+        render={({ field }) => (
+          <BaseInputField
+            type="passowrd"
+            label={translate('Password')}
+            name={field.name}
+            id={EFormFieldsName.password}
+            value={field.value}
+            onChange={field.onChange}
+            error={errors.password?.message}
+          />
+        )}
       />
-      <BaseInputField
-        label={translate('Confirm password')}
-        onChange={handleChange}
+      <Controller
+        control={control}
         name={EFormFieldsName.confirmPassword}
-        id={EFormFieldsName.confirmPassword}
-        type="password"
-        value={formValues[EFormFieldsName.confirmPassword] || ''}
-        error={errors[EFormFieldsName.confirmPassword]}
+        render={({ field }) => (
+          <BaseInputField
+            type="passowrd"
+            label={translate('Confirm password')}
+            name={field.name}
+            id={EFormFieldsName.confirmPassword}
+            value={field.value}
+            onChange={field.onChange}
+            error={errors.confirmPassword?.message}
+          />
+        )}
       />
       <BaseButton label={translate('Registration')} />
       <BaseButton

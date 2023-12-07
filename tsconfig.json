@@ -32,7 +32,8 @@
       "@context/*": ["src/context/*"],
       "@type/*": ["src/types/*"],
       "@store/*": ["src/store/*"],
-      "@assets/*": ["src/assets/*"]
+      "@assets/*": ["src/assets/*"],
+      "@hooks/*": ["src/hooks/*"]
     },
     "types": ["vite/client"]
   },

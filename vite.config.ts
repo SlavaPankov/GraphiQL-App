@@ -26,6 +26,7 @@ export default defineConfig({
       '@type': '/src/types',
       '@store': '/src/store',
       '@assets': '/src/assets',
+      '@hooks': '/src/hooks',
     },
   },
   css: {
