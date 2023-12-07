@@ -8,7 +8,7 @@ export function UseLocalizationContext({ children }: { children: ReactNode }) {
   const [locale, setLocale] = useState<Locale>(
     isLocale(initialLocale) ? initialLocale : 'ru'
   );
-  const { data, isLoading } = useGetLocaleQuery(locale);
+  const { data, isLoading, isFetching } = useGetLocaleQuery(locale);
 
   const translate = (key: string) => {
     if (!data?.[key]) {
@@ -22,8 +22,8 @@ export function UseLocalizationContext({ children }: { children: ReactNode }) {
   }, [locale]);
 
   const localizationProviderValue = useMemo(
-    () => ({ locale, setLocale, translate }),
-    [locale, setLocale, translate]
+    () => ({ locale, setLocale, translate, isFetching }),
+    [locale, setLocale, translate, isFetching]
   );
 
   return (

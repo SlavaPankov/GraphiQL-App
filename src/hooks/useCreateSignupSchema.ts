@@ -3,12 +3,16 @@ import { localizationContext } from '@context/LocalizationContext';
 import { createSignupSchema } from '@utils/createSignupSchema.ts';
 
 export function useCreateSignupSchema() {
-  const { locale, translate } = useContext(localizationContext);
+  const { locale, translate, isFetching } = useContext(localizationContext);
   const [schema, setSchema] = useState(createSignupSchema(translate));
 
   useEffect(() => {
+    if (isFetching) {
+      return;
+    }
+
     setSchema(createSignupSchema(translate));
-  }, [locale]);
+  }, [locale, isFetching]);
 
   return { schema };
 }

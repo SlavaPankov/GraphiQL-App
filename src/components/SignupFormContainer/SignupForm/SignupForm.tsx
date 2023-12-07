@@ -2,10 +2,15 @@
 import { BaseInputField } from '@components/BaseInputField';
 import { EFormFieldsName } from '@type/enums/EFormFieldsName';
 import { BaseButton } from '@components/BaseButton';
-import { useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
 import { IFormData } from '@type/interfaces/IFormData';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  Controller,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useCreateSignupSchema } from '@hooks/useCreateSignupSchema';
 import { useNavigate } from 'react-router-dom';
@@ -15,6 +20,8 @@ export function SignupForm() {
   const { translate, setLocale } = useContext(localizationContext);
   const { schema } = useCreateSignupSchema();
   const navigate = useNavigate();
+  const [isMounted, setIsMounted] = useState<boolean>(false);
+  const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
   const {
     control,
@@ -22,7 +29,7 @@ export function SignupForm() {
     formState: { errors },
     trigger,
   } = useForm<IFormData>({
-    resolver: yupResolver(schema),
+    resolver: yupResolver(schema, { abortEarly: false }),
     mode: 'onChange',
     defaultValues: {
       name: '',
@@ -33,15 +40,28 @@ export function SignupForm() {
   });
 
   useEffect(() => {
+    if (!isMounted || !isSubmitted) {
+      setIsMounted(true);
+      return;
+    }
+
     trigger();
-  }, [schema]);
+  }, [trigger, schema, isSubmitted, isMounted]);
 
   const onSubmit: SubmitHandler<IFormData> = () => {
+    setIsSubmitted(true);
     navigate('/');
   };
 
+  const submitHandleError: SubmitErrorHandler<IFormData> = () => {
+    setIsSubmitted(true);
+  };
+
   return (
-    <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
+    <form
+      className={styles.form}
+      onSubmit={handleSubmit(onSubmit, submitHandleError)}
+    >
       <Controller
         control={control}
         name={EFormFieldsName.name}
@@ -77,7 +97,7 @@ export function SignupForm() {
         name={EFormFieldsName.password}
         render={({ field }) => (
           <BaseInputField
-            type="passowrd"
+            type="password"
             label={translate('Password')}
             name={field.name}
             id={EFormFieldsName.password}
@@ -92,7 +112,7 @@ export function SignupForm() {
         name={EFormFieldsName.confirmPassword}
         render={({ field }) => (
           <BaseInputField
-            type="passowrd"
+            type="password"
             label={translate('Confirm password')}
             name={field.name}
             id={EFormFieldsName.confirmPassword}
