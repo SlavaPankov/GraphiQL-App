@@ -1,12 +1,13 @@
 import { SVGProps } from 'react';
+import { iconButtonColor } from './constants/colors';
 
 interface IDocsSVGIconProps extends SVGProps<SVGSVGElement> {
   isActive: boolean;
 }
 
 export function DocsSVGIcon({
-  fill = 'black',
-  stroke = 'black',
+  fill = iconButtonColor,
+  stroke = iconButtonColor,
   strokeWidth = '1.5',
   isActive,
 }: Readonly<IDocsSVGIconProps>) {

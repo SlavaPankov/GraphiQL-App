@@ -1,14 +1,14 @@
 import { SidePanelMode } from '@components/GraphqlApp/enums/SidePanelMode';
 import { MouseEventHandler, useContext } from 'react';
 import { localizationContext } from '../../../../context/LocalizationContext';
-import { GQLAppButton } from '../GQLAppButton';
+import { GQLAppButton } from '../../../IconButton';
 import {
   DocsSVGIcon,
   HistorySVGIcon,
   KeyboardShortcutSVGIcon,
   ReloadSVGIcon,
   SettingsSVGIcon,
-} from '../GQLAppButton/icons';
+} from '../../../IconButton/icons';
 import styles from './sidebar.module.scss';
 
 interface ISidebarProps {

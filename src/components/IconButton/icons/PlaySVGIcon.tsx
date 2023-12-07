@@ -1,7 +1,8 @@
 import { SVGProps } from 'react';
+import { iconButtonColor } from './constants/colors';
 
 export function PlaySVGIcon({
-  fill = 'black',
+  fill = iconButtonColor,
 }: Readonly<SVGProps<SVGSVGElement>>) {
   return (
     <svg

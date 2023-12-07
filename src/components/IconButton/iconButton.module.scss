@@ -1,0 +1,23 @@
+.button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 2.5rem;
+  height: 2.5rem;
+  margin: 0.25rem;
+  padding: 0.5rem;
+
+  border-radius: 50%;
+
+  transition: background-color 0.25s;
+
+  &:hover {
+    background-color: rgba($grey-4F, 0.078);
+  }
+
+  &:active,
+  &.active {
+    background-color: rgba($grey-4F, 0.122);
+  }
+}

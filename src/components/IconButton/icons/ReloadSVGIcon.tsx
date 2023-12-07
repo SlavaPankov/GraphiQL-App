@@ -1,7 +1,8 @@
 import { SVGProps } from 'react';
+import { iconButtonColor } from './constants/colors';
 
 export function ReloadSVGIcon({
-  stroke = 'black',
+  stroke = iconButtonColor,
   strokeWidth = '1',
 }: Readonly<SVGProps<SVGSVGElement>>) {
   return (

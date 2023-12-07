@@ -1,17 +1,17 @@
 import { ButtonHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
-import styles from './gqlAppButton.module.scss';
+import styles from './iconButton.module.scss';
 
 interface IGQLAppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   readonly icon: ReactNode;
   readonly isActive?: boolean;
 }
 export function GQLAppButton({
+  className,
   icon,
+  isActive,
   onClick,
   title,
-  className,
-  isActive,
 }: IGQLAppButtonProps) {
   return (
     <button
