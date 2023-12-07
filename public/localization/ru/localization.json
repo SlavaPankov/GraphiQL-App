@@ -1,4 +1,9 @@
 {
   "Hello": "Здравствуйте",
-  "Not found": "Страница не найдена"
+  "Not found": "Страница не найдена",
+  "Documentation Explorer": "Документация",
+  "History": "История",
+  "Re-fetch GraphQL schema": "Обновить GraphQL-схему",
+  "Short keys": "Горячие клавиши",
+  "Settings dialog": "Настройки"
 }

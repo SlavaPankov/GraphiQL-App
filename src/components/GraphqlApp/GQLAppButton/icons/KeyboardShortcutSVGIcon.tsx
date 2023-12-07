@@ -12,7 +12,6 @@ export function KeyboardShortcutSVGIcon({
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <title>keyboard shortcut icon</title>
       <path
         d="M1.5 14.5653C1.5 15.211 1.75652 15.8303 2.21314 16.2869C2.66975 16.7435 3.28905 17 3.9348 17C4.58054 17 5.19984 16.7435 5.65646 16.2869C6.11307 15.8303 6.36959 15.211 6.36959 14.5653V12.1305H3.9348C3.28905 12.1305 2.66975 12.387 2.21314 12.8437C1.75652 13.3003 1.5 13.9195 1.5 14.5653Z"
         stroke={stroke}

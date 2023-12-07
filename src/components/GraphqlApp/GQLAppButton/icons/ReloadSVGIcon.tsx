@@ -13,7 +13,6 @@ export function ReloadSVGIcon({
       className=""
       aria-hidden="true"
     >
-      <title>reload icon</title>
       <path
         d="M4.75 9.25H1.25V12.75"
         stroke={stroke}

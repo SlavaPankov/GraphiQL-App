@@ -14,7 +14,6 @@ export function PrettifySVGIcon({
       className="graphiql-toolbar-icon"
       aria-hidden="true"
     >
-      <title>prettify icon</title>
       <path
         d="M10.2852 24.0745L13.7139 18.0742"
         stroke={stroke}

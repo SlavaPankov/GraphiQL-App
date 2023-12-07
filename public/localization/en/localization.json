@@ -1,4 +1,9 @@
 {
   "Hello": "Hello",
-  "Not found": "Page not found"
+  "Not found": "Page not found",
+  "Documentation Explorer": "Documentation Explorer",
+  "History": "History",
+  "Re-fetch GraphQL schema": "Re-fetch GraphQL schema",
+  "Short keys": "Short keys",
+  "Settings dialog": "Settings dialog"
 }

@@ -13,7 +13,6 @@ export function CopySVGIcon({
       className="graphiql-toolbar-icon"
       aria-hidden="true"
     >
-      <title>copy icon</title>
       <path
         d="M11.25 14.2105V15.235C11.25 16.3479 10.3479 17.25 9.23501 17.25H2.76499C1.65214 17.25 0.75 16.3479 0.75 15.235L0.75 8.76499C0.75 7.65214 1.65214 6.75 2.76499 6.75L3.78947 6.75"
         stroke={stroke}

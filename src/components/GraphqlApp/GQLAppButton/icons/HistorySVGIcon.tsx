@@ -12,7 +12,6 @@ export function HistorySVGIcon({
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      <title>history icon</title>
       <path
         d="M1.59375 9.52344L4.87259 12.9944L8.07872 9.41249"
         stroke={stroke}

@@ -13,7 +13,6 @@ export function MergeSVGIcon({
       className="graphiql-toolbar-icon"
       aria-hidden="true"
     >
-      <title>merge icon</title>
       <path
         d="M17.2492 6V2.9569C17.2492 1.73806 16.2611 0.75 15.0423 0.75L2.9569 0.75C1.73806 0.75 0.75 1.73806 0.75 2.9569L0.75 6"
         stroke={stroke}
