@@ -9,5 +9,16 @@
   "GraphQL Playground": "GraphQL Playground",
   "GraphQL Editors": "GraphQL Editors",
   "Editors": "Editors",
-  "Docs": "Docs"
+  "Docs": "Docs",
+  "Query Editor": "Query Editor",
+  "Request Editor": "Request Editor",
+  "Variables Editor": "Variables Editor",
+  "Headers Editor": "Headers Editor",
+  "Variables": "Variables",
+  "Headers": "Headers",
+  "JSON Viewer": "JSON Viewer",
+  "Execute query": "Execute query",
+  "Prettify query": "Prettify query",
+  "Merge fragments into query": "Merge fragments into query",
+  "Copy query": "Copy query"
 }

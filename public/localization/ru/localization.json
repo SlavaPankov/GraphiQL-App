@@ -9,5 +9,16 @@
   "GraphQL Playground": "GraphQL Игровая площадка",
   "GraphQL Editors": "GraphQL Редакторы",
   "Editors": "Редакторы",
-  "Docs": "Документация"
+  "Docs": "Документация",
+  "Query Editor": "Редактор запросов",
+  "Request Editor": "Редактор запросов",
+  "Variables Editor": "Редактор переменных",
+  "Headers Editor": "Редактор заголовков",
+  "Variables": "Переменные",
+  "Headers": "Заголовки",
+  "JSON Viewer": "Средство просмотра JSON",
+  "Execute query": "Выполнить запрос",
+  "Prettify query": "Форматировать запрос",
+  "Merge fragments into query": "Объединить фрагменты в запрос",
+  "Copy query": "Копировать запрос"
 }
