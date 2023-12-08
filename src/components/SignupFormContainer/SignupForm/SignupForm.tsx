@@ -13,13 +13,13 @@ import {
 } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useCreateSignupSchema } from '@hooks/useCreateSignupSchema';
-import { useNavigate } from 'react-router-dom';
+import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword.ts';
+import { ToastContainer } from 'react-toastify';
 import styles from './singupForm.module.scss';
 
 export function SignupForm() {
   const { translate, setLocale } = useContext(localizationContext);
   const { schema } = useCreateSignupSchema();
-  const navigate = useNavigate();
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
 
@@ -48,9 +48,9 @@ export function SignupForm() {
     trigger();
   }, [trigger, schema, isSubmitted, isMounted]);
 
-  const onSubmit: SubmitHandler<IFormData> = () => {
+  const onSubmit: SubmitHandler<IFormData> = (data) => {
     setIsSubmitted(true);
-    navigate('/');
+    signupWithEmailAndPassword(data, translate);
   };
 
   const submitHandleError: SubmitErrorHandler<IFormData> = () => {
@@ -122,7 +122,10 @@ export function SignupForm() {
           />
         )}
       />
-      <BaseButton label={translate('Registration')} />
+      <BaseButton
+        disabled={Object.keys(errors).length > 0}
+        label={translate('Registration')}
+      />
       <BaseButton
         label="En"
         type="button"
@@ -137,6 +140,7 @@ export function SignupForm() {
           setLocale('ru');
         }}
       />
+      <ToastContainer autoClose={3000} position="bottom-center" />
     </form>
   );
 }

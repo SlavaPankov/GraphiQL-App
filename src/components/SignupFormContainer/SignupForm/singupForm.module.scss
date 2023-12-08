@@ -5,3 +5,19 @@
   flex-direction: column;
   gap: 20px;
 }
+
+.error {
+  margin: 10px 0 0;
+  font-size: 12px;
+  line-height: 100%;
+  font-weight: 400;
+  color: $error;
+}
+
+.buttonWrapper {
+  width: 100%;
+
+  & button {
+    width: 100%;
+  }
+}
