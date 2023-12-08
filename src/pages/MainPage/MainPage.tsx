@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { ERoutes } from '../../types/enums/ERoutes';
+import { ERoutes } from '@type/enums/ERoutes';
 
 export function MainPage() {
   return (
