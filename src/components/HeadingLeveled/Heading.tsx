@@ -1,6 +1,6 @@
 import classNames from 'classnames';
-import { HTMLAttributes, ReactNode, useContext } from 'react';
-import { HeadingLevelContext } from '../../context/HeadingLevelContext';
+import { HTMLAttributes, ReactNode } from 'react';
+import { useHeadingLevelContext } from '../../context/HeadingLevelContext';
 import styles from './heading.module.scss';
 
 interface IHeadingProps extends HTMLAttributes<HTMLHeadingElement> {
@@ -8,7 +8,7 @@ interface IHeadingProps extends HTMLAttributes<HTMLHeadingElement> {
 }
 
 export function Heading({ children, className }: Readonly<IHeadingProps>) {
-  const level = useContext(HeadingLevelContext);
+  const level = useHeadingLevelContext();
   switch (level) {
     case 0: {
       throw new Error('Must be inside a Section');
