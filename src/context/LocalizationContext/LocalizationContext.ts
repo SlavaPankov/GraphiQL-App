@@ -18,4 +18,4 @@ export const localizationContext = createContext<ILocalizationContextData>(
   localizationContextDefaultValue
 );
 
-export const useLocalizationContext = () => useContext(localizationContext);
+export const useLocaleContext = () => useContext(localizationContext);

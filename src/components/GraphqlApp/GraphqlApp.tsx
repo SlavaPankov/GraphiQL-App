@@ -1,8 +1,8 @@
 import { Article } from '@components/Article';
 import { Heading } from '@components/HeadingLeveled';
 import { Section } from '@components/Section';
-import { useContext, useState } from 'react';
-import { localizationContext } from '../../context/LocalizationContext';
+import { useState } from 'react';
+import { useLocaleContext } from '../../context/LocalizationContext';
 import { SidePanelMode } from './enums/SidePanelMode';
 import styles from './graphqlApp.module.scss';
 import { Editors } from './ui/Editors';
@@ -10,7 +10,7 @@ import { SidePanel } from './ui/SidePanel';
 import { Sidebar } from './ui/Sidebar';
 
 export function GraphqlApp() {
-  const { translate } = useContext(localizationContext);
+  const { translate } = useLocaleContext();
   const [sidePanelMode, setSidePanelMode] = useState(SidePanelMode.NONE);
 
   const handleClick = () => {

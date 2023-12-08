@@ -1,6 +1,6 @@
 import { SidePanelMode } from '@components/GraphqlApp/enums/SidePanelMode';
-import { MouseEventHandler, useContext } from 'react';
-import { localizationContext } from '../../../../context/LocalizationContext';
+import { MouseEventHandler } from 'react';
+import { useLocaleContext } from '../../../../context/LocalizationContext';
 import { GQLAppButton } from '../../../IconButton';
 import {
   DocsSVGIcon,
@@ -32,7 +32,7 @@ export function Sidebar({
   handleKeyboardShortcutClick,
   handleSettingsClick,
 }: Readonly<ISidebarProps>) {
-  const { translate } = useContext(localizationContext);
+  const { translate } = useLocaleContext();
 
   return (
     <aside className={styles.sideBar}>
