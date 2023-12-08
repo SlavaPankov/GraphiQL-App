@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext, useContext } from 'react';
 
 export type Locale = 'ru' | 'en';
 
@@ -17,3 +17,5 @@ const localizationContextDefaultValue: ILocalizationContextData = {
 export const localizationContext = createContext<ILocalizationContextData>(
   localizationContextDefaultValue
 );
+
+export const useLocalizationContext = () => useContext(localizationContext);
