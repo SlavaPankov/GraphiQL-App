@@ -20,6 +20,10 @@ interface ISidebarProps {
   handleSettingsClick: MouseEventHandler<HTMLButtonElement>;
 }
 
+/*
+  possibility to change to a different user-specified API endpoint (куда-нибудь в сайдбар)
+*/
+
 export function Sidebar({
   sidePanelMode,
   handleDocsClick,
