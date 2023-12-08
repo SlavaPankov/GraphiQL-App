@@ -20,4 +20,8 @@
   &.active {
     background-color: rgba($grey-4F, 0.122);
   }
+
+  &.filled {
+    background-color: $primary;
+  }
 }

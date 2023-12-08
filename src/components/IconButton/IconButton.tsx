@@ -1,23 +1,26 @@
-import { ButtonHTMLAttributes, ReactNode } from 'react';
 import classNames from 'classnames';
+import { ButtonHTMLAttributes, ReactNode } from 'react';
 import styles from './iconButton.module.scss';
 
-interface IGQLAppButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+interface IIconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   readonly icon: ReactNode;
   readonly isActive?: boolean;
+  readonly isFilled?: boolean;
 }
-export function GQLAppButton({
+export function IconButton({
   className,
   icon,
   isActive,
+  isFilled,
   onClick,
   title,
-}: IGQLAppButtonProps) {
+}: IIconButtonProps) {
   return (
     <button
       className={classNames(
         styles.button,
         { [styles.active]: isActive },
+        { [styles.filled]: isFilled },
         className
       )}
       type="button"
@@ -29,4 +32,4 @@ export function GQLAppButton({
   );
 }
 
-GQLAppButton.defaultProps = { isActive: false };
+IconButton.defaultProps = { isActive: false, isFilled: false };
