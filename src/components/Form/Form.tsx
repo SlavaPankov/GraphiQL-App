@@ -133,7 +133,7 @@ export function Form({ isSignup, onSubmit }: ISignupFormProps) {
       )}
       <BaseButton
         disabled={Object.keys(errors).length > 0}
-        label={translate('Registration')}
+        label={isSignup ? translate('Registration') : translate('Signin')}
       />
       <BaseButton
         label="En"

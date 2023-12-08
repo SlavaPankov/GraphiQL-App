@@ -1,14 +1,9 @@
 import { FirebaseError } from 'firebase/app';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
 import { collection, addDoc } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import { ISignupCredentials } from '@type/interfaces/ISignupCredentials';
 import { auth, db } from '../firebase/firebase';
-
-interface ISignupCredentials {
-  name: string;
-  email: string;
-  password: string;
-}
 
 export const signupWithEmailAndPassword = async (
   { name, email, password }: ISignupCredentials,
@@ -21,9 +16,14 @@ export const signupWithEmailAndPassword = async (
       password
     );
     const { user } = response;
+
+    await updateProfile(user, {
+      displayName: name,
+    });
+
     await addDoc(collection(db, 'users'), {
       uid: user.uid,
-      name,
+      displayName: name,
       authProvider: 'local',
       email,
     });

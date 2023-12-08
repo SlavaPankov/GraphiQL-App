@@ -36,7 +36,7 @@ export function AuthGate({
     return loader;
   }
 
-  if ((!user && loginRequired) ?? (user && logoutRequired)) {
+  if ((loginRequired && !user) ?? (logoutRequired && user)) {
     return null;
   }
 

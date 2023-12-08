@@ -27,6 +27,7 @@ export default defineConfig({
       '@store': '/src/store',
       '@assets': '/src/assets',
       '@hooks': '/src/hooks',
+      '@pages': '/src/pages',
     },
   },
   css: {
