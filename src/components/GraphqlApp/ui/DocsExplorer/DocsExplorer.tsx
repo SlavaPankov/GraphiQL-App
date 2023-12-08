@@ -11,7 +11,7 @@ export function DocsExplorer({
   const { translate } = useLocaleContext();
   return (
     <Article className={classNames(className, styles.parent)}>
-      <Heading>{translate('DocsExplorer')}</Heading>
+      <Heading>{translate('Docs')}</Heading>
       <div>content</div>
     </Article>
   );
