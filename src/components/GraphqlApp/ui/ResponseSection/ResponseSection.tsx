@@ -15,10 +15,15 @@ export function ResponseSection({
       <Heading className="visually-hidden">
         {translate('Response Section')}
       </Heading>
-      <Section>
+      <Section className={styles.jsonViewerSection}>
         <Heading className="visually-hidden">
           {translate('JSON Viewer')}
         </Heading>
+        <textarea
+          className={styles.jsonViewerArea}
+          placeholder={translate('JSON Viewer')}
+          readOnly
+        />
       </Section>
     </Section>
   );
