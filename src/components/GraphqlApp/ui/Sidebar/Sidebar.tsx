@@ -1,28 +1,24 @@
-import { SidePanelMode } from '@components/GraphqlApp/enums/SidePanelMode';
-import { MouseEventHandler } from 'react';
-import { useLocaleContext } from '../../../../context/LocalizationContext';
-import { GQLAppButton } from '../../../IconButton';
+import { TSidePanelMode } from '@components/GraphqlApp/types/TSidePanelMode';
+import { IconButton } from '@components/IconButton';
 import {
   DocsSVGIcon,
   HistorySVGIcon,
   KeyboardShortcutSVGIcon,
   ReloadSVGIcon,
   SettingsSVGIcon,
-} from '../../../IconButton/icons';
+} from '@components/IconButton/icons';
+import { MouseEventHandler } from 'react';
+import { useLocaleContext } from '../../../../context/LocalizationContext';
 import styles from './sidebar.module.scss';
 
 interface ISidebarProps {
-  sidePanelMode: SidePanelMode;
+  sidePanelMode: TSidePanelMode;
   handleDocsClick: MouseEventHandler<HTMLButtonElement>;
   handleHistoryClick: MouseEventHandler<HTMLButtonElement>;
   handleReloadClick: MouseEventHandler<HTMLButtonElement>;
   handleKeyboardShortcutClick: MouseEventHandler<HTMLButtonElement>;
   handleSettingsClick: MouseEventHandler<HTMLButtonElement>;
 }
-
-/*
-  possibility to change to a different user-specified API endpoint (куда-нибудь в сайдбар)
-*/
 
 export function Sidebar({
   sidePanelMode,
@@ -37,31 +33,31 @@ export function Sidebar({
   return (
     <aside className={styles.sideBar}>
       <div className={styles.buttonSection}>
-        <GQLAppButton
-          icon={<DocsSVGIcon isActive={sidePanelMode === SidePanelMode.DOCS} />}
+        <IconButton
+          icon={<DocsSVGIcon isActive={sidePanelMode === 'docs'} />}
           title={translate('Documentation Explorer')}
           onClick={handleDocsClick}
-          isActive={sidePanelMode === SidePanelMode.DOCS}
+          isActive={sidePanelMode === 'docs'}
         />
-        <GQLAppButton
+        <IconButton
           icon={<HistorySVGIcon />}
           title={translate('History')}
           onClick={handleHistoryClick}
-          isActive={sidePanelMode === SidePanelMode.HISTORY}
+          isActive={sidePanelMode === 'history'}
         />
       </div>
       <div className={styles.buttonSection}>
-        <GQLAppButton
+        <IconButton
           icon={<ReloadSVGIcon />}
           title={translate('Re-fetch GraphQL schema')}
           onClick={handleReloadClick}
         />
-        <GQLAppButton
+        <IconButton
           icon={<KeyboardShortcutSVGIcon />}
           title={translate('Short keys')}
           onClick={handleKeyboardShortcutClick}
         />
-        <GQLAppButton
+        <IconButton
           icon={<SettingsSVGIcon />}
           title={translate('Settings dialog')}
           onClick={handleSettingsClick}

@@ -1,13 +1,12 @@
 .application {
   display: flex;
-  height: 32rem;
-  min-height: 32rem;
+  height: 100%;
 }
 
 .editorsSection {
   display: flex;
   flex: 1;
-  padding: 1rem;
+  padding: 0.5rem;
 }
 
 .sidePanel {
@@ -15,5 +14,20 @@
 }
 
 .editors {
+  display: flex;
+  flex: 1;
+
+  padding: 0.5rem;
+
+  background-color: rgba($grey-69, 0.071);
+  border-radius: 1.25rem;
+
+  @media (width <=768px) {
+    flex-direction: column;
+  }
+}
+
+.requestEditor,
+.responseSection {
   flex: 1;
 }

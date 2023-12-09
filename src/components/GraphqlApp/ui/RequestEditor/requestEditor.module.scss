@@ -1,0 +1,19 @@
+.requestEditorSection {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.5rem;
+
+  padding: 0.5rem;
+
+  background-color: $white;
+  border-radius: 0.75rem;
+}
+
+.queryEditorSection {
+  flex: 1;
+}
+
+.buttonSection {
+  display: flex;
+  column-gap: 0.5rem;
+}

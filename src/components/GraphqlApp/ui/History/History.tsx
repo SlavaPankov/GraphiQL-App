@@ -9,7 +9,7 @@ export function History({ className }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
 
   return (
-    <Section className={classNames(className, styles.parent)}>
+    <Section className={classNames(className, styles.historySection)}>
       <Heading>{translate('History')}</Heading>
       <div>content</div>
     </Section>

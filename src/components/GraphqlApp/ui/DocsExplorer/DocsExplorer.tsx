@@ -10,7 +10,7 @@ export function DocsExplorer({
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
   return (
-    <Article className={classNames(className, styles.parent)}>
+    <Article className={classNames(className, styles.docsExplorerSection)}>
       <Heading>{translate('Docs')}</Heading>
       <div>content</div>
     </Article>

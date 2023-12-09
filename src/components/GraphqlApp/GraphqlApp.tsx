@@ -3,32 +3,28 @@ import { Heading } from '@components/HeadingLeveled';
 import { Section } from '@components/Section';
 import { useState } from 'react';
 import { useLocaleContext } from '../../context/LocalizationContext';
-import { SidePanelMode } from './enums/SidePanelMode';
 import styles from './graphqlApp.module.scss';
-import { Editors } from './ui/Editors';
-import { SidePanel } from './ui/SidePanel';
+import { TSidePanelMode } from './types/TSidePanelMode';
+import { DocsExplorer } from './ui/DocsExplorer';
+import { History } from './ui/History';
+import { RequestEditor } from './ui/RequestEditor';
+import { ResponseSection } from './ui/ResponseSection';
 import { Sidebar } from './ui/Sidebar';
 
 export function GraphqlApp() {
   const { translate } = useLocaleContext();
-  const [sidePanelMode, setSidePanelMode] = useState(SidePanelMode.NONE);
+  const [sidePanelMode, setSidePanelMode] = useState<TSidePanelMode>('none');
 
   const handleClick = () => {
     throw new Error('Handler not implemented');
   };
 
   const handleDocsClick = () => {
-    setSidePanelMode((prev) =>
-      prev === SidePanelMode.DOCS ? SidePanelMode.NONE : SidePanelMode.DOCS
-    );
+    setSidePanelMode((prev) => (prev === 'docs' ? 'none' : 'docs'));
   };
 
   const handleHistoryClick = () => {
-    setSidePanelMode((prev) =>
-      prev === SidePanelMode.HISTORY
-        ? SidePanelMode.NONE
-        : SidePanelMode.HISTORY
-    );
+    setSidePanelMode((prev) => (prev === 'history' ? 'none' : 'history'));
   };
 
   return (
@@ -36,6 +32,7 @@ export function GraphqlApp() {
       <Heading className="visually-hidden">
         {translate('GraphQL Playground')}
       </Heading>
+
       <Sidebar
         sidePanelMode={sidePanelMode}
         handleDocsClick={handleDocsClick}
@@ -44,12 +41,24 @@ export function GraphqlApp() {
         handleKeyboardShortcutClick={handleClick}
         handleSettingsClick={handleClick}
       />
+
       <Section className={styles.editorsSection}>
         <Heading className="visually-hidden">
           {translate('GraphQL Editors')}
         </Heading>
-        <SidePanel mode={sidePanelMode} className={styles.sidePanel} />
-        <Editors className={styles.editors} />
+
+        {sidePanelMode === 'docs' && (
+          <DocsExplorer className={styles.sidePanel} />
+        )}
+        {sidePanelMode === 'history' && (
+          <History className={styles.sidePanel} />
+        )}
+
+        <Section className={styles.editors}>
+          <Heading className="visually-hidden">{translate('Editors')}</Heading>
+          <RequestEditor className={styles.requestEditor} />
+          <ResponseSection className={styles.responseSection} />
+        </Section>
       </Section>
     </Article>
   );
