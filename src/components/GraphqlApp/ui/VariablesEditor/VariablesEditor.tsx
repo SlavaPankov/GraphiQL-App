@@ -16,7 +16,7 @@ export function VariablesEditor({
       </Heading>
       <textarea
         className={styles.variablesEditorArea}
-        defaultValue={translate('Variables Editor')}
+        placeholder={translate('Variables Editor')}
         rows={4}
       />
     </Section>

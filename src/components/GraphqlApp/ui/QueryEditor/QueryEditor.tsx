@@ -25,7 +25,7 @@ export function QueryEditor({
     <Section className={classNames(className, styles.queryEditorSection)}>
       <Heading className="visually-hidden">{translate('Query Editor')}</Heading>
       <textarea
-        defaultValue={translate('Query Editor')}
+        placeholder={translate('Query Editor')}
         className={styles.queryEditorArea}
       />
       <div>

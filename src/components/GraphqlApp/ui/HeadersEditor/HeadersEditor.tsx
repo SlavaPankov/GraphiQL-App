@@ -16,7 +16,7 @@ export function HeadersEditor({
       </Heading>
       <textarea
         className={styles.headersEditorArea}
-        defaultValue={translate('Headers Editor')}
+        placeholder={translate('Headers Editor')}
         rows={4}
       />
     </Section>
