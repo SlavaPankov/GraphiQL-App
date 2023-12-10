@@ -1,4 +1,3 @@
-import { TSidePanelMode } from '@components/GraphqlApp/types/TSidePanelMode';
 import { IconButton } from '@components/IconButton';
 import {
   DocsSVGIcon,
@@ -8,7 +7,8 @@ import {
   SettingsSVGIcon,
 } from '@components/IconButton/icons';
 import { MouseEventHandler } from 'react';
-import { useLocaleContext } from '../../../../context/LocalizationContext';
+import { useLocaleContext } from '../../lib/useLocaleContext.facade';
+import { TSidePanelMode } from '../../types/TSidePanelMode';
 import styles from './sidebar.module.scss';
 
 interface ISidebarProps {

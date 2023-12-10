@@ -1,7 +1,7 @@
 import { Heading } from '@components/HeadingLeveled';
 import { Section } from '@components/Section';
 import { HTMLAttributes } from 'react';
-import { useLocaleContext } from '../../../../context/LocalizationContext';
+import { useLocaleContext } from '../../lib/useLocaleContext.facade';
 import styles from './headersEditor.module.scss';
 
 export function HeadersEditor({

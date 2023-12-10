@@ -1,15 +1,11 @@
 import { BaseButton } from '@components/BaseButton';
 import { GraphqlApp } from '@components/GraphqlApp';
+import { useLocaleContext } from '@components/GraphqlApp/lib/useLocaleContext.facade';
 import classNames from 'classnames';
-import { useLocaleContext } from '../../context/LocalizationContext';
 import styles from './graphiqlPage.module.scss'; // ? временно добавил styles.page до замены времянок на настоящие HEADER и FOOTER
 
 export function GraphiQLPage() {
   const { locale, setLocale } = useLocaleContext();
-
-  const handleLangButtonClick = () => {
-    setLocale((prev) => (prev === 'ru' ? 'en' : 'ru'));
-  };
 
   return (
     <div className={classNames('container', styles.page)}>
@@ -19,13 +15,13 @@ export function GraphiQLPage() {
       <header>
         <BaseButton
           label={`header: ${locale}`}
-          onClick={handleLangButtonClick}
+          onClick={() => {
+            setLocale((lang) => (lang === 'ru' ? 'en' : 'ru'));
+          }}
         />
       </header>
       {/* TODO ⬆ заменить на настоящий HEADER */}
-
       <GraphqlApp />
-
       {/* TODO ⬇ заменить на настоящий FOOTER */}
       <footer>
         <BaseButton label="footer" />

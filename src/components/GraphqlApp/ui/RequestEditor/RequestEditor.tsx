@@ -1,12 +1,12 @@
 import { BaseButton } from '@components/BaseButton';
-import { TSubEditorMode } from '@components/GraphqlApp/types/TSubEditorMode';
 import { Heading } from '@components/HeadingLeveled';
 import { IconButton } from '@components/IconButton';
 import { ChevronSVGIcon } from '@components/IconButton/icons';
 import { Section } from '@components/Section';
 import classNames from 'classnames';
 import { HTMLAttributes, useState } from 'react';
-import { useLocaleContext } from '../../../../context/LocalizationContext';
+import { useLocaleContext } from '../../lib/useLocaleContext.facade';
+import { TSubEditorMode } from '../../types/TSubEditorMode';
 import { HeadersEditor } from '../HeadersEditor';
 import { QueryEditor } from '../QueryEditor';
 import { VariablesEditor } from '../VariablesEditor';

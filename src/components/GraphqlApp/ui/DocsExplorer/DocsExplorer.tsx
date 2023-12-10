@@ -2,7 +2,7 @@ import { Article } from '@components/Article';
 import { Heading } from '@components/HeadingLeveled';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
-import { useLocaleContext } from '../../../../context/LocalizationContext';
+import { useLocaleContext } from '../../lib/useLocaleContext.facade';
 import styles from './docsExplorer.module.scss';
 
 export function DocsExplorer({
