@@ -1,5 +1,4 @@
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
-import { LoginPage } from '@pages/LoginPage';
 import { Provider } from 'react-redux';
 import store from '@store/store.ts';
 import { UseLocalizationContext } from '@context/LocalizationContext';
@@ -9,7 +8,8 @@ import { ReactNode } from 'react';
 import { ERoutes } from '@type/enums/ERoutes';
 import { MainPage } from '@pages/MainPage';
 import { AuthGate } from '@components/AuthGate';
-import { LoginFormContainer } from '@components/LoginFormContainer';
+import { SignupFormContainer } from '@components/SignupFormContainer';
+import { SignupPage } from '@pages/SignupPage';
 
 function prepare() {
   const router = createMemoryRouter(
@@ -19,11 +19,11 @@ function prepare() {
         element: <MainPage />,
       },
       {
-        path: ERoutes.login,
-        element: <LoginPage />,
+        path: ERoutes.signup,
+        element: <SignupPage />,
       },
     ],
-    { initialEntries: ['/', '/login'], initialIndex: 1 }
+    { initialEntries: ['/', '/signup'], initialIndex: 1 }
   );
 
   return render(
@@ -41,15 +41,15 @@ vi.mock('@components/AuthGate', () => ({
   )),
 }));
 
-vi.mock('@components/LoginFormContainer', () => ({
-  LoginFormContainer: vi.fn(() => <div data-testid="loginFormContainer" />),
+vi.mock('@components/SignupFormContainer', () => ({
+  SignupFormContainer: vi.fn(() => <div data-testid="signupFormContainer" />),
 }));
 
 describe('Login page', () => {
-  it('should render login page with AuthGate and Login form container', async () => {
+  it('should render login page with AuthGate and Signup form container', async () => {
     const { getByTestId } = prepare();
 
-    await waitFor(() => getByTestId('loginFormContainer'));
+    await waitFor(() => getByTestId('signupFormContainer'));
 
     expect(AuthGate).toHaveBeenCalledWith(
       expect.objectContaining({
@@ -59,6 +59,6 @@ describe('Login page', () => {
       {}
     );
 
-    expect(LoginFormContainer).toHaveBeenCalled();
+    expect(SignupFormContainer).toHaveBeenCalled();
   });
 });
