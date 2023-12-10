@@ -1,0 +1,9 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+
+  & > :nth-child(2) {
+    flex: 1;
+  }
+}
