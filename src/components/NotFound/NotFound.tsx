@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import { localizationContext } from '@context/LocalizationContext';
 import { ERoutes } from '@type/enums/ERoutes';
 import Logo from '@assets/images/logo.png';
+import { H1 } from '@components/Headings';
 import styles from './notFound.module.scss';
 
 export function NotFound() {
@@ -15,7 +16,7 @@ export function NotFound() {
   return (
     <div className={className}>
       <img src={Logo} alt="GraphiQL" width={240} height={240} />
-      <h1 className={styles.heading}>{translate('Not found')}</h1>
+      <H1 title={translate('Not found')} />
       <Link className={styles.link} to={ERoutes.home}>
         {translate('To main')}
       </Link>
