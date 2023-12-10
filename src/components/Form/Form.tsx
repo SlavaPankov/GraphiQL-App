@@ -22,7 +22,7 @@ interface ISignupFormProps {
 }
 
 export function Form({ isSignup, onSubmit }: ISignupFormProps) {
-  const { translate, setLocale } = useContext(localizationContext);
+  const { translate } = useContext(localizationContext);
   const { schema } = useCreateSignupSchema(isSignup);
   const [isMounted, setIsMounted] = useState<boolean>(false);
   const [isSubmitted, setIsSubmitted] = useState<boolean>(false);
@@ -134,20 +134,6 @@ export function Form({ isSignup, onSubmit }: ISignupFormProps) {
       <BaseButton
         disabled={Object.keys(errors).length > 0}
         label={isSignup ? translate('Registration') : translate('Signin')}
-      />
-      <BaseButton
-        label="En"
-        type="button"
-        onClick={() => {
-          setLocale('en');
-        }}
-      />
-      <BaseButton
-        label="Ru"
-        type="button"
-        onClick={() => {
-          setLocale('ru');
-        }}
       />
       <ToastContainer autoClose={3000} position="bottom-center" />
     </form>
