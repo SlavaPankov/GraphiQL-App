@@ -30,7 +30,7 @@ export function QueryEditor({
       />
       <div>
         <IconButton
-          icon={<PlaySVGIcon fill="#fff" />}
+          icon={<PlaySVGIcon />}
           title={translate('Execute query')}
           onClick={handleClick}
           isFilled

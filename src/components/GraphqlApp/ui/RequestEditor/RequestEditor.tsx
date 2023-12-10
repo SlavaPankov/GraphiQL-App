@@ -2,7 +2,7 @@ import { BaseButton } from '@components/BaseButton';
 import { TSubEditorMode } from '@components/GraphqlApp/types/TSubEditorMode';
 import { Heading } from '@components/HeadingLeveled';
 import { IconButton } from '@components/IconButton';
-import { ChevronSVGIcon } from '@components/IconButton/icons/ChevronSVGIcon';
+import { ChevronSVGIcon } from '@components/IconButton/icons';
 import { Section } from '@components/Section';
 import classNames from 'classnames';
 import { HTMLAttributes, useState } from 'react';

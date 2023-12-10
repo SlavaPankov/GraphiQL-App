@@ -1,3 +1,4 @@
+export * from './ChevronSVGIcon';
 export * from './CopySVGIcon';
 export * from './DocsSVGIcon';
 export * from './HistorySVGIcon';

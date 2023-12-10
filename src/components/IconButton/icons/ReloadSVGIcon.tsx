@@ -1,9 +1,9 @@
 import { SVGProps } from 'react';
-import { iconButtonColor } from './constants/colors';
 
 export function ReloadSVGIcon({
-  stroke = iconButtonColor,
+  stroke = 'currentColor',
   strokeWidth = '1',
+  strokeLinecap = 'square',
 }: Readonly<SVGProps<SVGSVGElement>>) {
   return (
     <svg
@@ -17,13 +17,13 @@ export function ReloadSVGIcon({
         d="M4.75 9.25H1.25V12.75"
         stroke={stroke}
         strokeWidth={strokeWidth}
-        strokeLinecap="square"
+        strokeLinecap={strokeLinecap}
       />
       <path
         d="M11.25 6.75H14.75V3.25"
         stroke={stroke}
         strokeWidth={strokeWidth}
-        strokeLinecap="square"
+        strokeLinecap={strokeLinecap}
       />
       <path
         d="M14.1036 6.65539C13.8 5.27698 13.0387 4.04193 11.9437 3.15131C10.8487 2.26069 9.48447 1.76694 8.0731 1.75043C6.66173 1.73392 5.28633 2.19563 4.17079 3.0604C3.05526 3.92516 2.26529 5.14206 1.92947 6.513"

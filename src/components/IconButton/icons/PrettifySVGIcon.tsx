@@ -1,9 +1,9 @@
 import { SVGProps } from 'react';
-import { iconButtonColor } from './constants/colors';
 
 export function PrettifySVGIcon({
-  stroke = iconButtonColor,
+  stroke = 'currentColor',
   strokeWidth = '1.5625',
+  strokeLinejoin = 'round',
 }: Readonly<SVGProps<SVGSVGElement>>) {
   return (
     <svg
@@ -33,13 +33,13 @@ export function PrettifySVGIcon({
         d="M4 15L5 13L7 12L5 11L4 9L3 11L1 12L3 13L4 15Z"
         stroke={stroke}
         strokeWidth={strokeWidth}
-        strokeLinejoin="round"
+        strokeLinejoin={strokeLinejoin}
       />
       <path
         d="M11.5 8L12.6662 5.6662L15 4.5L12.6662 3.3338L11.5 1L10.3338 3.3338L8 4.5L10.3338 5.6662L11.5 8Z"
         stroke={stroke}
         strokeWidth={strokeWidth}
-        strokeLinejoin="round"
+        strokeLinejoin={strokeLinejoin}
       />
     </svg>
   );

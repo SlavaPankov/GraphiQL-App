@@ -1,12 +1,11 @@
 import { SVGProps } from 'react';
-import { iconButtonColor } from './constants/colors';
 
 interface IChevronSVGIconProps extends SVGProps<SVGSVGElement> {
   isActive: boolean;
 }
 
 export function ChevronSVGIcon({
-  stroke = iconButtonColor,
+  stroke = 'currentColor',
   strokeWidth = '1.5',
   isActive,
 }: Readonly<IChevronSVGIconProps>) {

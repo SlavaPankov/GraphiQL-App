@@ -1,8 +1,7 @@
 import { SVGProps } from 'react';
-import { iconButtonColor } from './constants/colors';
 
 export function CopySVGIcon({
-  stroke = iconButtonColor,
+  stroke = 'currentColor',
   strokeWidth = '1.5',
 }: Readonly<SVGProps<SVGSVGElement>>) {
   return (

@@ -1,8 +1,7 @@
 import { SVGProps } from 'react';
-import { iconButtonColor } from './constants/colors';
 
 export function MergeSVGIcon({
-  stroke = iconButtonColor,
+  stroke = 'currentColor',
   strokeWidth = '1.5',
 }: Readonly<SVGProps<SVGSVGElement>>) {
   return (
@@ -23,7 +22,7 @@ export function MergeSVGIcon({
         stroke={stroke}
         strokeWidth={strokeWidth}
       />
-      <path d="M6 4.5L9 7.5L12 4.5" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M6 4.5L9 7.5L12 4.5" stroke={stroke} strokeWidth={strokeWidth} />
       <path
         d="M12 13.5L9 10.5L6 13.5"
         stroke={stroke}

@@ -14,6 +14,7 @@ export function IconButton({
   isFilled,
   onClick,
   title,
+  disabled,
 }: IIconButtonProps) {
   return (
     <button
@@ -26,6 +27,7 @@ export function IconButton({
       type="button"
       onClick={onClick}
       title={title}
+      disabled={disabled}
     >
       {icon}
     </button>
