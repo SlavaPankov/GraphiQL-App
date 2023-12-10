@@ -1,9 +1,10 @@
-import { Dispatch, SetStateAction, createContext, useContext } from 'react';
-import { Locale } from '../../types/types/Locale';
+import { createContext } from 'react';
+
+export type Locale = 'ru' | 'en';
 
 export interface ILocalizationContextData {
   locale: Locale;
-  setLocale: Dispatch<SetStateAction<Locale>>;
+  setLocale: (data: Locale) => void;
   translate: (key: string) => string;
 }
 
@@ -16,5 +17,3 @@ const localizationContextDefaultValue: ILocalizationContextData = {
 export const localizationContext = createContext<ILocalizationContextData>(
   localizationContextDefaultValue
 );
-
-export const useLocaleContext = () => useContext(localizationContext);
