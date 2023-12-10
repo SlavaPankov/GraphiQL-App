@@ -48,7 +48,8 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '*.{config,setup}.{ts,js}',
+          '**/setupTests.{ts,js}',
+          '**/*.{config,setup}.{ts,js}',
           '**/*.{spec,test}.{tsx,ts,jsx,js}',
         ],
       },
