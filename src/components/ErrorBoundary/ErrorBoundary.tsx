@@ -23,7 +23,7 @@ export class ErrorBoundary extends Component<IProps, IState> {
 
   componentDidCatch(error: Error, info: ErrorInfo) {
     // eslint-disable-next-line no-console
-    console.log(error, info.componentStack);
+    console.error(error, info.componentStack);
   }
 
   render() {
