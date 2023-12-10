@@ -1,7 +1,8 @@
 import { Article } from '@components/Article';
 import { Heading } from '@components/HeadingLeveled';
 import { Section } from '@components/Section';
-import { useState } from 'react';
+import classNames from 'classnames';
+import { HTMLAttributes, useState } from 'react';
 import { useLocaleContext } from '../../context/LocalizationContext';
 import styles from './graphqlApp.module.scss';
 import { TSidePanelMode } from './types/TSidePanelMode';
@@ -11,7 +12,9 @@ import { RequestEditor } from './ui/RequestEditor';
 import { ResponseSection } from './ui/ResponseSection';
 import { Sidebar } from './ui/Sidebar';
 
-export function GraphqlApp() {
+export function GraphqlApp({
+  className,
+}: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
   const [sidePanelMode, setSidePanelMode] = useState<TSidePanelMode>('none');
 
@@ -28,7 +31,7 @@ export function GraphqlApp() {
   };
 
   return (
-    <Article className={styles.application}>
+    <Article className={classNames(className, styles.application)}>
       <Heading className="visually-hidden">
         {translate('GraphQL Playground')}
       </Heading>
