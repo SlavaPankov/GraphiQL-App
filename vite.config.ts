@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 
@@ -15,7 +14,11 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       all: true,
-      include: ['src/components/**/*.tsx', 'src/pages/**/*.tsx'],
+      include: [
+        'src/components/**/*.tsx',
+        'src/pages/**/*.tsx',
+        'src/utils/**/*.ts',
+      ],
     },
   },
   resolve: {
@@ -23,6 +26,12 @@ export default defineConfig({
       '@components': '/src/components',
       '@styles': '/src/styles',
       '@utils': '/src/utils',
+      '@context': '/src/context',
+      '@type': '/src/types',
+      '@store': '/src/store',
+      '@assets': '/src/assets',
+      '@hooks': '/src/hooks',
+      '@pages': '/src/pages',
     },
   },
   css: {

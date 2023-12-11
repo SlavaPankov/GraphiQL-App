@@ -6,7 +6,9 @@
   color: $white;
   background-color: $primary;
   border-radius: 100px;
-  transition: background-color .3s ease-in-out, box-shadow .3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out;
   letter-spacing: 0.1px;
 
   &:not(:disabled):hover {

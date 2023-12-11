@@ -1,4 +1,6 @@
 export const enum ERoutes {
   'home' = '/',
-  'about' = 'about',
+  'signup' = 'signup',
+  'login' = 'login',
+  'all' = '*',
 }
