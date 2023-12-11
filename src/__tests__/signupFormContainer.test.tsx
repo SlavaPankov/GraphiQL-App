@@ -5,6 +5,7 @@ import store from '@store/store.ts';
 import { UseLocalizationContext } from '@context/LocalizationContext';
 import { SignupFormContainer } from '@components/SignupFormContainer';
 import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword.ts';
+import { mockAuthData } from './mocks/mockAuthData';
 
 function prepare() {
   return render(
@@ -27,16 +28,16 @@ describe('Login form container', () => {
     await waitFor(() => getAllByRole('textbox'));
 
     fireEvent.change(getByLabelText('Email'), {
-      target: { value: 'john@example.com' },
+      target: { value: mockAuthData.email },
     });
     fireEvent.change(getByLabelText('Имя'), {
-      target: { value: 'John' },
+      target: { value: mockAuthData.name },
     });
     fireEvent.change(getByLabelText('Пароль'), {
-      target: { value: 'Password123$' },
+      target: { value: mockAuthData.password },
     });
     fireEvent.change(getByLabelText('Подтвердите пароль'), {
-      target: { value: 'Password123$' },
+      target: { value: mockAuthData.confirmPassword },
     });
 
     fireEvent.click(getByRole('button', { name: 'Зарегистрироваться' }));
@@ -44,9 +45,9 @@ describe('Login form container', () => {
     await waitFor(() => {
       expect(signupWithEmailAndPassword).toHaveBeenCalledWith(
         {
-          email: 'john@example.com',
-          password: 'Password123$',
-          name: 'John',
+          email: mockAuthData.email,
+          password: mockAuthData.password,
+          name: mockAuthData.name,
         },
         expect.any(Function)
       );

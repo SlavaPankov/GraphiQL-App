@@ -4,6 +4,7 @@ import { Form } from '@components/Form';
 import { UseLocalizationContext } from '@context/LocalizationContext';
 import { Provider } from 'react-redux';
 import store from '@store/store';
+import { mockAuthData } from './mocks/mockAuthData';
 
 function prepare(isSignup: boolean, onSubmit = vi.fn()) {
   return render(
@@ -44,26 +45,23 @@ describe('Form', () => {
     const onSubmitMock = vi.fn();
     const { getByLabelText, getByRole } = prepare(true, onSubmitMock);
 
-    fireEvent.change(getByLabelText('Имя'), { target: { value: 'John' } });
+    fireEvent.change(getByLabelText('Имя'), {
+      target: { value: mockAuthData.name },
+    });
     fireEvent.change(getByLabelText('Email'), {
-      target: { value: 'john@example.com' },
+      target: { value: mockAuthData.email },
     });
     fireEvent.change(getByLabelText('Пароль'), {
-      target: { value: 'Password123$' },
+      target: { value: mockAuthData.password },
     });
     fireEvent.change(getByLabelText('Подтвердите пароль'), {
-      target: { value: 'Password123$' },
+      target: { value: mockAuthData.confirmPassword },
     });
 
     fireEvent.click(getByRole('button', { name: 'Зарегистрироваться' }));
 
     await waitFor(() => {
-      expect(onSubmitMock).toHaveBeenCalledWith({
-        name: 'John',
-        email: 'john@example.com',
-        password: 'Password123$',
-        confirmPassword: 'Password123$',
-      });
+      expect(onSubmitMock).toHaveBeenCalledWith(mockAuthData);
     });
   });
 

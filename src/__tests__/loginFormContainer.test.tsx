@@ -5,6 +5,7 @@ import store from '@store/store';
 import { LoginFormContainer } from '@components/LoginFormContainer';
 import { describe, expect, it, vi } from 'vitest';
 import { loginWithEmailAndPassword } from '@utils/loginWithEmailAndPassword';
+import { mockAuthData } from './mocks/mockAuthData';
 
 function prepare() {
   return render(
@@ -27,17 +28,17 @@ describe('Login form container', () => {
     await waitFor(() => getAllByRole('textbox'));
 
     fireEvent.change(getByLabelText(/Email/i), {
-      target: { value: 'john@example.com' },
+      target: { value: mockAuthData.email },
     });
     fireEvent.change(getByLabelText(/Пароль/i), {
-      target: { value: 'Password123$' },
+      target: { value: mockAuthData.password },
     });
 
     fireEvent.click(getByRole('button', { name: 'Войти' }));
 
     await waitFor(() => {
       expect(loginWithEmailAndPassword).toHaveBeenCalledWith(
-        { email: 'john@example.com', password: 'Password123$' },
+        { email: mockAuthData.email, password: mockAuthData.password },
         expect.any(Function)
       );
     });
