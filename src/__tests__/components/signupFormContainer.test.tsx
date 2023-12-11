@@ -4,8 +4,8 @@ import { Provider } from 'react-redux';
 import store from '@store/store.ts';
 import { UseLocalizationContext } from '@context/LocalizationContext';
 import { SignupFormContainer } from '@components/SignupFormContainer';
-import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword.ts';
-import { mockAuthData } from './mocks/mockAuthData';
+import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword';
+import { mockAuthData } from '../mocks/mockAuthData';
 
 function prepare() {
   return render(

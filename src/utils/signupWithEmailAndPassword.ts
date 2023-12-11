@@ -30,7 +30,7 @@ export const signupWithEmailAndPassword = async (
   } catch (error) {
     const fireBasesError = error as FirebaseError;
     switch (fireBasesError.code) {
-      case 'auth/email-already-in-use':
+      case 'auth/email-already-exists':
         toast.error(translate('Email exists'));
         break;
       default:

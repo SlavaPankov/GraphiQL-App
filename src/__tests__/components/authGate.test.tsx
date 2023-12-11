@@ -5,7 +5,7 @@ import { ERoutes } from '@type/enums/ERoutes';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { NotFoundPage } from '@pages/NotFoundPage';
-import { userMock } from './mocks/userMock';
+import { userMock } from '../mocks/userMock';
 
 const mockNavigate = vi.fn();
 vi.mock('react-router-dom', async (importOriginal) => {

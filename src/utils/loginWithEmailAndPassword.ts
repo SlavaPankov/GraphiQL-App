@@ -12,7 +12,7 @@ export async function loginWithEmailAndPassword(
     await signInWithEmailAndPassword(auth, email, password);
   } catch (error) {
     switch ((error as FirebaseError).code) {
-      case 'auth/wrong-password':
+      case 'auth/invalid-password':
         toast.error(translate('Wrong password'));
         break;
       case 'auth/user-not-found':

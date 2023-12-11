@@ -14,7 +14,11 @@ export default defineConfig({
     coverage: {
       provider: 'v8',
       all: true,
-      include: ['src/components/**/*.tsx', 'src/pages/**/*.tsx'],
+      include: [
+        'src/components/**/*.tsx',
+        'src/pages/**/*.tsx',
+        'src/utils/**/*.ts',
+      ],
     },
   },
   resolve: {
