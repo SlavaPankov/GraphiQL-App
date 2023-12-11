@@ -11,7 +11,7 @@ export function Heading({ children, className }: Readonly<IHeadingProps>) {
   const level = useHeadingLevelContext();
   switch (level) {
     case 0: {
-      throw new Error('Must be inside a Section');
+      throw new Error('Must be within an Article or Section');
     }
     case 1: {
       return <h1 className={classNames(styles.h1, className)}>{children}</h1>;
