@@ -19,5 +19,5 @@ export const userMock: User = {
   phoneNumber: null,
   photoURL: null,
   providerId: '',
-  uid: '',
+  uid: 'uid123',
 };

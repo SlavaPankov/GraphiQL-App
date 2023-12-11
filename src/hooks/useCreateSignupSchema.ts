@@ -1,17 +1,17 @@
 import { useContext, useEffect, useState } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
-import { createSignupSchema } from '@utils/createSignupSchema.ts';
+import { createSchema } from '@utils/createSchema.ts';
 
 export function useCreateSignupSchema(isSignup: boolean) {
   const { locale, translate, isFetching } = useContext(localizationContext);
-  const [schema, setSchema] = useState(createSignupSchema(translate, isSignup));
+  const [schema, setSchema] = useState(createSchema(translate, isSignup));
 
   useEffect(() => {
     if (isFetching) {
       return;
     }
 
-    setSchema(createSignupSchema(translate, isSignup));
+    setSchema(createSchema(translate, isSignup));
   }, [locale, isFetching]);
 
   return { schema };
