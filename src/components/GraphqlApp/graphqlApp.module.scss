@@ -1,11 +1,19 @@
 .application {
   display: flex;
+
+  @media (width<=768px) {
+    flex-direction: column;
+  }
 }
 
 .editorsSection {
   display: flex;
   flex: 1;
   padding: 0.5rem;
+
+  @media (width<=768px) {
+    flex-direction: column;
+  }
 }
 
 .sidePanel {
@@ -15,6 +23,7 @@
 .editors {
   display: flex;
   flex: 1;
+  flex-wrap: wrap;
 
   padding: 0.5rem;
 

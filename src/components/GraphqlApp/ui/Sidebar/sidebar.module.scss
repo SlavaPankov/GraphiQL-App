@@ -2,10 +2,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: fit-content;
+
+  @media (width<=768px) {
+    flex-direction: row;
+  }
 }
 
 .buttonSection {
   display: flex;
   flex-direction: column;
+
+  @media (width<=768px) {
+    flex-direction: row;
+  }
 }

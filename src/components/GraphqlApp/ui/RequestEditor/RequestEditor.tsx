@@ -43,16 +43,18 @@ export function RequestEditor({
       </Heading>
       <QueryEditor className={styles.queryEditorSection} />
       <div className={styles.buttonSection}>
-        <BaseButton
-          label={translate('Variables')}
-          mode="secondary"
-          onClick={handleVariablesClick}
-        />
-        <BaseButton
-          label={translate('Headers')}
-          mode="secondary"
-          onClick={handleHeadersClick}
-        />
+        <div className={styles.subEditorTabs}>
+          <BaseButton
+            label={translate('Variables')}
+            mode="secondary"
+            onClick={handleVariablesClick}
+          />
+          <BaseButton
+            label={translate('Headers')}
+            mode="secondary"
+            onClick={handleHeadersClick}
+          />
+        </div>
         <IconButton
           icon={<ChevronSVGIcon isActive={currentSubEditorMode !== 'none'} />}
           isActive={currentSubEditorMode !== 'none'}

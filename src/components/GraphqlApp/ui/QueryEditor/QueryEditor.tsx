@@ -28,7 +28,7 @@ export function QueryEditor({
         placeholder={translate('Query Editor')}
         className={styles.queryEditorArea}
       />
-      <div>
+      <div className={styles.queryEditorButtons}>
         <IconButton
           icon={<PlaySVGIcon />}
           title={translate('Execute query')}

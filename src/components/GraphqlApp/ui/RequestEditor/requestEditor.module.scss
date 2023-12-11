@@ -15,5 +15,18 @@
 
 .buttonSection {
   display: flex;
+  justify-content: space-between;
+}
+
+.subEditorTabs {
+  display: flex;
   column-gap: 0.5rem;
+
+  @media (width<=375px) {
+    padding: 0.25rem;
+
+    & > button {
+      padding-inline: 0.5rem;
+    }
+  }
 }
