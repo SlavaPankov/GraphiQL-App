@@ -20,5 +20,8 @@
   "Email exists": "This email is already exists",
   "Wrong password": "Wrong password",
   "User don't exist": "User don't exist",
-  "Invalid credential": "Wrong email or password"
+  "Invalid credential": "Wrong email or password",
+  "FirstStudent": "Svyatoslav Pankov",
+  "SecondStudent": "Roman Ermishin",
+  "ThirdStudent": "German Gribanov"
 }

@@ -1,0 +1,20 @@
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .students {
+    display: flex;
+    gap: 1rem;
+  }
+}
+
+.logo {
+  height: 100%;
+  width: 8rem;
+}

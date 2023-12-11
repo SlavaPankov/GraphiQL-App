@@ -20,5 +20,8 @@
   "Email exists": "Такой email уже зарегистрирован",
   "Wrong password": "Неверный пароль",
   "User don't exist": "Пользователь не найден",
-  "Invalid credential": "Невeрный логин или пароль"
+  "Invalid credential": "Невeрный логин или пароль",
+  "FirstStudent": "Святослав Панков",
+  "SecondStudent": "Роман Ермишин",
+  "ThirdStudent": "Герман Грибанов"
 }
