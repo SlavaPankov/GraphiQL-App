@@ -23,11 +23,10 @@ export function createSchema(
         .required(translate('Field required'))
         .test({
           test(value, ctx) {
-            if (!value) {
-              return ctx.createError({ message: translate('Field required') });
-            }
-
-            if ([...value][0] !== [...value][0].toUpperCase()) {
+            if (
+              [...value][0] &&
+              [...value][0] !== [...value][0].toUpperCase()
+            ) {
               return ctx.createError({ message: translate('Name capitalize') });
             }
 

@@ -6,6 +6,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
 import { auth } from '../../firebase/firebase';
 import { mockAuthData } from '../mocks/mockAuthData';
+import { translateMock } from '../mocks/translateMock';
 
 vi.mock('firebase/auth', async (importOriginal) => {
   const original = await importOriginal<typeof import('firebase/auth')>();
@@ -25,7 +26,6 @@ vi.mock('react-toastify', async (importOriginal) => {
   };
 });
 
-const translateMock = vi.fn((key: string) => key);
 const credentials: Pick<IFormData, 'email' | 'password'> = {
   email: mockAuthData.email,
   password: mockAuthData.password,
