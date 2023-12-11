@@ -1,26 +1,12 @@
 import { http, HttpResponse } from 'msw';
+import ru from '../../../public/localization/ru/localization.json';
+import en from '../../../public/localization/en/localization.json';
 
 export const handlers = [
-  http.get('https://dummyjson.com/products/search', ({ request }) => {
-    const url = new URL(request.url);
-
-    const search = url.searchParams.get('q');
-
-    if (search && search === 'fail') {
-      return new HttpResponse(null, { status: 404 });
-    }
-
-    return HttpResponse.json({});
-  }),
-  http.get('https://dummyjson.com/products/:id', ({ params }) => {
-    if (
-      !params.id ||
-      Number.isNaN(Number(params.id)) ||
-      Number(params.id) === 0
-    ) {
-      return new HttpResponse(null, { status: 404 });
-    }
-
-    return HttpResponse.json({});
-  }),
+  http.get('http://localhost:3000/localization/ru/localization.json', () =>
+    HttpResponse.json(ru)
+  ),
+  http.get('http://localhost:3000/localization/en/localization.json', () =>
+    HttpResponse.json(en)
+  ),
 ];

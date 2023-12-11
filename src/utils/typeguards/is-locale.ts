@@ -1,5 +1,4 @@
-import { Locale } from 'src/types/types/Locale';
+import { TLocale } from '@type/types/TLocale';
 
-export const isLocale = (locale: unknown): locale is Locale => {
-  return typeof locale === 'string' && ['en', 'ru'].includes(locale);
-};
+export const isLocale = (locale: unknown): locale is TLocale =>
+  typeof locale === 'string' && ['en', 'ru'].includes(locale);

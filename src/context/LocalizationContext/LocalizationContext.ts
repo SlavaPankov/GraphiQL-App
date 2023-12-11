@@ -1,15 +1,16 @@
-import { createContext } from 'react';
-
-export type Locale = 'ru' | 'en';
+import { TLocale } from '@type/types/TLocale';
+import { createContext, useContext } from 'react';
 
 export interface ILocalizationContextData {
-  locale: Locale;
-  setLocale: (data: Locale) => void;
+  locale: TLocale;
+  isFetching: boolean;
+  setLocale: (data: TLocale) => void;
   translate: (key: string) => string;
 }
 
 const localizationContextDefaultValue: ILocalizationContextData = {
   locale: 'ru',
+  isFetching: false,
   setLocale: () => {},
   translate: () => '',
 };
@@ -17,3 +18,5 @@ const localizationContextDefaultValue: ILocalizationContextData = {
 export const localizationContext = createContext<ILocalizationContextData>(
   localizationContextDefaultValue
 );
+
+export const useLocaleContext = () => useContext(localizationContext);

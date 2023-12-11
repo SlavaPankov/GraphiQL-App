@@ -1,22 +1,22 @@
 import { Link } from 'react-router-dom';
-import { Heading } from '@components/Heading';
-import { BaseButton } from '@components/BaseButton';
-import { useContext } from 'react';
-import { ERoutes } from '../../types/enums/ERoutes';
-import { localizationContext } from '../../context/LocalizationContext';
+import { ERoutes } from '@type/enums/ERoutes';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { H1 } from '@components/Headings';
+import { auth } from '../../firebase/firebase';
 
 export function MainPage() {
-  const { setLocale, translate } = useContext(localizationContext);
-
-  const handleClick = () => {
-    setLocale(Math.round(Math.random()) === 1 ? 'en' : 'ru');
-  };
+  const [user] = useAuthState(auth);
 
   return (
     <div className="container">
-      <Heading />
-      <Link to={ERoutes.about}>{translate('Not found')}</Link>
-      <BaseButton label="click" onClick={handleClick} />
+      <H1 title={`Hello ${user?.displayName}`} />
+
+      <div>
+        <Link to={ERoutes.signup}>Signup</Link>
+      </div>
+      <div>
+        <Link to={ERoutes.login}>Login</Link>
+      </div>
     </div>
   );
 }

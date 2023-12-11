@@ -1,19 +1,23 @@
-.application {
-  display: flex;
+.breakViewport {
+  min-height: 100dvh;
+}
 
-  @media (width<=768px) {
+.application {
+  @include small-tablet {
     flex-direction: column;
   }
+
+  display: flex;
 }
 
 .editorsSection {
+  @include small-tablet {
+    flex-direction: column;
+  }
+
   display: flex;
   flex: 1;
   padding: 0.5rem;
-
-  @media (width<=768px) {
-    flex-direction: column;
-  }
 }
 
 .sidePanel {
@@ -21,6 +25,10 @@
 }
 
 .editors {
+  @include small-tablet {
+    flex-direction: column;
+  }
+
   display: flex;
   flex: 1;
   flex-wrap: wrap;
@@ -29,10 +37,6 @@
 
   background-color: rgba($grey-69, 0.071);
   border-radius: 1.25rem;
-
-  @media (width <=768px) {
-    flex-direction: column;
-  }
 }
 
 .requestEditor,

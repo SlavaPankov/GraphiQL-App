@@ -7,7 +7,9 @@
   background-color: $white;
   border: 1px solid $grey-7E;
   border-radius: 100px;
-  transition: background-color .3s ease-in-out, border-color .3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    border-color 0.3s ease-in-out;
   letter-spacing: 0.1px;
 
   &:not(:disabled):hover {

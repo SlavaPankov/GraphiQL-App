@@ -20,7 +20,7 @@ module.exports = {
   parserOptions: {
     ecmaVersion: 'latest',
     sourceType: 'module',
-    project: './tsconfig.json',
+    project: ['./tsconfig.json', './tsconfig.node.json'],
   },
   plugins: ['react-refresh'],
   rules: {
@@ -44,6 +44,16 @@ module.exports = {
     'react/prefer-stateless-function': 'off',
     'import/prefer-default-export': 'off',
     'class-methods-use-this': 'off',
+    'import/no-extraneous-dependencies': [
+      'error',
+      {
+        devDependencies: [
+          '**/__tests__/**/*',
+          '**/*.{config,setup}.{ts,js}',
+          '**/*.{spec,test}.{tsx,ts,jsx,js}',
+        ],
+      },
+    ],
     'react/function-component-definition': [
       'error',
       {
@@ -51,5 +61,11 @@ module.exports = {
         unnamedComponents: 'arrow-function',
       },
     ],
+    '@typescript-eslint/no-misused-promises': [
+      'error',
+      { checksVoidReturn: { attributes: false } },
+    ],
+    'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
   },
 };

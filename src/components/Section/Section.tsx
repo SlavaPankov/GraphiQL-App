@@ -1,8 +1,8 @@
-import { HTMLAttributes, ReactNode } from 'react';
 import {
   HeadingLevelContext,
   useHeadingLevelContext,
-} from '../../context/HeadingLevelContext';
+} from '@context/HeadingLevelContext';
+import { HTMLAttributes, ReactNode } from 'react';
 
 interface ISectionProps extends HTMLAttributes<HTMLElement> {
   children: ReactNode;
