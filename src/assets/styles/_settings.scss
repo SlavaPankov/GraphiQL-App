@@ -16,7 +16,7 @@ html {
 
 .page__body {
   margin: 0;
-  min-width: 320px;
+  min-width: 320px - $scrollbar-width;
   min-height: 100%;
   font-size: 16px;
 }

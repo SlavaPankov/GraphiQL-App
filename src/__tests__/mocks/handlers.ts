@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import { http, HttpResponse } from 'msw';
 import ru from '../../../public/localization/ru/localization.json';
 import en from '../../../public/localization/en/localization.json';
