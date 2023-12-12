@@ -41,5 +41,9 @@
   "Execute query": "Execute query",
   "Prettify query": "Prettify query",
   "Merge fragments into query": "Merge fragments into query",
-  "Copy query": "Copy query"
+  "Copy query": "Copy query",
+  "FirstStudent": "Svyatoslav Pankov",
+  "SecondStudent": "Roman Ermishin",
+  "ThirdStudent": "German Gribanov",
+  "Language": "Рус"
 }
