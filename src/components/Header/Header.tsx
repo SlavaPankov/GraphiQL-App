@@ -1,14 +1,12 @@
 import { Link } from 'react-router-dom';
-import { useContext, useState } from 'react';
+import { useContext } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
 import { BaseButton } from '@components/BaseButton';
 
 export function Header() {
-  const { setLocale, translate } = useContext(localizationContext);
-  const [language, changeLanguage] = useState(true);
+  const { locale, setLocale, translate } = useContext(localizationContext);
   const handleClick = () => {
-    changeLanguage(!language);
-    setLocale(language ? 'en' : 'ru');
+    setLocale(locale === 'ru' ? 'en' : 'ru');
   };
 
   return (
