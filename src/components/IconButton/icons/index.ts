@@ -8,4 +8,3 @@ export * from './PlaySVGIcon';
 export * from './PrettifySVGIcon';
 export * from './ReloadSVGIcon';
 export * from './SettingsSVGIcon';
-export * from './RsLogoSVGIcon';

@@ -20,6 +20,7 @@
   "Email exists": "Такой email уже зарегистрирован",
   "Wrong password": "Неверный пароль",
   "User don't exist": "Пользователь не найден",
+  "Invalid credential": "Невeрный логин или пароль",
   "Documentation Explorer": "Документация",
   "History": "История",
   "Re-fetch GraphQL schema": "Обновить GraphQL-схему",
@@ -41,7 +42,6 @@
   "Prettify query": "Форматировать запрос",
   "Merge fragments into query": "Объединить фрагменты в запрос",
   "Copy query": "Копировать запрос",
-  "Invalid credential": "Невeрный логин или пароль",
   "FirstStudent": "Святослав Панков",
   "SecondStudent": "Роман Ермишин",
   "ThirdStudent": "Герман Грибанов"

@@ -2,7 +2,7 @@ import { EStudentsGits } from '@type/enums/ERoutes';
 import { useContext } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
 import classNames from 'classnames';
-import { RsLogoSvgIcon } from '@components/IconButton/icons';
+import { RsLogoSvgIcon } from '@components/Footer/icons';
 import styles from './footer.module.scss';
 
 export function Footer() {

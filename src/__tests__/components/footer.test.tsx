@@ -12,7 +12,7 @@ describe('Footer component', () => {
     expect(footerElement).toBeInTheDocument();
   });
 
-  it('renders student links', () => {
+  it('renders 3 students links', () => {
     const studentLinks = screen.getAllByRole('listitem');
     expect(studentLinks).toHaveLength(3);
   });
