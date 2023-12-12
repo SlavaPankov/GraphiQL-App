@@ -1,0 +1,18 @@
+.sideBar {
+  @include small-tablet {
+    flex-direction: row;
+  }
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.buttonSection {
+  @include small-tablet {
+    flex-direction: row;
+  }
+
+  display: flex;
+  flex-direction: column;
+}

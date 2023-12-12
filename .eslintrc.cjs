@@ -48,7 +48,8 @@ module.exports = {
       'error',
       {
         devDependencies: [
-          '*.{config,setup}.{ts,js}',
+          '**/__tests__/**/*',
+          '**/*.{config,setup}.{ts,js}',
           '**/*.{spec,test}.{tsx,ts,jsx,js}',
         ],
       },
@@ -61,13 +62,10 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-misused-promises': [
-      2,
-      {
-        checksVoidReturn: {
-          attributes: false,
-        },
-      },
+      'error',
+      { checksVoidReturn: { attributes: false } },
     ],
+    'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
   },
 };

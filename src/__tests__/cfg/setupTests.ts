@@ -1,4 +1,3 @@
-/* eslint-disable import/no-extraneous-dependencies */
 import '@testing-library/jest-dom';
 import { setupServer } from 'msw/node';
 import { afterAll, afterEach, beforeAll } from 'vitest';
