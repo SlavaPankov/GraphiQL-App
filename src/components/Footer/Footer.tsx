@@ -2,6 +2,7 @@ import { EStudentsGits } from '@type/enums/ERoutes';
 import { useContext } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
 import classNames from 'classnames';
+import { RsLogoSvgIcon } from '@components/IconButton/icons';
 import styles from './footer.module.scss';
 
 export function Footer() {
@@ -12,19 +13,30 @@ export function Footer() {
         <div className={styles.details}>
           <ul className={styles.students}>
             <li>
-              <a href={EStudentsGits.first}>{translate('FirstStudent')}</a>
+              <a className={styles.link} href={EStudentsGits.first}>
+                {translate('FirstStudent')}
+              </a>
             </li>
             <li>
-              <a href={EStudentsGits.second}>{translate('SecondStudent')}</a>
+              <a className={styles.link} href={EStudentsGits.second}>
+                {translate('SecondStudent')}
+              </a>
             </li>
             <li>
-              <a href={EStudentsGits.third}>{translate('ThirdStudent')}</a>
+              <a className={styles.link} href={EStudentsGits.third}>
+                {translate('ThirdStudent')}
+              </a>
             </li>
           </ul>
-          <div>2023</div>
+          <div className={styles.date}>2023</div>
         </div>
-        <a className={styles.logo} href="https://rs.school" target="_blank" rel="noreferrer">
-          <img src="/rsLogo.svg" alt="logo" />
+        <a
+          className={styles.logo}
+          href="https://rs.school"
+          target="_blank"
+          rel="noreferrer"
+        >
+          <RsLogoSvgIcon />
         </a>
       </div>
     </footer>
