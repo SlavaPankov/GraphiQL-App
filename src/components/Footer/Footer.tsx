@@ -8,7 +8,7 @@ import styles from './footer.module.scss';
 export function Footer() {
   const { translate } = useContext(localizationContext);
   return (
-    <footer className={styles.root}>
+    <footer className={styles.root} data-testid="footer">
       <div className={classNames(styles.footerContainer, 'container')}>
         <div className={styles.details}>
           <ul className={styles.students}>
