@@ -8,6 +8,9 @@ import {
 } from '@components/IconButton/icons';
 import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { useAppSelector } from '@hooks/useAppSelector';
+import { setGQLQuery } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import styles from './queryEditor.module.scss';
@@ -16,6 +19,8 @@ export function QueryEditor({
   className,
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
+  const value = useAppSelector((state) => state.graphqlQueryData.query);
+  const dispatch = useAppDispatch();
 
   const handleClick = () => {
     throw new Error('Handler not implemented');
@@ -27,6 +32,8 @@ export function QueryEditor({
       <textarea
         placeholder={translate('Query Editor')}
         className={styles.queryEditorArea}
+        value={value}
+        onChange={(e) => dispatch(setGQLQuery(e.target.value))}
       />
       <div className={styles.queryEditorButtons}>
         <IconButton

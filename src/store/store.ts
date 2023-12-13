@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import { localeApi } from './localeApi/localeApi';
+import { graphqlQueryDataReducer } from './graphqlQueryData/graphqlQueryDataSlice';
 
 const store = configureStore({
   reducer: {
     [localeApi.reducerPath]: localeApi.reducer,
+    graphqlQueryData: graphqlQueryDataReducer,
   },
 
   middleware: (getDefaultMiddleware) =>
