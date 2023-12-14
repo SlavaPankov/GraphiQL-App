@@ -7,8 +7,10 @@ import { RequestEditor } from '@components/GraphqlApp/RequestEditor';
 import { ResponseSection } from '@components/GraphqlApp/ResponseSection';
 import { Sidebar } from '@components/GraphqlApp/Sidebar';
 import { VariablesEditor } from '@components/GraphqlApp/VariablesEditor';
+import store from '@store/store';
 import { cleanup, render } from '@testing-library/react';
 import { createElement } from 'react';
+import { Provider } from 'react-redux';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 describe('GraphqlApp component', () => {
@@ -28,7 +30,9 @@ describe('GraphqlApp component', () => {
       VariablesEditor,
     ].map((component) => ({ name: component.name, component }))
   )('$name component renders without errors', ({ component }) => {
-    expect(() => render(createElement(component))).not.toThrow();
+    expect(() =>
+      render(<Provider store={store}>{createElement(component)}</Provider>)
+    ).not.toThrow();
   });
 
   it("'Sidebar' component renders without errors", () => {
