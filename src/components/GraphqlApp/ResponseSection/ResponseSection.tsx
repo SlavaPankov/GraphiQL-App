@@ -1,6 +1,7 @@
 import { Heading } from '@components/Heading';
 import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
+import { useAppSelector } from '@hooks/useAppSelector';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import styles from './responseSection.module.scss';
@@ -9,6 +10,7 @@ export function ResponseSection({
   className,
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
+  const data = useAppSelector((state) => state.graphqlQueryData.response);
 
   return (
     <Section className={classNames(className, styles.responseSection)}>
@@ -23,6 +25,7 @@ export function ResponseSection({
           className={styles.jsonViewerArea}
           placeholder={translate('JSON Viewer')}
           readOnly
+          value={data}
         />
       </Section>
     </Section>

@@ -10,7 +10,11 @@ import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useAppSelector } from '@hooks/useAppSelector';
-import { setGQLQuery } from '@store/graphqlQueryData/graphqlQueryDataSlice';
+import { useLazyGetGraphQLResponseQuery } from '@store/graphqlApi/graphqlApi';
+import {
+  setGQLQuery,
+  setGQLResponse,
+} from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import styles from './queryEditor.module.scss';
@@ -21,6 +25,7 @@ export function QueryEditor({
   const { translate } = useLocaleContext();
   const value = useAppSelector((state) => state.graphqlQueryData.query);
   const dispatch = useAppDispatch();
+  const [executeQuery] = useLazyGetGraphQLResponseQuery();
 
   const handleClick = () => {
     throw new Error('Handler not implemented');
@@ -39,7 +44,17 @@ export function QueryEditor({
         <IconButton
           icon={<PlaySVGIcon />}
           title={translate('Execute query')}
-          onClick={handleClick}
+          onClick={() => {
+            executeQuery({})
+              .then(({ data }) => {
+                dispatch(setGQLResponse(data ?? ''));
+              })
+              .catch((e) => {
+                if (e instanceof Error) {
+                  dispatch(setGQLResponse(JSON.stringify(e)));
+                }
+              });
+          }}
           isFilled
         />
         <IconButton
