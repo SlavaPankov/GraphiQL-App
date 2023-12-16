@@ -3,12 +3,8 @@ import {
   ChevronSVGIcon,
   CopySVGIcon,
   DocsSVGIcon,
-  HistorySVGIcon,
-  KeyboardShortcutSVGIcon,
-  MergeSVGIcon,
   PlaySVGIcon,
   PrettifySVGIcon,
-  ReloadSVGIcon,
   SettingsSVGIcon,
 } from '@components/IconButton/icons';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
@@ -24,12 +20,8 @@ describe('IconButton', () => {
     ChevronSVGIcon,
     CopySVGIcon,
     DocsSVGIcon,
-    HistorySVGIcon,
-    KeyboardShortcutSVGIcon,
-    MergeSVGIcon,
     PlaySVGIcon,
     PrettifySVGIcon,
-    ReloadSVGIcon,
     SettingsSVGIcon,
   ])('IconButton button receives and renders svg icon', (iconComponent) => {
     render(<IconButton icon={createElement(iconComponent)} />);

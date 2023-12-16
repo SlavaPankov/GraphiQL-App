@@ -2,7 +2,6 @@ import { Heading } from '@components/Heading';
 import { IconButton } from '@components/IconButton';
 import {
   CopySVGIcon,
-  MergeSVGIcon,
   PlaySVGIcon,
   PrettifySVGIcon,
 } from '@components/IconButton/icons';
@@ -28,10 +27,6 @@ export function QueryEditor({
   const dispatch = useAppDispatch();
   const [executeQuery] = useLazyGetGraphQLResponseQuery();
 
-  const handleClick = () => {
-    toast.error('Handler not implemented');
-  };
-
   return (
     <Section className={classNames(className, styles.queryEditorSection)}>
       <Heading className="visually-hidden">{translate('Query Editor')}</Heading>
@@ -54,17 +49,17 @@ export function QueryEditor({
         <IconButton
           icon={<PrettifySVGIcon />}
           title={translate('Prettify query')}
-          onClick={handleClick}
-        />
-        <IconButton
-          icon={<MergeSVGIcon />}
-          title={translate('Merge fragments into query')}
-          onClick={handleClick}
+          onClick={() => {
+            toast.error('Handler not implemented');
+          }}
         />
         <IconButton
           icon={<CopySVGIcon />}
           title={translate('Copy query')}
-          onClick={handleClick}
+          onClick={async () => {
+            await navigator.clipboard.writeText(value);
+            toast.success(translate('Query copied'));
+          }}
         />
       </div>
     </Section>

@@ -22,9 +22,6 @@
   "User don't exist": "User don't exist",
   "Invalid credential": "Wrong email or password",
   "Documentation Explorer": "Documentation Explorer",
-  "History": "History",
-  "Re-fetch GraphQL schema": "Re-fetch GraphQL schema",
-  "Short keys": "Short keys",
   "Settings dialog": "Settings dialog",
   "GraphQL Playground": "GraphQL Playground",
   "GraphQL Editors": "GraphQL Editors",
@@ -40,6 +37,9 @@
   "JSON Viewer": "JSON Viewer",
   "Execute query": "Execute query",
   "Prettify query": "Prettify query",
-  "Merge fragments into query": "Merge fragments into query",
-  "Copy query": "Copy query"
+  "Copy query": "Copy query",
+  "Change Endpoint": "Change Endpoint",
+  "Query copied": "Query copied",
+  "Invalid URL": "Invalid URL",
+  "Required field": "Required field"
 }

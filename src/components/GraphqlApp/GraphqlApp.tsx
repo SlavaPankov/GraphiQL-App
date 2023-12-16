@@ -4,13 +4,15 @@ import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useLazyGetSchemaQuery } from '@store/graphqlApi/graphqlApi';
-import { setGQLSchema } from '@store/graphqlQueryData/graphqlQueryDataSlice';
-import { TSidePanelMode } from '@type/types/TSidePanelMode';
+import {
+  setGQLSchema,
+  setGQLUrl,
+} from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
 import { HTMLAttributes, useState } from 'react';
-import { toast } from 'react-toastify';
+import { createPortal } from 'react-dom';
+import { ChangeEndpointDialog } from './ChangeEndpointDialog';
 import { DocsExplorer } from './DocsExplorer';
-import { History } from './History';
 import { RequestEditor } from './RequestEditor';
 import { ResponseSection } from './ResponseSection';
 import { Sidebar } from './Sidebar';
@@ -20,27 +22,10 @@ export function GraphqlApp({
   className,
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
-  const [sidePanelMode, setSidePanelMode] = useState<TSidePanelMode>('none');
+  const [isDocsOpen, setIsDocsOpen] = useState(false);
+  const [isUrlDialogOpen, setIsUrlDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
   const [fetchSchema] = useLazyGetSchemaQuery();
-
-  const handleClick = () => {
-    toast('Handler not implemented');
-  };
-
-  const handleDocsClick = async () => {
-    if (sidePanelMode !== 'docs') {
-      const { data } = await fetchSchema({});
-      dispatch(setGQLSchema(JSON.stringify(data, null, 2)));
-      setSidePanelMode('docs');
-    } else {
-      setSidePanelMode('none');
-    }
-  };
-
-  const handleHistoryClick = () => {
-    setSidePanelMode((prev) => (prev === 'history' ? 'none' : 'history'));
-  };
 
   return (
     <Article
@@ -55,12 +40,19 @@ export function GraphqlApp({
       </Heading>
 
       <Sidebar
-        sidePanelMode={sidePanelMode}
-        handleDocsClick={handleDocsClick}
-        handleHistoryClick={handleHistoryClick}
-        handleReloadClick={handleClick}
-        handleKeyboardShortcutClick={handleClick}
-        handleSettingsClick={handleClick}
+        isDocsOpen={isDocsOpen}
+        handleDocsClick={async () => {
+          if (isDocsOpen) {
+            setIsDocsOpen(false);
+          } else {
+            const { data } = await fetchSchema({});
+            dispatch(setGQLSchema(JSON.stringify(data, null, 2)));
+            setIsDocsOpen(true);
+          }
+        }}
+        handleSettingsClick={() => {
+          setIsUrlDialogOpen(true);
+        }}
       />
 
       <Section className={styles.editorsSection}>
@@ -68,12 +60,20 @@ export function GraphqlApp({
           {translate('GraphQL Editors')}
         </Heading>
 
-        {sidePanelMode === 'docs' && (
-          <DocsExplorer className={styles.sidePanel} />
-        )}
-        {sidePanelMode === 'history' && (
-          <History className={styles.sidePanel} />
-        )}
+        {isUrlDialogOpen &&
+          createPortal(
+            <ChangeEndpointDialog
+              handleDiscardClick={() => {
+                setIsUrlDialogOpen(false);
+              }}
+              handleConfirmClick={({ endpoint }) => {
+                dispatch(setGQLUrl(endpoint));
+                setIsUrlDialogOpen(false);
+              }}
+            />,
+            document.body
+          )}
+        {isDocsOpen && <DocsExplorer className={styles.sidePanel} />}
 
         <Section className={styles.editors}>
           <Heading className="visually-hidden">{translate('Editors')}</Heading>

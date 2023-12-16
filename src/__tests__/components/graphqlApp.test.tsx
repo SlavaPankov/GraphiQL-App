@@ -40,11 +40,8 @@ describe('GraphqlApp component', () => {
     expect(() =>
       render(
         <Sidebar
-          sidePanelMode="none"
+          isDocsOpen={false}
           handleDocsClick={callback}
-          handleHistoryClick={callback}
-          handleReloadClick={callback}
-          handleKeyboardShortcutClick={callback}
           handleSettingsClick={callback}
         />
       )

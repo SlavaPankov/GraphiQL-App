@@ -1,6 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { isStringHashTable } from '@utils/typeguards/is-string-hash-table';
 
+export const defaultEndpoint = 'https://rickandmortyapi.graphcdn.app/';
+
 export interface IGraphqlQueryDataState {
   url: string;
   query: string;
@@ -13,7 +15,7 @@ export interface IGraphqlQueryDataState {
 const { actions, reducer } = createSlice({
   name: 'graphqlQueryData',
   initialState: (): IGraphqlQueryDataState => ({
-    url: 'https://rickandmortyapi.graphcdn.app/',
+    url: defaultEndpoint,
     query: 'query($v:String){characters(filter:{name:$v}){results{name}}}',
     headers: {},
     variables: {},
