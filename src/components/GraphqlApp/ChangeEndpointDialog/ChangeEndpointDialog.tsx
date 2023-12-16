@@ -7,6 +7,7 @@ import { HTMLAttributes, useEffect, useId } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { Form } from 'react-router-dom';
 import * as yup from 'yup';
+import { useAppSelector } from '@hooks/useAppSelector';
 import styles from './changeEndpointDialog.module.scss';
 
 const urlSchema = yup.object({
@@ -36,6 +37,7 @@ export function ChangeEndpointDialog({
     resolver: yupResolver(urlSchema),
   });
   const { translate } = useLocaleContext();
+  const defaultValue = useAppSelector((store) => store.graphqlQueryData.url);
 
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -67,6 +69,7 @@ export function ChangeEndpointDialog({
               autoComplete="off"
               type="url"
               placeholder={defaultEndpoint}
+              defaultValue={defaultValue}
               id={id}
             />
           </label>
