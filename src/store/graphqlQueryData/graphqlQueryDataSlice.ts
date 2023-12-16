@@ -2,25 +2,27 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { isStringHashTable } from '@utils/typeguards/is-string-hash-table';
 
 export interface IGraphqlQueryDataState {
-  endpoint: string;
+  url: string;
   query: string;
   headers: Record<string, string>;
   variables: Record<string, string>;
   response: string;
+  schema: string;
 }
 
 const { actions, reducer } = createSlice({
   name: 'graphqlQueryData',
   initialState: (): IGraphqlQueryDataState => ({
-    endpoint: 'https://rickandmortyapi.graphcdn.app/',
+    url: 'https://rickandmortyapi.graphcdn.app/',
     query: 'query($v:String){characters(filter:{name:$v}){results{name}}}',
     headers: {},
     variables: {},
     response: '',
+    schema: '',
   }),
   reducers: {
-    setGQLEndpoint(state, { payload }: PayloadAction<string>) {
-      state.endpoint = payload;
+    setGQLUrl(state, { payload }: PayloadAction<string>) {
+      state.url = payload;
     },
     setGQLQuery(state, { payload }: PayloadAction<string>) {
       state.query = payload;
@@ -44,14 +46,18 @@ const { actions, reducer } = createSlice({
     setGQLResponse(state, { payload }: PayloadAction<string>) {
       state.response = payload;
     },
+    setGQLSchema(state, { payload }: PayloadAction<string>) {
+      state.schema = payload;
+    },
   },
 });
 
 export const graphqlQueryDataReducer = reducer;
 export const {
-  setGQLEndpoint,
+  setGQLUrl,
   setGQLQuery,
   setGQLHeaders,
   setGQLVariables,
   setGQLResponse,
+  setGQLSchema,
 } = actions;

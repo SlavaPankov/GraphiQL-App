@@ -17,6 +17,7 @@ import {
 } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
+import { toast } from 'react-toastify';
 import styles from './queryEditor.module.scss';
 
 export function QueryEditor({
@@ -28,7 +29,7 @@ export function QueryEditor({
   const [executeQuery] = useLazyGetGraphQLResponseQuery();
 
   const handleClick = () => {
-    throw new Error('Handler not implemented');
+    toast.error('Handler not implemented');
   };
 
   return (
@@ -44,16 +45,9 @@ export function QueryEditor({
         <IconButton
           icon={<PlaySVGIcon />}
           title={translate('Execute query')}
-          onClick={() => {
-            executeQuery({})
-              .then(({ data }) => {
-                dispatch(setGQLResponse(data ?? ''));
-              })
-              .catch((e) => {
-                if (e instanceof Error) {
-                  dispatch(setGQLResponse(JSON.stringify(e)));
-                }
-              });
+          onClick={async () => {
+            const { data } = await executeQuery({});
+            dispatch(setGQLResponse(JSON.stringify(data, null, 2)));
           }}
           isFilled
         />

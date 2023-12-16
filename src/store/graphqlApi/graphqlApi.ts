@@ -1,37 +1,35 @@
-import { BaseQueryFn, createApi } from '@reduxjs/toolkit/query/react';
+import {
+  BaseQueryApi,
+  createApi,
+  fetchBaseQuery,
+} from '@reduxjs/toolkit/query/react';
+import { IGraphqlQueryDataState } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import { RootState } from '@store/store';
 
-const graphqlBaseQuery: BaseQueryFn = async (_, { getState }) => {
-  try {
-    const { graphqlQueryData } = getState() as RootState;
-    const { endpoint, query, variables, headers } = graphqlQueryData;
-
-    const body = { query, variables };
-
-    const res = await fetch(endpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json', ...headers },
-      body: JSON.stringify(body),
-    });
-
-    const data = (await res.json()) as unknown;
-
-    return { data };
-  } catch (error) {
-    return { error };
-  }
-};
+const getStateArgs = ({ getState }: BaseQueryApi): IGraphqlQueryDataState =>
+  (getState() as RootState).graphqlQueryData;
 
 export const graphqlApi = createApi({
   reducerPath: 'graphqlApi',
-  baseQuery: graphqlBaseQuery,
+  baseQuery: fetchBaseQuery(),
   endpoints: (build) => ({
     getGraphQLResponse: build.query({
-      query: () => '/',
-      transformResponse: (data) => JSON.stringify(data, null, 2),
+      queryFn: (_arg, api, _extraOptions, baseQuery) => {
+        const { url, headers, query, variables } = getStateArgs(api);
+        const body = { query, variables };
+        return baseQuery({ url, method: 'POST', headers, body });
+      },
+    }),
+    getSchema: build.query({
+      queryFn(_arg, api, _extraOptions, baseQuery) {
+        const { url, headers } = getStateArgs(api);
+        const query = `{__schema{queryType{name}types{kind name description fields{name description}}directives{name}}}`;
+        const body = { query };
+        return baseQuery({ url, method: 'POST', headers, body });
+      },
     }),
   }),
 });
 
-export const { useGetGraphQLResponseQuery, useLazyGetGraphQLResponseQuery } =
+export const { useLazyGetSchemaQuery, useLazyGetGraphQLResponseQuery } =
   graphqlApi;

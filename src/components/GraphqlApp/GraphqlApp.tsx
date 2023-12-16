@@ -2,9 +2,13 @@ import { Article } from '@components/Article';
 import { Heading } from '@components/Heading';
 import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
+import { useAppDispatch } from '@hooks/useAppDispatch';
+import { useLazyGetSchemaQuery } from '@store/graphqlApi/graphqlApi';
+import { setGQLSchema } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import { TSidePanelMode } from '@type/types/TSidePanelMode';
 import classNames from 'classnames';
 import { HTMLAttributes, useState } from 'react';
+import { toast } from 'react-toastify';
 import { DocsExplorer } from './DocsExplorer';
 import { History } from './History';
 import { RequestEditor } from './RequestEditor';
@@ -17,13 +21,21 @@ export function GraphqlApp({
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
   const [sidePanelMode, setSidePanelMode] = useState<TSidePanelMode>('none');
+  const dispatch = useAppDispatch();
+  const [fetchSchema] = useLazyGetSchemaQuery();
 
   const handleClick = () => {
-    throw new Error('Handler not implemented');
+    toast('Handler not implemented');
   };
 
-  const handleDocsClick = () => {
-    setSidePanelMode((prev) => (prev === 'docs' ? 'none' : 'docs'));
+  const handleDocsClick = async () => {
+    if (sidePanelMode !== 'docs') {
+      const { data } = await fetchSchema({});
+      dispatch(setGQLSchema(JSON.stringify(data, null, 2)));
+      setSidePanelMode('docs');
+    } else {
+      setSidePanelMode('none');
+    }
   };
 
   const handleHistoryClick = () => {
