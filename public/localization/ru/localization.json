@@ -41,5 +41,8 @@
   "Execute query": "Выполнить запрос",
   "Prettify query": "Форматировать запрос",
   "Merge fragments into query": "Объединить фрагменты в запрос",
-  "Copy query": "Копировать запрос"
+  "Copy query": "Копировать запрос",
+  "FirstStudent": "Святослав Панков",
+  "SecondStudent": "Роман Ермишин",
+  "ThirdStudent": "Герман Грибанов"
 }

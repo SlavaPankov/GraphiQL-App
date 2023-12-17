@@ -12,6 +12,7 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import { WelcomePage } from '@pages/WelcomePage';
 import { GraphiQLPage } from './pages/GraphiQLPage';
 import store from './store/store';
 import { ERoutes } from './types/enums/ERoutes';
@@ -19,6 +20,7 @@ import { ERoutes } from './types/enums/ERoutes';
 const routes = createRoutesFromElements(
   <Route>
     <Route path={ERoutes.home} element={<MainPage />} />
+    <Route path={ERoutes.welcome} element={<WelcomePage />} />
     <Route path={ERoutes.graphql} element={<GraphiQLPage />} />
     <Route path={ERoutes.signup} element={<SignupPage />} />
     <Route path={ERoutes.login} element={<LoginPage />} />

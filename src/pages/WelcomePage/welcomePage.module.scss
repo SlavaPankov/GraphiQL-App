@@ -1,0 +1,27 @@
+.root {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  width: 50%;
+  height: 30%;
+  background-color: $grey-86;
+  border-radius: 8px;
+}
+
+.link {
+  color: white;
+  transition: opacity $transition-set;
+
+  &:hover {
+    opacity: $opacity;
+  }
+}
