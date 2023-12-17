@@ -1,7 +1,7 @@
 {
   "Hello": "Hello",
   "Not found": "Page not found",
-  "To main": "Go to homepage",
+  "To main": "To homepage",
   "Signup": "Sign up",
   "Login": "Sign in",
   "Name": "Name",
@@ -45,5 +45,6 @@
   "FirstStudent": "Svyatoslav Pankov",
   "SecondStudent": "Roman Ermishin",
   "ThirdStudent": "German Gribanov",
-  "Language": "Рус"
+  "Language": "Рус",
+  "Sign out": "Sign out"
 }

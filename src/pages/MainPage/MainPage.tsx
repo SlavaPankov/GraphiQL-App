@@ -2,15 +2,15 @@ import { Link } from 'react-router-dom';
 import { ERoutes } from '@type/enums/ERoutes';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { H1 } from '@components/Headings';
-import { Header } from '@components/Header';
+import classNames from 'classnames';
 import { auth } from '../../firebase/firebase';
+import styles from './mainPage.module.scss';
 
 export function MainPage() {
   const [user] = useAuthState(auth);
 
   return (
-    <>
-      <Header />
+    <main className={classNames(styles.main)}>
       <div className="container">
         <H1 title={`Hello ${user?.displayName}`} />
 
@@ -21,6 +21,6 @@ export function MainPage() {
           <Link to={ERoutes.login}>Login</Link>
         </div>
       </div>
-    </>
+    </main>
   );
 }
