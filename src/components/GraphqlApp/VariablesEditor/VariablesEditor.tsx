@@ -2,6 +2,7 @@ import { Heading } from '@components/Heading';
 import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
+import { useAppSelector } from '@hooks/useAppSelector';
 import { setGQLVariables } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import { HTMLAttributes } from 'react';
 import styles from './variablesEditor.module.scss';
@@ -11,6 +12,10 @@ export function VariablesEditor({
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
   const dispatch = useAppDispatch();
+  const variables = useAppSelector((state) => {
+    const value = JSON.stringify(state.graphqlQueryData.variables, null, 2);
+    return value === '{}' ? '' : value;
+  });
 
   return (
     <Section className={className}>
@@ -22,6 +27,7 @@ export function VariablesEditor({
         placeholder={translate('Variables Editor')}
         rows={4}
         onChange={(e) => dispatch(setGQLVariables(e.target.value))}
+        defaultValue={variables}
       />
     </Section>
   );
