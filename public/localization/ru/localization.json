@@ -41,5 +41,8 @@
   "Change Endpoint": "Сменить Endpoint",
   "Query copied": "Запрос скопирован",
   "Invalid URL": "Некорректный URL",
-  "Required field": "Обязательное поле"
+  "Required field": "Обязательное поле",
+  "FirstStudent": "Святослав Панков",
+  "SecondStudent": "Роман Ермишин",
+  "ThirdStudent": "Герман Грибанов"
 }

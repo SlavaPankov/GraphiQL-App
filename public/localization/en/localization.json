@@ -41,5 +41,8 @@
   "Change Endpoint": "Change Endpoint",
   "Query copied": "Query copied",
   "Invalid URL": "Invalid URL",
-  "Required field": "Required field"
+  "Required field": "Required field",
+  "FirstStudent": "Svyatoslav Pankov",
+  "SecondStudent": "Roman Ermishin",
+  "ThirdStudent": "German Gribanov"
 }

@@ -1,0 +1,45 @@
+.root {
+  background-color: $primary;
+  padding: 20px 0;
+}
+
+.footerContainer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+
+  .students {
+    display: flex;
+    gap: 10px;
+
+    & .link {
+      color: $white;
+      transition: color $transition-set;
+
+      &:hover {
+        color: $grey-E4;
+      }
+    }
+  }
+
+  .date {
+    pointer-events: none;
+    user-select: none;
+  }
+}
+
+.logo {
+  height: 100%;
+  width: 8rem;
+  transition: opacity $transition-set;
+
+  &:hover {
+    opacity: $opacity;
+  }
+}
