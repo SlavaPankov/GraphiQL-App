@@ -1,8 +1,8 @@
-import { cleanup, render } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import * as AuthGateModule from '@components/AuthGate';
 import { GraphiQLPage } from '@pages/GraphiQLPage';
-import { Provider } from 'react-redux';
-import store from '@store/store';
+import { cleanup, render } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { MemoryRouterWithStore } from '../cfg/testUtils';
 
 describe('GraphiQLPage', () => {
   afterEach(() => {
@@ -10,12 +10,13 @@ describe('GraphiQLPage', () => {
   });
 
   it('GraphiQLPage renders without errors', () => {
+    const authGateSpy = vi.spyOn(AuthGateModule, 'AuthGate');
+    authGateSpy.mockImplementationOnce(({ children }) => children);
+
     expect(() =>
-      render(
-        <Provider store={store}>
-          <GraphiQLPage />
-        </Provider>
-      )
+      render(<MemoryRouterWithStore element={<GraphiQLPage />} />)
     ).not.toThrow();
+
+    authGateSpy.mockRestore();
   });
 });

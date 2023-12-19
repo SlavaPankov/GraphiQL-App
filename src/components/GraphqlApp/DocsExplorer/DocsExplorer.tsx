@@ -12,7 +12,10 @@ export function DocsExplorer({
   const { translate } = useLocaleContext();
   const data = useAppSelector((state) => state.graphqlQueryData.schema);
   return (
-    <Article className={classNames(className, styles.docsExplorerSection)}>
+    <Article
+      className={classNames(className, styles.docsExplorerSection)}
+      testId="docs-explorer"
+    >
       <Heading>{translate('Docs')}</Heading>
       <div>content</div>
       <pre>{data}</pre>

@@ -55,6 +55,7 @@ export function ChangeEndpointDialog({
         noValidate
         onSubmit={handleSubmit(handleConfirmClick)}
         className={styles.form}
+        data-testid="change-endpoint-form"
       >
         <fieldset className={styles.fieldset}>
           <legend>{translate('Change Endpoint')}</legend>

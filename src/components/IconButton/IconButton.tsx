@@ -6,6 +6,7 @@ interface IIconButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   readonly icon: ReactNode;
   readonly isActive?: boolean;
   readonly isFilled?: boolean;
+  readonly testId?: string;
 }
 export function IconButton({
   className,
@@ -15,6 +16,7 @@ export function IconButton({
   onClick,
   title,
   disabled,
+  testId,
 }: IIconButtonProps) {
   return (
     <button
@@ -28,10 +30,9 @@ export function IconButton({
       onClick={onClick}
       title={title}
       disabled={disabled}
+      data-testid={testId}
     >
       {icon}
     </button>
   );
 }
-
-IconButton.defaultProps = { isActive: false, isFilled: false };

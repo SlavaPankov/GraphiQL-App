@@ -25,11 +25,13 @@ export function Sidebar({
           title={translate('Documentation Explorer')}
           onClick={handleDocsClick}
           isActive={isDocsOpen}
+          testId="sidebar-docs-button"
         />
         <IconButton
           icon={<SettingsSVGIcon />}
           title={translate('Settings dialog')}
           onClick={handleSettingsClick}
+          testId="sidebar-settings-button"
         />
       </div>
     </aside>
