@@ -1,12 +1,10 @@
 import { GraphqlApp } from '@components/GraphqlApp';
 import { DocsExplorer } from '@components/GraphqlApp/DocsExplorer';
-import { HeadersEditor } from '@components/GraphqlApp/HeadersEditor';
 import { History } from '@components/GraphqlApp/History';
 import { QueryEditor } from '@components/GraphqlApp/QueryEditor';
 import { RequestEditor } from '@components/GraphqlApp/RequestEditor';
 import { ResponseSection } from '@components/GraphqlApp/ResponseSection';
 import { Sidebar } from '@components/GraphqlApp/Sidebar';
-import { VariablesEditor } from '@components/GraphqlApp/VariablesEditor';
 import store from '@store/store';
 import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { createElement } from 'react';
@@ -23,12 +21,10 @@ describe('GraphqlApp component', () => {
     [
       GraphqlApp,
       DocsExplorer,
-      HeadersEditor,
       History,
       QueryEditor,
       RequestEditor,
       ResponseSection,
-      VariablesEditor,
     ].map((component) => ({ name: component.name, component }))
   )('$name component renders without errors', ({ component }) => {
     expect(() =>
