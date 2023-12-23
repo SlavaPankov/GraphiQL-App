@@ -6,9 +6,3 @@ export const enum ERoutes {
   'login' = 'login',
   'all' = '*',
 }
-
-export const enum EStudentsGits {
-  'first' = 'https://github.com/slavapankov',
-  'second' = 'https://github.com/eternalrival',
-  'third' = 'https://github.com/GermanGrib',
-}

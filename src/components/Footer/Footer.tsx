@@ -1,8 +1,8 @@
-import { EStudentsGits } from '@type/enums/ERoutes';
 import { useContext } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
 import classNames from 'classnames';
 import { RsLogoSvgIcon } from '@components/Footer/icons';
+import { EStudentGit } from '@type/enums/EStudentGit';
 import styles from './footer.module.scss';
 
 export function Footer() {
@@ -13,17 +13,17 @@ export function Footer() {
         <div className={styles.details}>
           <ul className={styles.students}>
             <li>
-              <a className={styles.link} href={EStudentsGits.first}>
+              <a className={styles.link} href={EStudentGit.first}>
                 {translate('FirstStudent')}
               </a>
             </li>
             <li>
-              <a className={styles.link} href={EStudentsGits.second}>
+              <a className={styles.link} href={EStudentGit.second}>
                 {translate('SecondStudent')}
               </a>
             </li>
             <li>
-              <a className={styles.link} href={EStudentsGits.third}>
+              <a className={styles.link} href={EStudentGit.third}>
                 {translate('ThirdStudent')}
               </a>
             </li>

@@ -1,45 +1,33 @@
-import sinon from 'sinon';
 import { Header } from '@components/Header';
-import { describe, expect, it } from 'vitest';
-import { render } from '@testing-library/react';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
+import { render, screen } from '@testing-library/react';
 import { BrowserRouter } from 'react-router-dom';
+import { useAuthState } from 'react-firebase-hooks/auth';
+import { userMock } from '../mocks/userMock';
 
-// Мокируем useAuthState
-const useAuthStateStub = sinon.stub(
-  require('react-firebase-hooks/auth'),
-  'useAuthState'
-);
+vi.mock('react-firebase-hooks/auth');
 
 describe('Header Component', () => {
-  it('renders without crashing', () => {
-    useAuthStateStub.returns([null]);
+  beforeEach(() => {
+    vi.mocked(useAuthState).mockReturnValueOnce([userMock, false, undefined]);
 
-    const component = render(
+    render(
       <BrowserRouter>
         <Header />
       </BrowserRouter>
     );
-    expect(component.getByTestId('header')).toBeTruthy();
   });
 
-  // it('renders buttons and link correctly', () => {
-  //   useAuthStateStub.returns([null]);
-  //
-  //   const component = render(
-  //     <BrowserRouter>
-  //       <Header />
-  //     </BrowserRouter>
-  //   );
-  //
-  //   expect(
-  //     component.container.querySelector('button[type="button"]')
-  //   ).toBeInTheDocument();
-  //
-  //   expect(
-  //     component.container.querySelector('button[type="submit"]')
-  //   ).toBeInTheDocument();
-  //
-  //   const linkElement = component.container.querySelector('a[href="/"]');
-  //   expect(linkElement).toBeInTheDocument();
-  // });
+  it('renders without crashing', () => {
+    expect(screen.getByTestId('header')).toBeTruthy();
+  });
+
+  it('renders button', () => {
+    expect(screen.getAllByRole('button')).toBeTruthy();
+  });
+
+  it('checks if link has href attribute equal to "/"', () => {
+    const link = screen.getByRole('link');
+    expect(link).toHaveAttribute('href', '/');
+  });
 });

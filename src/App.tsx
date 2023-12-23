@@ -12,7 +12,7 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
-import { GraphiQLPage } from './pages/GraphiQLPage';
+import { GraphiQLPage } from '@pages/GraphiQLPage';
 import store from './store/store';
 import { ERoutes } from './types/enums/ERoutes';
 
