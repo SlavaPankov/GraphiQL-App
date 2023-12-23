@@ -44,5 +44,10 @@
   "Copy query": "Copy query",
   "FirstStudent": "Svyatoslav Pankov",
   "SecondStudent": "Roman Ermishin",
-  "ThirdStudent": "German Gribanov"
+  "ThirdStudent": "German Gribanov",
+  "Welcome title": "Welcome to GraphiQL App!",
+  "Welcome description": "GraphiQL is a graphical interactive in-browser GraphQL IDE (Integrated Development Environment) that allows users to explore, query, and interact with GraphQL APIs. It provides a user-friendly interface for composing GraphQL queries and viewing responses in real-time.",
+  "Rick & Morty API": "Rick & Morty API",
+  "Welcome link text": "was chosen as a sample handler for GraphQL queries",
+  "Welcome gratitude": "Created with gratitude for the RS School."
 }

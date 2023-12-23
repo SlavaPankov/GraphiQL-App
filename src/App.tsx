@@ -1,10 +1,7 @@
 import { ErrorBoundary } from '@components/ErrorBoundary';
 import { Fallback } from '@components/Fallback';
 import { UseLocalizationContext } from '@context/LocalizationContext';
-import { LoginPage } from '@pages/LoginPage';
 import { MainPage } from '@pages/MainPage';
-import { NotFoundPage } from '@pages/NotFoundPage';
-import { SignupPage } from '@pages/SignupPage';
 import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
@@ -12,14 +9,18 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom';
+import { MainLayout } from '@components/MainLayout';
+import { ERoutes } from '@type/enums/ERoutes';
 import { WelcomePage } from '@pages/WelcomePage';
-import { GraphiQLPage } from './pages/GraphiQLPage';
+import { GraphiQLPage } from '@pages/GraphiQLPage';
+import { SignupPage } from '@pages/SignupPage';
+import { LoginPage } from '@pages/LoginPage';
+import { NotFoundPage } from '@pages/NotFoundPage';
 import store from './store/store';
-import { ERoutes } from './types/enums/ERoutes';
 
 const routes = createRoutesFromElements(
-  <Route>
-    <Route path={ERoutes.home} element={<MainPage />} />
+  <Route path="/" element={<MainLayout />}>
+    <Route index element={<MainPage />} />
     <Route path={ERoutes.welcome} element={<WelcomePage />} />
     <Route path={ERoutes.graphql} element={<GraphiQLPage />} />
     <Route path={ERoutes.signup} element={<SignupPage />} />
