@@ -19,7 +19,7 @@ import { NotFoundPage } from '@pages/NotFoundPage';
 import store from './store/store';
 
 const routes = createRoutesFromElements(
-  <Route path="/" element={<MainLayout />}>
+  <Route path={ERoutes.home} element={<MainLayout />}>
     <Route index element={<MainPage />} />
     <Route path={ERoutes.welcome} element={<WelcomePage />} />
     <Route path={ERoutes.graphql} element={<GraphiQLPage />} />
