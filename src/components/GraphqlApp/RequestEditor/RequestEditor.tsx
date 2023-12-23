@@ -7,7 +7,7 @@ import { useLocaleContext } from '@context/LocalizationContext';
 import { TEditorMode } from '@type/types/TEditorMode';
 import classNames from 'classnames';
 import { HTMLAttributes, useState } from 'react';
-import { EditorViewer } from '../Editor';
+import { Editor } from '../Editor';
 import { QueryEditor } from '../QueryEditor';
 import styles from './requestEditor.module.scss';
 
@@ -58,10 +58,7 @@ export function RequestEditor({
       </div>
       {['headers', 'variables'].includes(currentSubEditorMode) && (
         <Section>
-          <EditorViewer
-            mode={currentSubEditorMode}
-            key={currentSubEditorMode}
-          />
+          <Editor mode={currentSubEditorMode} key={currentSubEditorMode} />
         </Section>
       )}
     </Section>

@@ -1,4 +1,3 @@
-import { Heading } from '@components/Heading';
 import { IconButton } from '@components/IconButton';
 import {
   CopySVGIcon,
@@ -10,13 +9,11 @@ import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useLazyGetGraphQLResponseQuery } from '@store/graphqlApi/graphqlApi';
-import {
-  setGQLQuery,
-  setGQLResponse,
-} from '@store/graphqlQueryData/graphqlQueryDataSlice';
+import { setGQLResponse } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { toast } from 'react-toastify';
+import { Editor } from '../Editor';
 import styles from './queryEditor.module.scss';
 
 export function QueryEditor({
@@ -29,13 +26,7 @@ export function QueryEditor({
 
   return (
     <Section className={classNames(className, styles.queryEditorSection)}>
-      <Heading className="visually-hidden">{translate('Query Editor')}</Heading>
-      <textarea
-        placeholder={translate('Query Editor')}
-        className={styles.queryEditorArea}
-        value={value}
-        onChange={(e) => dispatch(setGQLQuery(e.target.value))}
-      />
+      <Editor mode="query" />
       <div className={styles.queryEditorButtons}>
         <IconButton
           icon={<PlaySVGIcon />}

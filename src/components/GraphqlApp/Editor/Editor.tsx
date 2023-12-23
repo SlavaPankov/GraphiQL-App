@@ -12,32 +12,20 @@ import {
 import { AppDispatch } from '@store/store';
 import { TEditorMode } from '@type/types/TEditorMode';
 import classNames from 'classnames';
+import { TextareaHTMLAttributes } from 'react';
 import styles from './editor.module.scss';
-
-type TGetDispatch = () => <T>(
-  fn: ActionCreatorWithPayload<T>
-) => (value: T) => ReturnType<AppDispatch>;
-
-const useGetDispatch: TGetDispatch = () => {
-  const appDispatch = useAppDispatch();
-  return (fn) => (value) => appDispatch(fn(value));
-};
-
-type TFormatStateValue = (value: unknown) => string;
-const formatStateValue: TFormatStateValue = (stateValue) => {
-  if (typeof stateValue === 'string') {
-    return stateValue;
-  }
-  const value = JSON.stringify(stateValue, null, 2);
-  return value === '{}' ? '' : value;
-};
 
 type TUseSpecificStore = (
   mode: TEditorMode
 ) => readonly [unknown, (value: string) => ReturnType<AppDispatch>];
+type TGetDispatch = <T>(
+  fn: ActionCreatorWithPayload<T>
+) => (value: T) => ReturnType<AppDispatch>;
+
 const useSpecificStore: TUseSpecificStore = (mode) => {
   const state = useAppSelector(({ graphqlQueryData }) => graphqlQueryData);
-  const getDispatch = useGetDispatch();
+  const appDispatch = useAppDispatch();
+  const getDispatch: TGetDispatch = (fn) => (value) => appDispatch(fn(value));
 
   switch (mode) {
     case 'headers': {
@@ -64,28 +52,53 @@ const useTranslatedHeadingTitle = (mode: TEditorMode): string => {
     headers: 'Headers Editor',
     variables: 'Variables Editor',
     query: 'Query Editor',
-    response: 'Response Editor',
+    response: 'JSON Viewer',
     none: '',
   };
   return translate(headings[mode]);
 };
 
-export function EditorViewer({ mode }: { readonly mode: TEditorMode }) {
+const formatStateValue = (stateValue: unknown): string => {
+  if (typeof stateValue === 'string') {
+    return stateValue;
+  }
+  const value = JSON.stringify(stateValue, null, 2);
+  return value === '{}' ? '' : value;
+};
+
+export function Editor({ mode }: { readonly mode: TEditorMode }) {
   const [state, setState] = useSpecificStore(mode);
   const heading = useTranslatedHeadingTitle(mode);
+
+  const isSubEditor = ['headers', 'variables'].includes(mode);
+  const isQueryEditor = mode === 'query';
+  const isResponseViewer = mode === 'response';
+
+  const textAreaProps: TextareaHTMLAttributes<HTMLTextAreaElement> = {
+    placeholder: heading,
+    className: classNames({
+      [styles.subEditorArea]: isSubEditor,
+      [styles.queryEditorArea]: isQueryEditor,
+      [styles.jsonViewerArea]: isResponseViewer,
+    }),
+    readOnly: isResponseViewer,
+  };
+
+  if (isQueryEditor || isSubEditor) {
+    textAreaProps.onChange = (e) => setState(e.target.value);
+  }
+  if (isQueryEditor || isResponseViewer) {
+    textAreaProps.value = formatStateValue(state);
+  }
+  if (isSubEditor) {
+    textAreaProps.defaultValue = formatStateValue(state);
+    textAreaProps.rows = 4;
+  }
 
   return (
     <>
       <Heading className="visually-hidden">{heading}</Heading>
-      <textarea
-        className={classNames({
-          [styles.subEditorArea]: ['headers', 'variables'].includes(mode),
-        })}
-        placeholder={heading}
-        rows={4}
-        onChange={(e) => setState(e.target.value)}
-        defaultValue={formatStateValue(state)}
-      />
+      <textarea {...textAreaProps} />
     </>
   );
 }
