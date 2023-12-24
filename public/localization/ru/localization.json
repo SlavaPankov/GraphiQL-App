@@ -42,7 +42,9 @@
   "Prettify query": "Форматировать запрос",
   "Merge fragments into query": "Объединить фрагменты в запрос",
   "Copy query": "Копировать запрос",
-  "FirstStudent": "Святослав Панков",
+  "FirstStudent": "Святослав Паньков",
   "SecondStudent": "Роман Ермишин",
-  "ThirdStudent": "Герман Грибанов"
+  "ThirdStudent": "Герман Грибанов",
+  "Language": "Eng",
+  "Sign out": "Выход"
 }
