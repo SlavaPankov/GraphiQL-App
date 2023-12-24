@@ -9,7 +9,10 @@ import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useLazyGetGraphQLResponseQuery } from '@store/graphqlApi/graphqlApi';
-import { setGQLResponse } from '@store/graphqlQueryData/graphqlQueryDataSlice';
+import {
+  setGQLQuery,
+  setGQLResponse,
+} from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { toast } from 'react-toastify';
@@ -23,6 +26,49 @@ export function QueryEditor({
   const value = useAppSelector((state) => state.graphqlQueryData.query);
   const dispatch = useAppDispatch();
   const [executeQuery] = useLazyGetGraphQLResponseQuery();
+
+  function tokenize(query: string): string[] {
+    const pattern = /\s+|([,:{}()\\[\]])/g;
+    return query.split(pattern).filter((token) => token && token.trim() !== '');
+  }
+
+  function formatTokens(tokens: string[], spaces: number): string {
+    let indentationLevel = 0;
+    let beautifiedQuery = '';
+    let isInner = false;
+
+    tokens.forEach((token, index) => {
+      if (token === '{') {
+        beautifiedQuery += ` {\n${' '.repeat((indentationLevel + 1) * spaces)}`;
+        indentationLevel += 1;
+        isInner = true;
+      } else if (token === '}') {
+        indentationLevel -= 1;
+        beautifiedQuery += `\n${' '.repeat(indentationLevel * spaces)}}`;
+        isInner = false;
+      } else {
+        beautifiedQuery += `${token}${
+          isInner &&
+          indentationLevel > 2 &&
+          tokens[index + 1] &&
+          tokens[index + 1] !== '}'
+            ? `\n${' '.repeat(indentationLevel * spaces)}`
+            : ''
+        }`;
+      }
+    });
+
+    return beautifiedQuery.trim();
+  }
+
+  function beautifyGraphQL(query: string, spaces = 2): string {
+    const tokens = tokenize(query);
+    return formatTokens(tokens, spaces);
+  }
+
+  const handlePrettifyClick = () => {
+    dispatch(setGQLQuery(beautifyGraphQL(value, 2)));
+  };
 
   return (
     <Section className={classNames(className, styles.queryEditorSection)}>
@@ -40,9 +86,7 @@ export function QueryEditor({
         <IconButton
           icon={<PrettifySVGIcon />}
           title={translate('Prettify query')}
-          onClick={() => {
-            toast.error('Handler not implemented');
-          }}
+          onClick={handlePrettifyClick}
         />
         <IconButton
           icon={<CopySVGIcon />}
