@@ -20,7 +20,12 @@ export function Footer() {
         </a>
         <ul className={styles.students}>
           <li>
-            <a className={styles.link} href={EStudentGit.first} target="_blank" rel="noreferrer">
+            <a
+              className={styles.link}
+              href={EStudentGit.first}
+              target="_blank"
+              rel="noreferrer"
+            >
               {translate('FirstStudent')}
             </a>
           </li>
@@ -28,13 +33,19 @@ export function Footer() {
             <a
               className={styles.link}
               href={EStudentGit.second}
-              target="_blank" rel="noreferrer"
+              target="_blank"
+              rel="noreferrer"
             >
               {translate('SecondStudent')}
             </a>
           </li>
           <li>
-            <a className={styles.link} href={EStudentGit.third} target="_blank" rel="noreferrer">
+            <a
+              className={styles.link}
+              href={EStudentGit.third}
+              target="_blank"
+              rel="noreferrer"
+            >
               {translate('ThirdStudent')}
             </a>
           </li>

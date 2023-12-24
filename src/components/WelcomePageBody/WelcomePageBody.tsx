@@ -23,7 +23,8 @@ export function WelcomePageBody() {
           <a
             className={styles.apiLink}
             href="https://rickandmortyapi.com"
-            target="_blank" rel="noreferrer"
+            target="_blank"
+            rel="noreferrer"
           >
             {translate('Rick & Morty API')}
           </a>
@@ -41,11 +42,14 @@ export function WelcomePageBody() {
         {!user && (
           <>
             <img src={Logo} className={styles.logo} alt="logo" />
-            <Link className={styles.link} to={ERoutes.signup}>
-              {translate('Signup')}
-            </Link>
             <Link className={styles.link} to={ERoutes.login}>
               {translate('Login')}
+            </Link>
+            <Link
+              className={`${styles.link} ${styles.linkReg}`}
+              to={ERoutes.signup}
+            >
+              {translate('Signup')}
             </Link>
           </>
         )}
