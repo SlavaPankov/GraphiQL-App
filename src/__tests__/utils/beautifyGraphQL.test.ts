@@ -1,7 +1,7 @@
-import { formatGraphqlQuery } from '@utils/formatGraphqlQuery';
+import { beautifyGraphQL } from '@utils/beautifyGraphQL';
 import { describe, expect, it } from 'vitest';
 
-describe.todo('formatGraphqlQuery', () => {
+describe.todo('beautifyGraphQL', () => {
   it('format basic query properly', () => {
     const basic =
       'query($v:String){characters(filter:{name:$v}){results{name}response{name}}}';
@@ -21,9 +21,9 @@ describe.todo('formatGraphqlQuery', () => {
       }
     }`;
 
-    expect(formatGraphqlQuery(basic)).toBe(expected);
-    expect(formatGraphqlQuery(spaced)).toBe(expected);
-    expect(formatGraphqlQuery(linebreaked)).toBe(expected);
+    expect(beautifyGraphQL(basic)).toBe(expected);
+    expect(beautifyGraphQL(spaced)).toBe(expected);
+    expect(beautifyGraphQL(linebreaked)).toBe(expected);
   });
 
   it('format multiple property query properly', () => {
@@ -46,8 +46,8 @@ describe.todo('formatGraphqlQuery', () => {
       }
     }`;
 
-    expect(formatGraphqlQuery(basic)).toBe(expected);
-    expect(formatGraphqlQuery(spaced)).toBe(expected);
-    expect(formatGraphqlQuery(linebreaked)).toBe(expected);
+    expect(beautifyGraphQL(basic)).toBe(expected);
+    expect(beautifyGraphQL(spaced)).toBe(expected);
+    expect(beautifyGraphQL(linebreaked)).toBe(expected);
   });
 });

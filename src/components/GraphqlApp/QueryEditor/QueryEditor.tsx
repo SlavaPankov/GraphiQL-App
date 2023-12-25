@@ -13,7 +13,7 @@ import {
   setGQLQuery,
   setGQLResponse,
 } from '@store/graphqlQueryData/graphqlQueryDataSlice';
-import { formatGraphqlQuery } from '@utils/formatGraphqlQuery';
+import { beautifyGraphQL } from '@utils/beautifyGraphQL';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { toast } from 'react-toastify';
@@ -24,9 +24,13 @@ export function QueryEditor({
   className,
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
-  const query = useAppSelector((state) => state.graphqlQueryData.query);
+  const value = useAppSelector((state) => state.graphqlQueryData.query);
   const dispatch = useAppDispatch();
   const [executeQuery] = useLazyGetGraphQLResponseQuery();
+
+  const handlePrettifyClick = () => {
+    dispatch(setGQLQuery(beautifyGraphQL(value, 2)));
+  };
 
   return (
     <Section className={classNames(className, styles.queryEditorSection)}>
@@ -44,15 +48,13 @@ export function QueryEditor({
         <IconButton
           icon={<PrettifySVGIcon />}
           title={translate('Prettify query')}
-          onClick={() => {
-            dispatch(setGQLQuery(formatGraphqlQuery(query)));
-          }}
+          onClick={handlePrettifyClick}
         />
         <IconButton
           icon={<CopySVGIcon />}
           title={translate('Copy query')}
           onClick={async () => {
-            await navigator.clipboard.writeText(query);
+            await navigator.clipboard.writeText(value);
             toast.success(translate('Query copied'));
           }}
         />
