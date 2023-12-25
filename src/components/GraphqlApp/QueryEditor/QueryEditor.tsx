@@ -9,7 +9,11 @@ import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
 import { useAppSelector } from '@hooks/useAppSelector';
 import { useLazyGetGraphQLResponseQuery } from '@store/graphqlApi/graphqlApi';
-import { setGQLResponse } from '@store/graphqlQueryData/graphqlQueryDataSlice';
+import {
+  setGQLQuery,
+  setGQLResponse,
+} from '@store/graphqlQueryData/graphqlQueryDataSlice';
+import { formatGraphqlQuery } from '@utils/formtatGraphqlQuery';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { toast } from 'react-toastify';
@@ -20,7 +24,7 @@ export function QueryEditor({
   className,
 }: Readonly<HTMLAttributes<HTMLElement>>) {
   const { translate } = useLocaleContext();
-  const value = useAppSelector((state) => state.graphqlQueryData.query);
+  const query = useAppSelector((state) => state.graphqlQueryData.query);
   const dispatch = useAppDispatch();
   const [executeQuery] = useLazyGetGraphQLResponseQuery();
 
@@ -41,14 +45,14 @@ export function QueryEditor({
           icon={<PrettifySVGIcon />}
           title={translate('Prettify query')}
           onClick={() => {
-            toast.error('Handler not implemented');
+            dispatch(setGQLQuery(formatGraphqlQuery(query)));
           }}
         />
         <IconButton
           icon={<CopySVGIcon />}
           title={translate('Copy query')}
           onClick={async () => {
-            await navigator.clipboard.writeText(value);
+            await navigator.clipboard.writeText(query);
             toast.success(translate('Query copied'));
           }}
         />
