@@ -13,7 +13,7 @@ import {
   setGQLQuery,
   setGQLResponse,
 } from '@store/graphqlQueryData/graphqlQueryDataSlice';
-import { formatGraphqlQuery } from '@utils/formtatGraphqlQuery';
+import { formatGraphqlQuery } from '@utils/formatGraphqlQuery';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { toast } from 'react-toastify';
