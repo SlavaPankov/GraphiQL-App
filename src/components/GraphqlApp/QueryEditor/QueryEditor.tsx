@@ -16,6 +16,7 @@ import {
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { toast } from 'react-toastify';
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { Editor } from '../Editor';
 import styles from './queryEditor.module.scss';
 
@@ -29,23 +30,39 @@ export function QueryEditor({
 
   function tokenize(query: string): string[] {
     const pattern = /\s+|([,:{}()\\[\]])/g;
-    return query.split(pattern).filter((token) => token && token.trim() !== '');
+    return query
+      .split(pattern)
+      .filter((token) => token && token.trim() !== '' && token.trim() !== ',');
   }
 
   function formatTokens(tokens: string[], spaces: number): string {
     let indentationLevel = 0;
     let beautifiedQuery = '';
     let isInner = false;
+    let isRound = false;
 
     tokens.forEach((token, index) => {
-      if (token === '{') {
+      if (token === '(') {
+        isRound = true;
+        beautifiedQuery += token;
+      } else if (token === ')') {
+        isRound = false;
+        beautifiedQuery += token;
+      } else if (token === '{' && !isRound) {
         beautifiedQuery += ` {\n${' '.repeat((indentationLevel + 1) * spaces)}`;
         indentationLevel += 1;
         isInner = true;
-      } else if (token === '}') {
+      } else if (token === '}' && !isRound) {
         indentationLevel -= 1;
-        beautifiedQuery += `\n${' '.repeat(indentationLevel * spaces)}}`;
+        beautifiedQuery +=
+          indentationLevel > 0
+            ? `\n${' '.repeat(indentationLevel * spaces)}}\n${' '.repeat(
+                indentationLevel * spaces
+              )}`
+            : `\n${' '.repeat(indentationLevel * spaces)}}`;
         isInner = false;
+      } else if (token === ':') {
+        beautifiedQuery += `${token} `;
       } else {
         beautifiedQuery += `${token}${
           isInner &&
@@ -58,7 +75,10 @@ export function QueryEditor({
       }
     });
 
-    return beautifiedQuery.trim();
+    return beautifiedQuery
+      .split('\n')
+      .filter((item) => item.trimEnd() !== '')
+      .join('\n');
   }
 
   function beautifyGraphQL(query: string, spaces = 2): string {
@@ -78,7 +98,17 @@ export function QueryEditor({
           icon={<PlaySVGIcon />}
           title={translate('Execute query')}
           onClick={async () => {
-            const { data } = await executeQuery({});
+            const { data, error } = await executeQuery({});
+            if (error) {
+              toast.error(translate('Bad request'));
+              dispatch(
+                setGQLResponse(
+                  JSON.stringify((error as FetchBaseQueryError).data, null, 2)
+                )
+              );
+              return;
+            }
+
             dispatch(setGQLResponse(JSON.stringify(data, null, 2)));
           }}
           isFilled
