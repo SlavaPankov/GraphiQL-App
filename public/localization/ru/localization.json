@@ -51,5 +51,6 @@
   "Welcome link text": "был выбран в качестве образцового обработчика для запросов GraphQL",
   "Welcome gratitude": "Сделано с благодарностью для РC школы",
   "Language": "Eng",
-  "Sign out": "Выход"
+  "Sign out": "Выход",
+  "Bad request": "Некорректный запрос"
 }

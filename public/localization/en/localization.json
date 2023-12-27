@@ -51,5 +51,6 @@
   "Welcome link text": "was chosen as a sample handler for GraphQL queries",
   "Welcome gratitude": "Created with gratitude for the RS School.",
   "Language": "Рус",
-  "Sign out": "Sign out"
+  "Sign out": "Sign out",
+  "Bad request": "Bad request"
 }
