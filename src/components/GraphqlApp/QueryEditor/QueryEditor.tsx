@@ -13,10 +13,10 @@ import {
   setGQLQuery,
   setGQLResponse,
 } from '@store/graphqlQueryData/graphqlQueryDataSlice';
+import { beautifyGraphQL } from '@utils/beautifyGraphQL';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
 import { toast } from 'react-toastify';
-import { FetchBaseQueryError } from '@reduxjs/toolkit/query/react';
 import { Editor } from '../Editor';
 import styles from './queryEditor.module.scss';
 
@@ -28,68 +28,6 @@ export function QueryEditor({
   const dispatch = useAppDispatch();
   const [executeQuery] = useLazyGetGraphQLResponseQuery();
 
-  function tokenize(query: string): string[] {
-    const pattern = /\s+|([,:{}()\\[\]])/g;
-    return query
-      .split(pattern)
-      .filter((token) => token && token.trim() !== '' && token.trim() !== ',');
-  }
-
-  function formatTokens(tokens: string[], spaces: number): string {
-    let indentationLevel = 0;
-    let beautifiedQuery = '';
-    let isInner = false;
-    let isRound = false;
-
-    tokens.forEach((token, index) => {
-      if (token === '(') {
-        isRound = true;
-        beautifiedQuery += token;
-      } else if (token === ')') {
-        isRound = false;
-        beautifiedQuery += token;
-      } else if (token === '{' && !isRound) {
-        beautifiedQuery += ` {\n${' '.repeat((indentationLevel + 1) * spaces)}`;
-        indentationLevel += 1;
-        isInner = true;
-      } else if (token === '}' && !isRound) {
-        indentationLevel -= 1;
-        beautifiedQuery +=
-          indentationLevel > 0
-            ? `\n${' '.repeat(indentationLevel * spaces)}}\n${' '.repeat(
-                indentationLevel * spaces
-              )}`
-            : `\n${' '.repeat(indentationLevel * spaces)}}`;
-        isInner = false;
-      } else if (token === ':') {
-        beautifiedQuery += `${token} `;
-      } else {
-        beautifiedQuery += `${token}${
-          isInner &&
-          indentationLevel > 2 &&
-          tokens[index + 1] &&
-          tokens[index + 1] !== '}'
-            ? `\n${' '.repeat(indentationLevel * spaces)}`
-            : ''
-        }`;
-      }
-    });
-
-    return beautifiedQuery
-      .split('\n')
-      .filter((item) => item.trimEnd() !== '')
-      .join('\n');
-  }
-
-  function beautifyGraphQL(query: string, spaces = 2): string {
-    const tokens = tokenize(query);
-    return formatTokens(tokens, spaces);
-  }
-
-  const handlePrettifyClick = () => {
-    dispatch(setGQLQuery(beautifyGraphQL(value, 2)));
-  };
-
   return (
     <Section className={classNames(className, styles.queryEditorSection)}>
       <Editor mode="query" />
@@ -100,23 +38,24 @@ export function QueryEditor({
           onClick={async () => {
             const { data, error } = await executeQuery({});
             if (error) {
+              if ('status' in error) {
+                const message = 'error' in error ? error.error : error.data;
+                dispatch(setGQLResponse(JSON.stringify(message, null, 2)));
+              }
               toast.error(translate('Bad request'));
-              dispatch(
-                setGQLResponse(
-                  JSON.stringify((error as FetchBaseQueryError).data, null, 2)
-                )
-              );
-              return;
             }
-
-            dispatch(setGQLResponse(JSON.stringify(data, null, 2)));
+            if (data) {
+              dispatch(setGQLResponse(JSON.stringify(data, null, 2)));
+            }
           }}
           isFilled
         />
         <IconButton
           icon={<PrettifySVGIcon />}
           title={translate('Prettify query')}
-          onClick={handlePrettifyClick}
+          onClick={() => {
+            dispatch(setGQLQuery(beautifyGraphQL(value, 2)));
+          }}
         />
         <IconButton
           icon={<CopySVGIcon />}
