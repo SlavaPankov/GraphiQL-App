@@ -6,32 +6,36 @@
 .footerContainer {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  @media (max-width: 670px) {
+    flex-direction: column;
+    gap: 15px;
+  }
 }
 
-.details {
+.students {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   gap: 10px;
+  white-space: nowrap;
 
-  .students {
-    display: flex;
-    gap: 10px;
+  & .link {
+    color: $white;
+    transition: color $transition-set;
 
-    & .link {
-      color: $white;
-      transition: color $transition-set;
-
-      &:hover {
-        color: $grey-E4;
-      }
+    &:hover {
+      color: $grey-E4;
     }
   }
 
-  .date {
-    pointer-events: none;
-    user-select: none;
+  @media (max-width: 670px) {
+    font-size: 12px;
   }
+}
+
+.date {
+  pointer-events: none;
+  user-select: none;
 }
 
 .logo {

@@ -7,7 +7,7 @@ export function GraphiQLPage() {
     <>
       <header />
 
-      <AuthGate redirectTo={ERoutes.login} loginRequired>
+      <AuthGate redirectTo={ERoutes.welcome} loginRequired>
         <GraphqlApp />
       </AuthGate>
 

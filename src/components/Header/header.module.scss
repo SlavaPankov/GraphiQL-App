@@ -1,0 +1,56 @@
+.root {
+  position: fixed;
+  padding: 15px 0;
+  top: 0;
+  width: 100%;
+  height: $header-height;
+  background-color: $primary_light;
+  transition:
+    background-color $transition-set,
+    padding $transition-set;
+
+  &.scrolling {
+    background-color: $grey-7E;
+    padding: 5px;
+    height: initial;
+  }
+}
+
+.content {
+  display: flex;
+  height: 100%;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.controllers {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  &.scrolling {
+    margin-bottom: 5px;
+  }
+}
+
+.toMain {
+  &:hover {
+    opacity: $opacity;
+  }
+
+  &.scrolling {
+    color: $white;
+  }
+}
+
+.signout {
+  color: $primary;
+
+  &:hover {
+    opacity: $opacity;
+  }
+
+  &.scrolling {
+    color: $white;
+  }
+}

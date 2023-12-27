@@ -59,6 +59,10 @@ h6 {
   padding: 0;
 }
 
+p {
+  margin: 0;
+}
+
 input {
   -webkit-appearance: none;
   appearance: none;
@@ -100,4 +104,11 @@ input[type='number'] {
 input[type='number']::-webkit-outer-spin-button,
 input[type='number']::-webkit-inner-spin-button {
   display: none;
+}
+
+#root {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
