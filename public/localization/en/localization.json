@@ -22,9 +22,6 @@
   "User don't exist": "User don't exist",
   "Invalid credential": "Wrong email or password",
   "Documentation Explorer": "Documentation Explorer",
-  "History": "History",
-  "Re-fetch GraphQL schema": "Re-fetch GraphQL schema",
-  "Short keys": "Short keys",
   "Settings dialog": "Settings dialog",
   "GraphQL Playground": "GraphQL Playground",
   "GraphQL Editors": "GraphQL Editors",
@@ -40,8 +37,11 @@
   "JSON Viewer": "JSON Viewer",
   "Execute query": "Execute query",
   "Prettify query": "Prettify query",
-  "Merge fragments into query": "Merge fragments into query",
   "Copy query": "Copy query",
+  "Change Endpoint": "Change Endpoint",
+  "Query copied": "Query copied",
+  "Invalid URL": "Invalid URL",
+  "Required field": "Required field",
   "FirstStudent": "Svyatoslav Pankov",
   "SecondStudent": "Roman Ermishin",
   "ThirdStudent": "German Gribanov",
@@ -51,5 +51,6 @@
   "Welcome link text": "was chosen as a sample handler for GraphQL queries",
   "Welcome gratitude": "Created with gratitude for the RS School.",
   "Language": "Рус",
-  "Sign out": "Sign out"
+  "Sign out": "Sign out",
+  "Bad request": "Bad request"
 }

@@ -1,6 +1,8 @@
-import { cleanup, render } from '@testing-library/react';
-import { afterEach, describe, expect, it } from 'vitest';
+import * as AuthGateModule from '@components/AuthGate';
 import { GraphiQLPage } from '@pages/GraphiQLPage';
+import { cleanup, render } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { MemoryRouterWithStore } from '../cfg/testUtils';
 
 describe('GraphiQLPage', () => {
   afterEach(() => {
@@ -8,6 +10,13 @@ describe('GraphiQLPage', () => {
   });
 
   it('GraphiQLPage renders without errors', () => {
-    expect(() => render(<GraphiQLPage />)).not.toThrow();
+    const authGateSpy = vi.spyOn(AuthGateModule, 'AuthGate');
+    authGateSpy.mockImplementationOnce(({ children }) => children);
+
+    expect(() =>
+      render(<MemoryRouterWithStore element={<GraphiQLPage />} />)
+    ).not.toThrow();
+
+    authGateSpy.mockRestore();
   });
 });

@@ -22,9 +22,6 @@
   "User don't exist": "Пользователь не найден",
   "Invalid credential": "Невeрный логин или пароль",
   "Documentation Explorer": "Документация",
-  "History": "История",
-  "Re-fetch GraphQL schema": "Обновить GraphQL-схему",
-  "Short keys": "Горячие клавиши",
   "Settings dialog": "Настройки",
   "GraphQL Playground": "GraphQL Игровая площадка",
   "GraphQL Editors": "GraphQL Редакторы",
@@ -40,8 +37,11 @@
   "JSON Viewer": "Средство просмотра JSON",
   "Execute query": "Выполнить запрос",
   "Prettify query": "Форматировать запрос",
-  "Merge fragments into query": "Объединить фрагменты в запрос",
   "Copy query": "Копировать запрос",
+  "Change Endpoint": "Сменить Endpoint",
+  "Query copied": "Запрос скопирован",
+  "Invalid URL": "Некорректный URL",
+  "Required field": "Обязательное поле",
   "FirstStudent": "Святослав Паньков",
   "SecondStudent": "Роман Ермишин",
   "ThirdStudent": "Герман Грибанов",
@@ -51,5 +51,6 @@
   "Welcome link text": "был выбран в качестве образцового обработчика для запросов GraphQL",
   "Welcome gratitude": "Сделано с благодарностью для РC школы",
   "Language": "Eng",
-  "Sign out": "Выход"
+  "Sign out": "Выход",
+  "Bad request": "Некорректный запрос"
 }

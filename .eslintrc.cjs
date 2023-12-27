@@ -68,4 +68,10 @@ module.exports = {
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
   },
+  overrides: [
+    {
+      files: ['src/**/*Slice.ts'],
+      rules: { 'no-param-reassign': ['error', { props: false }] },
+    },
+  ],
 };

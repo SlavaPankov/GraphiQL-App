@@ -1,31 +1,18 @@
 import { IconButton } from '@components/IconButton';
-import {
-  DocsSVGIcon,
-  HistorySVGIcon,
-  KeyboardShortcutSVGIcon,
-  ReloadSVGIcon,
-  SettingsSVGIcon,
-} from '@components/IconButton/icons';
+import { DocsSVGIcon, SettingsSVGIcon } from '@components/IconButton/icons';
 import { useLocaleContext } from '@context/LocalizationContext';
-import { TSidePanelMode } from '@type/types/TSidePanelMode';
 import { MouseEventHandler } from 'react';
 import styles from './sidebar.module.scss';
 
 interface ISidebarProps {
-  sidePanelMode: TSidePanelMode;
+  isDocsOpen: boolean;
   handleDocsClick: MouseEventHandler<HTMLButtonElement>;
-  handleHistoryClick: MouseEventHandler<HTMLButtonElement>;
-  handleReloadClick: MouseEventHandler<HTMLButtonElement>;
-  handleKeyboardShortcutClick: MouseEventHandler<HTMLButtonElement>;
   handleSettingsClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 export function Sidebar({
-  sidePanelMode,
+  isDocsOpen,
   handleDocsClick,
-  handleHistoryClick,
-  handleReloadClick,
-  handleKeyboardShortcutClick,
   handleSettingsClick,
 }: Readonly<ISidebarProps>) {
   const { translate } = useLocaleContext();
@@ -34,33 +21,17 @@ export function Sidebar({
     <aside className={styles.sideBar}>
       <div className={styles.buttonSection}>
         <IconButton
-          icon={<DocsSVGIcon isActive={sidePanelMode === 'docs'} />}
+          icon={<DocsSVGIcon isActive={isDocsOpen} />}
           title={translate('Documentation Explorer')}
           onClick={handleDocsClick}
-          isActive={sidePanelMode === 'docs'}
-        />
-        <IconButton
-          icon={<HistorySVGIcon />}
-          title={translate('History')}
-          onClick={handleHistoryClick}
-          isActive={sidePanelMode === 'history'}
-        />
-      </div>
-      <div className={styles.buttonSection}>
-        <IconButton
-          icon={<ReloadSVGIcon />}
-          title={translate('Re-fetch GraphQL schema')}
-          onClick={handleReloadClick}
-        />
-        <IconButton
-          icon={<KeyboardShortcutSVGIcon />}
-          title={translate('Short keys')}
-          onClick={handleKeyboardShortcutClick}
+          isActive={isDocsOpen}
+          testId="sidebar-docs-button"
         />
         <IconButton
           icon={<SettingsSVGIcon />}
           title={translate('Settings dialog')}
           onClick={handleSettingsClick}
+          testId="sidebar-settings-button"
         />
       </div>
     </aside>

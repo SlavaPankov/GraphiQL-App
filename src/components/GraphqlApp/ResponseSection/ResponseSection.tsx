@@ -3,6 +3,7 @@ import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
 import classNames from 'classnames';
 import { HTMLAttributes } from 'react';
+import { Editor } from '../Editor';
 import styles from './responseSection.module.scss';
 
 export function ResponseSection({
@@ -16,14 +17,7 @@ export function ResponseSection({
         {translate('Response Section')}
       </Heading>
       <Section className={styles.jsonViewerSection}>
-        <Heading className="visually-hidden">
-          {translate('JSON Viewer')}
-        </Heading>
-        <textarea
-          className={styles.jsonViewerArea}
-          placeholder={translate('JSON Viewer')}
-          readOnly
-        />
+        <Editor mode="response" />
       </Section>
     </Section>
   );

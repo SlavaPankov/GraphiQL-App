@@ -1,15 +1,16 @@
 import { GraphqlApp } from '@components/GraphqlApp';
 import { DocsExplorer } from '@components/GraphqlApp/DocsExplorer';
-import { HeadersEditor } from '@components/GraphqlApp/HeadersEditor';
 import { History } from '@components/GraphqlApp/History';
 import { QueryEditor } from '@components/GraphqlApp/QueryEditor';
 import { RequestEditor } from '@components/GraphqlApp/RequestEditor';
 import { ResponseSection } from '@components/GraphqlApp/ResponseSection';
 import { Sidebar } from '@components/GraphqlApp/Sidebar';
-import { VariablesEditor } from '@components/GraphqlApp/VariablesEditor';
-import { cleanup, render } from '@testing-library/react';
+import store from '@store/store';
+import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { createElement } from 'react';
+import { Provider } from 'react-redux';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { MemoryRouterWithStore } from '../cfg/testUtils';
 
 describe('GraphqlApp component', () => {
   afterEach(() => {
@@ -20,15 +21,15 @@ describe('GraphqlApp component', () => {
     [
       GraphqlApp,
       DocsExplorer,
-      HeadersEditor,
       History,
       QueryEditor,
       RequestEditor,
       ResponseSection,
-      VariablesEditor,
     ].map((component) => ({ name: component.name, component }))
   )('$name component renders without errors', ({ component }) => {
-    expect(() => render(createElement(component))).not.toThrow();
+    expect(() =>
+      render(<Provider store={store}>{createElement(component)}</Provider>)
+    ).not.toThrow();
   });
 
   it("'Sidebar' component renders without errors", () => {
@@ -36,14 +37,35 @@ describe('GraphqlApp component', () => {
     expect(() =>
       render(
         <Sidebar
-          sidePanelMode="none"
+          isDocsOpen={false}
           handleDocsClick={callback}
-          handleHistoryClick={callback}
-          handleReloadClick={callback}
-          handleKeyboardShortcutClick={callback}
           handleSettingsClick={callback}
         />
       )
     ).not.toThrow();
+  });
+
+  it('Clicking Docs button open/close Docs Explorer', async () => {
+    render(<MemoryRouterWithStore element={<GraphqlApp />} />);
+
+    const docsButton = screen.getByTestId('sidebar-docs-button');
+
+    expect(screen.queryByTestId(/docs-explorer/i)).toBeNull();
+    fireEvent.click(docsButton);
+    const docsExplorer = await screen.findByTestId(/docs-explorer/i);
+    expect(docsExplorer).toBeVisible();
+
+    fireEvent.click(docsButton);
+    expect(docsExplorer).not.toBeVisible();
+  });
+
+  it('Clicking Settings button open change endpoint form', () => {
+    render(<MemoryRouterWithStore element={<GraphqlApp />} />);
+
+    const settingsButton = screen.getByTestId('sidebar-settings-button');
+
+    expect(screen.queryByTestId(/change-endpoint-form/i)).toBeNull();
+    fireEvent.click(settingsButton);
+    expect(screen.getByTestId(/change-endpoint-form/i)).toBeVisible();
   });
 });

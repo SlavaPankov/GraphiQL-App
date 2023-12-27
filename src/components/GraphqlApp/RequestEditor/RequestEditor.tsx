@@ -4,12 +4,11 @@ import { IconButton } from '@components/IconButton';
 import { ChevronSVGIcon } from '@components/IconButton/icons';
 import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
-import { TSubEditorMode } from '@type/types/TSubEditorMode';
+import { TEditorMode } from '@type/types/TEditorMode';
 import classNames from 'classnames';
 import { HTMLAttributes, useState } from 'react';
-import { HeadersEditor } from '../HeadersEditor';
+import { Editor } from '../Editor';
 import { QueryEditor } from '../QueryEditor';
-import { VariablesEditor } from '../VariablesEditor';
 import styles from './requestEditor.module.scss';
 
 export function RequestEditor({
@@ -18,23 +17,9 @@ export function RequestEditor({
   const { translate } = useLocaleContext();
 
   const [currentSubEditorMode, setCurrentSubEditorMode] =
-    useState<TSubEditorMode>('none');
+    useState<TEditorMode>('none');
   const [lastSubEditorMode, setLastSubEditorMode] =
-    useState<TSubEditorMode>('variables');
-
-  const handleVariablesClick = () => {
-    setCurrentSubEditorMode('variables');
-    setLastSubEditorMode('variables');
-  };
-  const handleHeadersClick = () => {
-    setCurrentSubEditorMode('headers');
-    setLastSubEditorMode('headers');
-  };
-  const handleCollapseClick = () => {
-    setCurrentSubEditorMode(
-      currentSubEditorMode === 'none' ? lastSubEditorMode : 'none'
-    );
-  };
+    useState<TEditorMode>('variables');
 
   return (
     <Section className={classNames(className, styles.requestEditorSection)}>
@@ -47,22 +32,35 @@ export function RequestEditor({
           <BaseButton
             label={translate('Variables')}
             mode="secondary"
-            onClick={handleVariablesClick}
+            onClick={() => {
+              setCurrentSubEditorMode('variables');
+              setLastSubEditorMode('variables');
+            }}
           />
           <BaseButton
             label={translate('Headers')}
             mode="secondary"
-            onClick={handleHeadersClick}
+            onClick={() => {
+              setCurrentSubEditorMode('headers');
+              setLastSubEditorMode('headers');
+            }}
           />
         </div>
         <IconButton
           icon={<ChevronSVGIcon isActive={currentSubEditorMode !== 'none'} />}
           isActive={currentSubEditorMode !== 'none'}
-          onClick={handleCollapseClick}
+          onClick={() => {
+            setCurrentSubEditorMode(
+              currentSubEditorMode === 'none' ? lastSubEditorMode : 'none'
+            );
+          }}
         />
       </div>
-      {currentSubEditorMode === 'variables' && <VariablesEditor />}
-      {currentSubEditorMode === 'headers' && <HeadersEditor />}
+      {['headers', 'variables'].includes(currentSubEditorMode) && (
+        <Section>
+          <Editor mode={currentSubEditorMode} key={currentSubEditorMode} />
+        </Section>
+      )}
     </Section>
   );
 }

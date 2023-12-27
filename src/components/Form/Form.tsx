@@ -13,7 +13,6 @@ import {
 } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useCreateSignupSchema } from '@hooks/useCreateSignupSchema.ts';
-import { ToastContainer } from 'react-toastify';
 import styles from './form.module.scss';
 
 interface ISignupFormProps {
@@ -135,7 +134,6 @@ export function Form({ isSignup, onSubmit }: ISignupFormProps) {
         disabled={Object.keys(errors).length > 0}
         label={isSignup ? translate('Registration') : translate('Signin')}
       />
-      <ToastContainer autoClose={3000} position="bottom-center" />
     </form>
   );
 }
