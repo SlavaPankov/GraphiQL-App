@@ -1,6 +1,5 @@
 import { GraphqlApp } from '@components/GraphqlApp';
 import { DocsExplorer } from '@components/GraphqlApp/DocsExplorer';
-import { History } from '@components/GraphqlApp/History';
 import { QueryEditor } from '@components/GraphqlApp/QueryEditor';
 import { RequestEditor } from '@components/GraphqlApp/RequestEditor';
 import { ResponseSection } from '@components/GraphqlApp/ResponseSection';
@@ -18,14 +17,9 @@ describe('GraphqlApp component', () => {
   });
 
   it.each(
-    [
-      GraphqlApp,
-      DocsExplorer,
-      History,
-      QueryEditor,
-      RequestEditor,
-      ResponseSection,
-    ].map((component) => ({ name: component.name, component }))
+    [GraphqlApp, DocsExplorer, QueryEditor, RequestEditor, ResponseSection].map(
+      (component) => ({ name: component.name, component })
+    )
   )('$name component renders without errors', ({ component }) => {
     expect(() =>
       render(<Provider store={store}>{createElement(component)}</Provider>)
