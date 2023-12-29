@@ -1,7 +1,6 @@
 import { ErrorBoundary } from '@components/ErrorBoundary';
 import { Fallback } from '@components/Fallback';
 import { UseLocalizationContext } from '@context/LocalizationContext';
-import { MainPage } from '@pages/MainPage';
 import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
@@ -20,9 +19,8 @@ import store from './store/store';
 
 const routes = createRoutesFromElements(
   <Route path={ERoutes.home} element={<MainLayout />}>
-    <Route index element={<MainPage />} />
+    <Route index element={<GraphiQLPage />} />
     <Route path={ERoutes.welcome} element={<WelcomePage />} />
-    <Route path={ERoutes.graphql} element={<GraphiQLPage />} />
     <Route path={ERoutes.signup} element={<SignupPage />} />
     <Route path={ERoutes.login} element={<LoginPage />} />
     <Route path={ERoutes.all} element={<NotFoundPage />} />

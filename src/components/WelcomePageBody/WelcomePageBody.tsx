@@ -34,6 +34,7 @@ export function WelcomePageBody() {
       </div>
 
       <div className={styles.activeZone}>
+        <img src={Logo} className={styles.logo} alt="logo" />
         {user && (
           <Link className={styles.link} to="/">
             {translate('To main')}
@@ -41,7 +42,6 @@ export function WelcomePageBody() {
         )}
         {!user && (
           <>
-            <img src={Logo} className={styles.logo} alt="logo" />
             <Link className={styles.link} to={ERoutes.login}>
               {translate('Login')}
             </Link>
