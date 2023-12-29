@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { createSchema } from '@utils/createSchema.ts';
+import { createSchema } from '@utils/createSchema';
 import { ValidationError } from 'yup';
 import { translateMock } from '../mocks/translateMock';
 import { mockAuthData } from '../mocks/mockAuthData';

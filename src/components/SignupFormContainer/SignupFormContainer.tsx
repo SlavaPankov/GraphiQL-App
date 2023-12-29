@@ -6,7 +6,7 @@ import { SubmitHandler } from 'react-hook-form';
 import { localizationContext } from '@context/LocalizationContext';
 import { Form } from '@components/Form';
 import { IFormData } from '@type/interfaces/IFormData';
-import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword.ts';
+import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword';
 import styles from './singupFormContainer.module.scss';
 
 export function SignupFormContainer() {

@@ -12,7 +12,7 @@ import {
   useForm,
 } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useCreateSignupSchema } from '@hooks/useCreateSignupSchema.ts';
+import { useCreateSignupSchema } from '@hooks/useCreateSignupSchema';
 import styles from './form.module.scss';
 
 interface ISignupFormProps {
@@ -20,7 +20,7 @@ interface ISignupFormProps {
   onSubmit: SubmitHandler<IFormData>;
 }
 
-export function Form({ isSignup, onSubmit }: ISignupFormProps) {
+export function Form({ isSignup, onSubmit }: Readonly<ISignupFormProps>) {
   const { translate } = useContext(localizationContext);
   const { schema } = useCreateSignupSchema(isSignup);
   const [isMounted, setIsMounted] = useState<boolean>(false);

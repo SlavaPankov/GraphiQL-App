@@ -3,7 +3,7 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { Form } from '@components/Form';
 import { UseLocalizationContext } from '@context/LocalizationContext';
 import { Provider } from 'react-redux';
-import store from '@store/store.ts';
+import store from '@store/store';
 import { mockAuthData } from '../mocks/mockAuthData';
 
 function prepare(isSignup: boolean, onSubmit = vi.fn()) {

@@ -7,7 +7,7 @@ import { SubmitHandler } from 'react-hook-form';
 import { IFormData } from '@type/interfaces/IFormData';
 import { H1 } from '@components/Headings';
 import { Form } from '@components/Form';
-import { loginWithEmailAndPassword } from '@utils/loginWithEmailAndPassword.ts';
+import { loginWithEmailAndPassword } from '@utils/loginWithEmailAndPassword';
 
 export function LoginFormContainer() {
   const { translate } = useContext(localizationContext);

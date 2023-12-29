@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { localizationContext } from '@context/LocalizationContext';
-import { createSchema } from '@utils/createSchema.ts';
+import { createSchema } from '@utils/createSchema';
 
 export function useCreateSignupSchema(isSignup: boolean) {
   const { locale, translate, isFetching } = useContext(localizationContext);

@@ -1,6 +1,6 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { IFormData } from '@type/interfaces/IFormData';
-import { loginWithEmailAndPassword } from '@utils/loginWithEmailAndPassword.ts';
+import { loginWithEmailAndPassword } from '@utils/loginWithEmailAndPassword';
 import { act } from '@testing-library/react';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { toast } from 'react-toastify';
