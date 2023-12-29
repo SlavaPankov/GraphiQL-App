@@ -31,7 +31,7 @@ describe('Heading', () => {
     expect(() => render(<Heading>{headingText}</Heading>)).toThrow(errorText);
   });
 
-  it('Heading has an autoleveling feature', () => {
+  it('Heading has an auto-leveling feature', () => {
     const nestingLevel = 6;
     render(createNestedSections(nestingLevel));
 

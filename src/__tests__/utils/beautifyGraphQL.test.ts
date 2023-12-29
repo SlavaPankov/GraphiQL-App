@@ -7,7 +7,7 @@ describe('beautifyGraphQL', () => {
       'query($v:String){characters(filter:{name:$v}){results{name}response{name}}}';
     const spaced =
       '   query   ($v   :   String   )   {   characters   (   filter   :   {   name   :   $v   }   )   {   results   {   name   }   response   {   name   }   }   }   ';
-    const linebreaked =
+    const newLined =
       'query($v:String){characters(filter:{name:$v}){results{name}\n\n\nresponse{name}}}';
 
     const expected = `query($v: String) {
@@ -23,7 +23,7 @@ describe('beautifyGraphQL', () => {
 
     expect(beautifyGraphQL(basic)).toBe(expected);
     expect(beautifyGraphQL(spaced)).toBe(expected);
-    expect(beautifyGraphQL(linebreaked)).toBe(expected);
+    expect(beautifyGraphQL(newLined)).toBe(expected);
   });
 
   it('format multiple property query properly', () => {
@@ -31,7 +31,7 @@ describe('beautifyGraphQL', () => {
       'query($v:String){characters(filter:{name:$v}){results{name description}response{name}}}';
     const spaced =
       '   query   ($v   :   String   )   {   characters   (   filter   :   {   name   :   $v   }   )   {   results   {   name   description   }   response   {   name   }   }   }   ';
-    const linebreaked =
+    const newLined =
       'query($v:String){characters(filter:{name:$v}){results{name\n\n\ndescription}\n\n\nresponse{name}}}';
 
     const expected = `query($v: String) {
@@ -48,6 +48,6 @@ describe('beautifyGraphQL', () => {
 
     expect(beautifyGraphQL(basic)).toBe(expected);
     expect(beautifyGraphQL(spaced)).toBe(expected);
-    expect(beautifyGraphQL(linebreaked)).toBe(expected);
+    expect(beautifyGraphQL(newLined)).toBe(expected);
   });
 });
