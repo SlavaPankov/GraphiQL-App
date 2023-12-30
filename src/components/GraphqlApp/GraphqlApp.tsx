@@ -3,14 +3,15 @@ import { Heading } from '@components/Heading';
 import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { useLazyGetSchemaQuery } from '@store/graphqlApi/graphqlApi';
 import {
-  setGQLSchema,
+  setGQLSDLIntrospection,
   setGQLUrl,
 } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
 import { HTMLAttributes, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useLazyGetSchemaQuery } from '@store/graphqlApi/graphqlApi';
+import { parseIntrospection } from '@utils/parseIntrospection';
 import { ChangeEndpointDialog } from './ChangeEndpointDialog';
 import { DocsExplorer } from './DocsExplorer';
 import { RequestEditor } from './RequestEditor';
@@ -26,6 +27,12 @@ export function GraphqlApp({
   const [isUrlDialogOpen, setIsUrlDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
   const [fetchSchema] = useLazyGetSchemaQuery();
+
+  const updateSDLSchema = async () => {
+    const response = await fetchSchema({});
+    const introspection = await parseIntrospection(response.data);
+    dispatch(setGQLSDLIntrospection(introspection));
+  };
 
   return (
     <Article
@@ -45,8 +52,7 @@ export function GraphqlApp({
           if (isDocsOpen) {
             setIsDocsOpen(false);
           } else {
-            const { data } = await fetchSchema({});
-            dispatch(setGQLSchema(JSON.stringify(data, null, 2)));
+            await updateSDLSchema();
             setIsDocsOpen(true);
           }
         }}

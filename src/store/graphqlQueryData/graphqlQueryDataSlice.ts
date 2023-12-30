@@ -1,5 +1,6 @@
-import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { isStringHashTable } from '@utils/typeguards/is-string-hash-table';
+import { IntrospectionQuery } from 'graphql/utilities';
 
 export const defaultEndpoint = 'https://rickandmortyapi.graphcdn.app/';
 
@@ -9,7 +10,7 @@ export interface IGraphqlQueryDataState {
   headers: Record<string, string>;
   variables: Record<string, string>;
   response: string;
-  schema: string;
+  sdlIntrospection: IntrospectionQuery | null;
 }
 
 const { actions, reducer } = createSlice({
@@ -20,7 +21,7 @@ const { actions, reducer } = createSlice({
     headers: {},
     variables: {},
     response: '',
-    schema: '',
+    sdlIntrospection: null,
   }),
   reducers: {
     setGQLUrl(state, { payload }: PayloadAction<string>) {
@@ -48,8 +49,11 @@ const { actions, reducer } = createSlice({
     setGQLResponse(state, { payload }: PayloadAction<string>) {
       state.response = payload;
     },
-    setGQLSchema(state, { payload }: PayloadAction<string>) {
-      state.schema = payload;
+    setGQLSDLIntrospection(
+      state,
+      { payload }: PayloadAction<IntrospectionQuery>
+    ) {
+      return { ...state, sdlIntrospection: payload };
     },
   },
 });
@@ -61,5 +65,5 @@ export const {
   setGQLHeaders,
   setGQLVariables,
   setGQLResponse,
-  setGQLSchema,
+  setGQLSDLIntrospection,
 } = actions;
