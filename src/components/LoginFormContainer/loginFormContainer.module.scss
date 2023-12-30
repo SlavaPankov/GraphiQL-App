@@ -1,8 +1,15 @@
-.container {
-  padding-top: 50px !important;
-  padding-bottom: 50px !important;
-  max-width: 33% !important;
+.root:global(.container) {
   display: flex;
   flex-direction: column;
   gap: 20px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  max-width: 33%;
+
+  @media (max-width: 850px) {
+    max-width: 50%;
+  }
+  @media (max-width: 600px) {
+    max-width: 75%;
+  }
 }
