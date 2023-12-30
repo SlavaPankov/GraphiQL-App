@@ -45,7 +45,7 @@ export function QueryEditor({
               toast.error(translate('Bad request'));
             }
             if (data) {
-              dispatch(setGQLResponse(JSON.stringify(data, null, 2)));
+              dispatch(setGQLResponse(data));
             }
           }}
           isFilled

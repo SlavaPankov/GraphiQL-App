@@ -9,6 +9,8 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { createElement } from 'react';
 import { Provider } from 'react-redux';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { parseIntrospection } from '@utils/parseIntrospection';
+import mockSDLResponse from '../mocks/mockSDLResponse.json';
 import { MemoryRouterWithStore } from '../cfg/testUtils';
 
 describe('GraphqlApp component', () => {
@@ -17,13 +19,18 @@ describe('GraphqlApp component', () => {
   });
 
   it.each(
-    [GraphqlApp, DocsExplorer, QueryEditor, RequestEditor, ResponseSection].map(
+    [GraphqlApp, QueryEditor, RequestEditor, ResponseSection].map(
       (component) => ({ name: component.name, component })
     )
   )('$name component renders without errors', ({ component }) => {
     expect(() =>
       render(<Provider store={store}>{createElement(component)}</Provider>)
     ).not.toThrow();
+  });
+
+  it("'DocsExplorer' component renders without errors", async () => {
+    const { __schema: schema } = await parseIntrospection(mockSDLResponse);
+    expect(() => render(<DocsExplorer __schema={schema} />)).not.toThrow();
   });
 
   it("'Sidebar' component renders without errors", () => {
