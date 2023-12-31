@@ -1,3 +1,9 @@
 .docsExplorerSection {
   padding: 0.5rem;
+  height: inherit;
+  overflow: auto;
+}
+
+.introspection {
+  font-family: $font-family;
 }

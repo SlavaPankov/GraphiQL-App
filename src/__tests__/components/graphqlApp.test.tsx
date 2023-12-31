@@ -29,8 +29,10 @@ describe('GraphqlApp component', () => {
   });
 
   it("'DocsExplorer' component renders without errors", async () => {
-    const { __schema: schema } = await parseIntrospection(mockSDLResponse);
-    expect(() => render(<DocsExplorer __schema={schema} />)).not.toThrow();
+    const introspection = await parseIntrospection(mockSDLResponse);
+    expect(() =>
+      render(<DocsExplorer introspection={introspection} />)
+    ).not.toThrow();
   });
 
   it("'Sidebar' component renders without errors", () => {

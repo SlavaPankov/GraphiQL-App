@@ -77,7 +77,7 @@ export function GraphqlApp({
           <Suspense fallback="LOADING">
             <DocsExplorer
               className={styles.sidePanel}
-              __schema={introspection.__schema}
+              introspection={introspection}
             />
           </Suspense>
         )}
