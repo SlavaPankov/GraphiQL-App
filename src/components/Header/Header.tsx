@@ -5,6 +5,8 @@ import { BaseButton } from '@components/BaseButton';
 import classNames from 'classnames';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import signOutUser from '@utils/singoutUser';
+import { ERoutes } from '@type/enums/ERoutes';
+import Logo from '@assets/images/logo.png';
 import styles from './header.module.scss';
 import { auth } from '../../firebase/firebase';
 
@@ -44,9 +46,16 @@ export function Header() {
         <nav>
           <Link
             className={classNames(styles.toMain, scrolling && styles.scrolling)}
-            to="/"
+            to={ERoutes.welcome}
           >
-            {translate('To main')}
+            <img
+              src={Logo}
+              className={styles.logo}
+              alt="logo"
+              width={50}
+              height={50}
+            />
+            <span>GraphQL App</span>
           </Link>
         </nav>
         <div
