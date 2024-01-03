@@ -27,7 +27,9 @@ export function DocsExplorer({
     >
       <Heading>{translate('Docs')}</Heading>
       <pre className={styles.introspection}>
-        {printSchema(buildClientSchema(introspection))}
+        {printSchema(buildClientSchema(introspection))
+          .replace(/""""""/g, '')
+          .replace(/"""/g, '"')}
       </pre>
     </Article>
   );
