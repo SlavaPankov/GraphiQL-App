@@ -53,5 +53,6 @@
   "Language": "Рус",
   "Sign out": "Sign out",
   "Bad request": "Bad request",
-  "To welcome": ""
+  "Already login": "Already have an account?",
+  "New user": "You do not have an account?"
 }

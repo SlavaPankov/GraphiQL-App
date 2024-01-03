@@ -7,6 +7,8 @@ import { localizationContext } from '@context/LocalizationContext';
 import { Form } from '@components/Form';
 import { IFormData } from '@type/interfaces/IFormData';
 import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword.ts';
+import { Link } from 'react-router-dom';
+import { ERoutes } from '@type/enums/ERoutes';
 import styles from './singupFormContainer.module.scss';
 
 export function SignupFormContainer() {
@@ -27,6 +29,10 @@ export function SignupFormContainer() {
     <div className={className}>
       <H1 title={translate('Signup')} />
       <Form isSignup onSubmit={onSubmit} />
+      <div className={styles.subscribe}>
+        <span>{translate('Already login')}</span>
+        <Link to={ERoutes.login}>{translate('Login')}</Link>
+      </div>
     </div>
   );
 }
