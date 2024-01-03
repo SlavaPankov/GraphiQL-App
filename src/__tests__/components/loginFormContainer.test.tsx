@@ -5,14 +5,17 @@ import store from '@store/store.ts';
 import { LoginFormContainer } from '@components/LoginFormContainer';
 import { describe, expect, it, vi } from 'vitest';
 import { loginWithEmailAndPassword } from '@utils/loginWithEmailAndPassword';
+import { BrowserRouter } from 'react-router-dom';
 import { mockAuthData } from '../mocks/mockAuthData';
 
 function prepare() {
   return render(
     <Provider store={store}>
-      <UseLocalizationContext>
-        <LoginFormContainer />
-      </UseLocalizationContext>
+      <BrowserRouter>
+        <UseLocalizationContext>
+          <LoginFormContainer />
+        </UseLocalizationContext>
+      </BrowserRouter>
     </Provider>
   );
 }
