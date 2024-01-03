@@ -42,7 +42,7 @@ export function WelcomePageBody() {
           height={105}
         />
         {user && (
-          <Link className={styles.link} to="/">
+          <Link className={classNames(styles.link, styles.linkReg)} to="/">
             {translate('To main')}
           </Link>
         )}
@@ -52,7 +52,7 @@ export function WelcomePageBody() {
               {translate('Login')}
             </Link>
             <Link
-              className={`${styles.link} ${styles.linkReg}`}
+              className={classNames(styles.link, styles.linkReg)}
               to={ERoutes.signup}
             >
               {translate('Signup')}

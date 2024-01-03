@@ -14,10 +14,6 @@ import styles from './singupFormContainer.module.scss';
 export function SignupFormContainer() {
   const { translate } = useContext(localizationContext);
 
-  const className = classNames('container', {
-    [styles.container]: true,
-  });
-
   const onSubmit: SubmitHandler<IFormData> = (data) => {
     signupWithEmailAndPassword(
       { name: data.name ?? '', email: data.email, password: data.password },
@@ -26,7 +22,7 @@ export function SignupFormContainer() {
   };
 
   return (
-    <div className={className}>
+    <div className={classNames(styles.root, 'container')}>
       <H1 title={translate('Signup')} />
       <Form isSignup onSubmit={onSubmit} />
       <div className={styles.subscribe}>
