@@ -9,12 +9,9 @@ import styles from './notFound.module.scss';
 
 export function NotFound() {
   const { translate } = useContext(localizationContext);
-  const className = classNames('container', {
-    [styles.container]: true,
-  });
 
   return (
-    <div className={className}>
+    <div className={classNames(styles.root, 'container')}>
       <img src={Logo} alt="GraphiQL" width={240} height={240} />
       <H1 title={translate('Not found')} />
       <Link className={styles.link} to={ERoutes.home}>
