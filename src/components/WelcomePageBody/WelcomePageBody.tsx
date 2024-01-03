@@ -34,19 +34,19 @@ export function WelcomePageBody() {
       </div>
 
       <div className={styles.activeZone}>
+        <img src={Logo} className={styles.logo} alt="logo" />
         {user && (
-          <Link className={styles.link} to="/">
+          <Link className={classNames(styles.link, styles.linkReg)} to="/">
             {translate('To main')}
           </Link>
         )}
         {!user && (
           <>
-            <img src={Logo} className={styles.logo} alt="logo" />
             <Link className={styles.link} to={ERoutes.login}>
               {translate('Login')}
             </Link>
             <Link
-              className={`${styles.link} ${styles.linkReg}`}
+              className={classNames(styles.link, styles.linkReg)}
               to={ERoutes.signup}
             >
               {translate('Signup')}
