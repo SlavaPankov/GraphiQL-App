@@ -21,7 +21,12 @@
 }
 
 .sidePanel {
-  flex: 0 1 24rem;
+  max-width: 22rem;
+
+  @include small-tablet {
+    max-width: unset;
+    flex: 0 1 20rem;
+  }
 }
 
 .editors {

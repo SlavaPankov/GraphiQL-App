@@ -28,9 +28,16 @@ export function DocsExplorer({
       <Heading>{translate('Docs')}</Heading>
       <pre className={styles.introspection}>
         {printSchema(buildClientSchema(introspection))
-          .replace(/""""""/g, '')
-          .replace(/"""/g, '"')}
+          .replace(/"{6}\n/g, '')
+          .replace(/"{3}/g, '"')}
       </pre>
     </Article>
   );
 }
+
+/*
+
+  """
+  The gender of the character ('Female', 'Male', 'Genderless' or 'unknown').
+  """
+* */
