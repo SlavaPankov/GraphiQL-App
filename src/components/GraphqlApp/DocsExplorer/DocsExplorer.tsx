@@ -22,7 +22,7 @@ export function DocsExplorer({
 
   return (
     <Article
-      className={classNames(className, styles.docsExplorerSection)}
+      className={classNames('scrollbar', className, styles.docsExplorerSection)}
       testId="docs-explorer"
     >
       <Heading>{translate('Docs')}</Heading>
