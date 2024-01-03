@@ -10,12 +10,14 @@ import {
 } from 'react-router-dom';
 import { MainLayout } from '@components/MainLayout';
 import { ERoutes } from '@type/enums/ERoutes';
-import { WelcomePage } from '@pages/WelcomePage';
-import { GraphiQLPage } from '@pages/GraphiQLPage';
-import { SignupPage } from '@pages/SignupPage';
-import { LoginPage } from '@pages/LoginPage';
-import { NotFoundPage } from '@pages/NotFoundPage';
+import { lazy } from 'react';
 import store from './store/store';
+
+const WelcomePage = lazy(() => import('@pages/WelcomePage/WelcomePage'));
+const GraphiQLPage = lazy(() => import('@pages/GraphiQLPage/GraphiQLPage'));
+const SignupPage = lazy(() => import('@pages/SignupPage/SignupPage'));
+const LoginPage = lazy(() => import('@pages/LoginPage/LoginPage'));
+const NotFoundPage = lazy(() => import('@pages/NotFoundPage/NotFoundPage'));
 
 const routes = createRoutesFromElements(
   <Route path={ERoutes.home} element={<MainLayout />}>

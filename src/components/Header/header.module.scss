@@ -13,6 +13,7 @@
     background-color: $grey-7E;
     padding: 5px;
     height: initial;
+    z-index: 3;
   }
 }
 
@@ -25,7 +26,6 @@
 
 .controllers {
   display: flex;
-  flex-direction: column;
   gap: 10px;
 
   &.scrolling {

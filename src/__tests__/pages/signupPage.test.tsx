@@ -6,17 +6,17 @@ import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import { ReactNode } from 'react';
 import { ERoutes } from '@type/enums/ERoutes';
-import { MainPage } from '@pages/MainPage';
 import { AuthGate } from '@components/AuthGate';
 import { SignupFormContainer } from '@components/SignupFormContainer';
 import { SignupPage } from '@pages/SignupPage';
+import { GraphiQLPage } from '@pages/GraphiQLPage';
 
 function prepare() {
   const router = createMemoryRouter(
     [
       {
         path: ERoutes.home,
-        element: <MainPage />,
+        element: <GraphiQLPage />,
       },
       {
         path: ERoutes.signup,
