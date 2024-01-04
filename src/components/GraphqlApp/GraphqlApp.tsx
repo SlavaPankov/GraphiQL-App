@@ -8,6 +8,7 @@ import classNames from 'classnames';
 import { HTMLAttributes, lazy, Suspense, useState } from 'react';
 import { createPortal } from 'react-dom';
 import { useLazyGetSchemaQuery } from '@store/graphqlApi/graphqlApi';
+import { toast } from 'react-toastify';
 import { ChangeEndpointDialog } from './ChangeEndpointDialog';
 import { RequestEditor } from './RequestEditor';
 import { ResponseSection } from './ResponseSection';
@@ -46,7 +47,10 @@ export function GraphqlApp({
           if (isDocsOpen) {
             setIsDocsOpen(false);
           } else {
-            const { isSuccess } = await fetchSchema({});
+            const { isSuccess, isError } = await fetchSchema({});
+            if (isError) {
+              toast.error(translate('Bad request'));
+            }
             setIsDocsOpen(isSuccess);
           }
         }}
