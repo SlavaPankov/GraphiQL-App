@@ -1,7 +1,6 @@
 import { ErrorBoundary } from '@components/ErrorBoundary';
 import { Fallback } from '@components/Fallback';
 import { UseLocalizationContext } from '@context/LocalizationContext';
-import { MainPage } from '@pages/MainPage';
 import { Provider } from 'react-redux';
 import {
   createBrowserRouter,
@@ -11,18 +10,19 @@ import {
 } from 'react-router-dom';
 import { MainLayout } from '@components/MainLayout';
 import { ERoutes } from '@type/enums/ERoutes';
-import { WelcomePage } from '@pages/WelcomePage';
-import { GraphiQLPage } from '@pages/GraphiQLPage';
-import { SignupPage } from '@pages/SignupPage';
-import { LoginPage } from '@pages/LoginPage';
-import { NotFoundPage } from '@pages/NotFoundPage';
+import { lazy } from 'react';
 import store from './store/store';
+
+const WelcomePage = lazy(() => import('@pages/WelcomePage/WelcomePage'));
+const GraphiQLPage = lazy(() => import('@pages/GraphiQLPage/GraphiQLPage'));
+const SignupPage = lazy(() => import('@pages/SignupPage/SignupPage'));
+const LoginPage = lazy(() => import('@pages/LoginPage/LoginPage'));
+const NotFoundPage = lazy(() => import('@pages/NotFoundPage/NotFoundPage'));
 
 const routes = createRoutesFromElements(
   <Route path={ERoutes.home} element={<MainLayout />}>
-    <Route index element={<MainPage />} />
+    <Route index element={<GraphiQLPage />} />
     <Route path={ERoutes.welcome} element={<WelcomePage />} />
-    <Route path={ERoutes.graphql} element={<GraphiQLPage />} />
     <Route path={ERoutes.signup} element={<SignupPage />} />
     <Route path={ERoutes.login} element={<LoginPage />} />
     <Route path={ERoutes.all} element={<NotFoundPage />} />

@@ -1,5 +1,7 @@
 import { WelcomePageBody } from '@components/WelcomePageBody';
 
-export function WelcomePage() {
+function WelcomePage() {
   return <WelcomePageBody />;
 }
+
+export default WelcomePage;
