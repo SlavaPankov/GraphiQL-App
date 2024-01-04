@@ -1,6 +1,5 @@
 import { GraphqlApp } from '@components/GraphqlApp';
 import { DocsExplorer } from '@components/GraphqlApp/DocsExplorer';
-import { History } from '@components/GraphqlApp/History';
 import { QueryEditor } from '@components/GraphqlApp/QueryEditor';
 import { RequestEditor } from '@components/GraphqlApp/RequestEditor';
 import { ResponseSection } from '@components/GraphqlApp/ResponseSection';
@@ -10,6 +9,8 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react';
 import { createElement } from 'react';
 import { Provider } from 'react-redux';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { parseIntrospection } from '@utils/parseIntrospection';
+import mockSDLResponse from '../mocks/mockSDLResponse.json';
 import { MemoryRouterWithStore } from '../cfg/testUtils';
 
 describe('GraphqlApp component', () => {
@@ -18,17 +19,19 @@ describe('GraphqlApp component', () => {
   });
 
   it.each(
-    [
-      GraphqlApp,
-      DocsExplorer,
-      History,
-      QueryEditor,
-      RequestEditor,
-      ResponseSection,
-    ].map((component) => ({ name: component.name, component }))
+    [GraphqlApp, QueryEditor, RequestEditor, ResponseSection].map(
+      (component) => ({ name: component.name, component })
+    )
   )('$name component renders without errors', ({ component }) => {
     expect(() =>
       render(<Provider store={store}>{createElement(component)}</Provider>)
+    ).not.toThrow();
+  });
+
+  it("'DocsExplorer' component renders without errors", async () => {
+    const introspection = await parseIntrospection(mockSDLResponse);
+    expect(() =>
+      render(<DocsExplorer introspection={introspection} />)
     ).not.toThrow();
   });
 

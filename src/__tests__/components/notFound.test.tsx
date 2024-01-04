@@ -3,7 +3,7 @@ import { UseLocalizationContext } from '@context/LocalizationContext';
 import { NotFound } from '@components/NotFound';
 import { describe, expect, it } from 'vitest';
 import { Provider } from 'react-redux';
-import store from '@store/store.ts';
+import store from '@store/store';
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 
 function prepare() {

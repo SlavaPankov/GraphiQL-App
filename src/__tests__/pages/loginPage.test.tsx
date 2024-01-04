@@ -1,7 +1,7 @@
 import { createMemoryRouter, RouterProvider } from 'react-router-dom';
 import { LoginPage } from '@pages/LoginPage';
 import { Provider } from 'react-redux';
-import store from '@store/store.ts';
+import store from '@store/store';
 import { UseLocalizationContext } from '@context/LocalizationContext';
 import { render, waitFor } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';

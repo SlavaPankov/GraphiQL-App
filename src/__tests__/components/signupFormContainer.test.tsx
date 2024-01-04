@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, waitFor } from '@testing-library/react';
 import { Provider } from 'react-redux';
-import store from '@store/store.ts';
+import store from '@store/store';
 import { UseLocalizationContext } from '@context/LocalizationContext';
 import { SignupFormContainer } from '@components/SignupFormContainer';
 import { signupWithEmailAndPassword } from '@utils/signupWithEmailAndPassword';

@@ -3,20 +3,21 @@ import { Heading } from '@components/Heading';
 import { Section } from '@components/Section';
 import { useLocaleContext } from '@context/LocalizationContext';
 import { useAppDispatch } from '@hooks/useAppDispatch';
-import { useLazyGetSchemaQuery } from '@store/graphqlApi/graphqlApi';
-import {
-  setGQLSchema,
-  setGQLUrl,
-} from '@store/graphqlQueryData/graphqlQueryDataSlice';
+import { setGQLUrl } from '@store/graphqlQueryData/graphqlQueryDataSlice';
 import classNames from 'classnames';
-import { HTMLAttributes, useState } from 'react';
+import { HTMLAttributes, lazy, Suspense, useState } from 'react';
 import { createPortal } from 'react-dom';
+import { useLazyGetSchemaQuery } from '@store/graphqlApi/graphqlApi';
 import { ChangeEndpointDialog } from './ChangeEndpointDialog';
-import { DocsExplorer } from './DocsExplorer';
 import { RequestEditor } from './RequestEditor';
 import { ResponseSection } from './ResponseSection';
 import { Sidebar } from './Sidebar';
 import styles from './graphqlApp.module.scss';
+
+const DocsExplorer = lazy(async () => {
+  const module = await import('./DocsExplorer');
+  return { default: module.DocsExplorer };
+});
 
 export function GraphqlApp({
   className,
@@ -25,7 +26,7 @@ export function GraphqlApp({
   const [isDocsOpen, setIsDocsOpen] = useState(false);
   const [isUrlDialogOpen, setIsUrlDialogOpen] = useState(false);
   const dispatch = useAppDispatch();
-  const [fetchSchema] = useLazyGetSchemaQuery();
+  const [fetchSchema, { data: introspection }] = useLazyGetSchemaQuery();
 
   return (
     <Article
@@ -45,9 +46,8 @@ export function GraphqlApp({
           if (isDocsOpen) {
             setIsDocsOpen(false);
           } else {
-            const { data } = await fetchSchema({});
-            dispatch(setGQLSchema(JSON.stringify(data, null, 2)));
-            setIsDocsOpen(true);
+            const { isSuccess } = await fetchSchema({});
+            setIsDocsOpen(isSuccess);
           }
         }}
         handleSettingsClick={() => {
@@ -73,7 +73,14 @@ export function GraphqlApp({
             />,
             document.body
           )}
-        {isDocsOpen && <DocsExplorer className={styles.sidePanel} />}
+        {isDocsOpen && introspection && (
+          <Suspense fallback="LOADING">
+            <DocsExplorer
+              className={styles.sidePanel}
+              introspection={introspection}
+            />
+          </Suspense>
+        )}
 
         <Section className={styles.editors}>
           <Heading className="visually-hidden">{translate('Editors')}</Heading>

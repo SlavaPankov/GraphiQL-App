@@ -21,18 +21,11 @@
 }
 
 .sidePanel {
-  flex: 0 1 15rem;
-  position: absolute;
-  left: 48px;
-  z-index: 1;
-  background-color: white;
-  width: 93%;
-  height: 500px;
-  overflow: scroll;
+  max-width: 22rem;
 
-  @media (max-width: 768px) {
-    left: 0;
-    width: 100%;
+  @include small-tablet {
+    max-width: unset;
+    flex: 0 1 20rem;
   }
 }
 

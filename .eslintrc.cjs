@@ -67,6 +67,7 @@ module.exports = {
     ],
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
+    'no-underscore-dangle': 'off',
   },
   overrides: [
     {
