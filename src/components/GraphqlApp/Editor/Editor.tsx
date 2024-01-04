@@ -80,6 +80,7 @@ export function Editor({ mode }: { readonly mode: TEditorMode }) {
       [styles.subEditorArea]: isSubEditor,
       [styles.queryEditorArea]: isQueryEditor,
       [styles.jsonViewerArea]: isResponseViewer,
+      [styles.invalid]: isSubEditor && formatStateValue(state) === '',
     }),
     readOnly: isResponseViewer,
   };
