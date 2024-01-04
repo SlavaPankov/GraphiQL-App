@@ -52,5 +52,7 @@
   "Welcome gratitude": "Created with gratitude for the RS School.",
   "Language": "Рус",
   "Sign out": "Sign out",
-  "Bad request": "Bad request"
+  "Bad request": "Bad request",
+  "Already login": "Already have an account?",
+  "New user": "You do not have an account?"
 }

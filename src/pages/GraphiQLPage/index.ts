@@ -1,1 +1,1 @@
-export * from './GraphiQLPage';
+export { default as GraphiQLPage } from './GraphiQLPage';
