@@ -36,6 +36,7 @@ export function RequestEditor({
               setCurrentSubEditorMode('variables');
               setLastSubEditorMode('variables');
             }}
+            isActive={currentSubEditorMode === 'variables'}
           />
           <BaseButton
             label={translate('Headers')}
@@ -44,6 +45,7 @@ export function RequestEditor({
               setCurrentSubEditorMode('headers');
               setLastSubEditorMode('headers');
             }}
+            isActive={currentSubEditorMode === 'headers'}
           />
         </div>
         <IconButton
