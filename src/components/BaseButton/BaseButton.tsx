@@ -9,6 +9,7 @@ interface IBaseButtonProps {
   onClick?: (event?: MouseEvent<HTMLButtonElement>) => void;
   disabled?: boolean;
   mode?: 'primary' | 'secondary';
+  isActive?: boolean;
 }
 
 export function BaseButton({
@@ -17,10 +18,12 @@ export function BaseButton({
   onClick,
   disabled,
   mode,
-}: IBaseButtonProps) {
+  isActive,
+}: Readonly<IBaseButtonProps>) {
   const className = classNames({
     [styles.primary]: mode === 'primary',
     [styles.secondary]: mode === 'secondary',
+    [styles.active]: isActive,
   });
 
   return (
