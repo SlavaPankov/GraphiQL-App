@@ -1,0 +1,11 @@
+.primary {
+  @include btn-primary;
+}
+
+.secondary {
+  @include btn-secondary;
+}
+
+.active {
+  box-shadow: 0 0 0 0.08rem;
+}

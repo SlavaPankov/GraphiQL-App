@@ -1,0 +1,16 @@
+.queryEditorSection {
+  @include small-tablet {
+    flex-direction: column-reverse;
+  }
+
+  display: flex;
+}
+
+.queryEditorButtons {
+  @include small-tablet {
+    flex-direction: row;
+  }
+
+  display: flex;
+  flex-direction: column;
+}

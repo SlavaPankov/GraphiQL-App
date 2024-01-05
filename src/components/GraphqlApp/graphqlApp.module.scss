@@ -1,0 +1,50 @@
+.breakViewport {
+  min-height: 100dvh;
+}
+
+.application {
+  @include small-tablet {
+    flex-direction: column;
+  }
+
+  display: flex;
+}
+
+.editorsSection {
+  @include small-tablet {
+    flex-direction: column;
+  }
+
+  display: flex;
+  flex: 1;
+  padding: 0.5rem;
+}
+
+.sidePanel {
+  max-width: 22rem;
+
+  @include small-tablet {
+    max-width: unset;
+    flex: 0 1 20rem;
+  }
+}
+
+.editors {
+  @include small-tablet {
+    flex-direction: column;
+  }
+
+  display: flex;
+  flex: 1;
+  flex-wrap: wrap;
+
+  padding: 0.5rem;
+
+  background-color: rgba($grey-69, 0.071);
+  border-radius: 1.25rem;
+}
+
+.requestEditor,
+.responseSection {
+  flex: 1;
+}

@@ -1,0 +1,15 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  height: 100dvh;
+
+  & > :nth-child(2) {
+    flex: 1;
+  }
+
+  @media (width<=768px) {
+    &[class*='container'] {
+      padding: 0.25rem;
+    }
+  }
+}

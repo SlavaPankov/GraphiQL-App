@@ -1,0 +1,19 @@
+.root:global(.container) {
+  display: flex;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.heading {
+  font-size: 22px;
+  line-height: 28px;
+  color: $primary;
+}
+
+.link {
+  @include btn-primary;
+}
